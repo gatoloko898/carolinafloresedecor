@@ -1,4 +1,4 @@
-import aboutImg from "@/assets/about-shop.jpg";
+import aboutImg from "@/assets/real-storefront-2.webp";
 
 export function About() {
   return (

@@ -1,14 +1,22 @@
-import roses from "@/assets/product-roses.jpg";
-import arrangement from "@/assets/product-arrangement.jpg";
-import chocolate from "@/assets/product-chocolate.jpg";
-import occasions from "@/assets/product-occasions.jpg";
+import rosesPink from "@/assets/real-roses-pink.png";
+import rosesRed from "@/assets/real-roses-red.webp";
+import rosesClassic from "@/assets/real-roses-classic.png";
+import rosesRustic from "@/assets/real-roses-rustic.png";
+import arrChoc from "@/assets/real-arrangement-chocolate.png";
+import arrBucket from "@/assets/real-arrangement-bucket.png";
+import sunflowersBow from "@/assets/real-sunflowers-bow.png";
+import sunflowersBlue from "@/assets/real-sunflowers-blue.png";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 const products = [
-  { img: roses, emoji: "🌹", name: "Buquê de Rosas Encanto", category: "Buquês de Rosas", price: "R$ 149,90" },
-  { img: arrangement, emoji: "🌻", name: "Arranjo Sol & Campo", category: "Arranjos Especiais", price: "R$ 189,90" },
-  { img: chocolate, emoji: "🎁", name: "Kit Doce Surpresa", category: "Kits com Chocolate", price: "R$ 219,90" },
-  { img: occasions, emoji: "💐", name: "Buquê Eterno Romance", category: "Flores para Ocasiões", price: "R$ 179,90" },
+  { img: rosesPink, emoji: "🌹", name: "Buquê Rosa Encanto", category: "Buquês de Rosas", price: "R$ 169,90" },
+  { img: rosesRed, emoji: "❤️", name: "Buquê Paixão Vermelha", category: "Rosas Vermelhas", price: "R$ 199,90" },
+  { img: rosesClassic, emoji: "🌹", name: "Clássico Romance", category: "Buquê Clássico", price: "R$ 189,90" },
+  { img: rosesRustic, emoji: "💝", name: "Rústico Apaixonado", category: "Edição Especial", price: "R$ 179,90" },
+  { img: arrChoc, emoji: "🎁", name: "Kit Doce Surpresa", category: "Arranjo + Chocolates", price: "R$ 259,90" },
+  { img: arrBucket, emoji: "🌻", name: "Balde Encanto Floral", category: "Arranjos Especiais", price: "R$ 239,90" },
+  { img: sunflowersBow, emoji: "🌻", name: "Girassóis com Amor", category: "Buquê Girassóis", price: "R$ 189,90" },
+  { img: sunflowersBlue, emoji: "💙", name: "Sol & Céu Azul", category: "Edição Exclusiva", price: "R$ 219,90" },
 ];
 
 export function Products() {
@@ -26,7 +34,7 @@ export function Products() {
           {products.map((p) => (
             <div key={p.name} className="group bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all hover:-translate-y-2">
               <div className="aspect-square overflow-hidden bg-blush">
-                <img src={p.img} alt={p.name} loading="lazy" width={800} height={800} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-5">
                 <p className="text-xs uppercase tracking-wider text-gold">{p.emoji} {p.category}</p>
