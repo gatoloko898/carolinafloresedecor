@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 export type CartItem = {
   id: string;
   name: string;
-  price: number;
   img: string;
   qty: number;
 };
@@ -17,7 +16,6 @@ type CartContextType = {
   inc: (id: string) => void;
   dec: (id: string) => void;
   clear: () => void;
-  total: number;
   count: number;
 };
 
@@ -61,15 +59,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   const clear = () => setItems([]);
 
-  const { total, count } = useMemo(() => {
-    return {
-      total: items.reduce((s, i) => s + i.price * i.qty, 0),
-      count: items.reduce((s, i) => s + i.qty, 0),
-    };
-  }, [items]);
+  const count = useMemo(() => items.reduce((s, i) => s + i.qty, 0), [items]);
 
   return (
-    <CartContext.Provider value={{ items, isOpen, setOpen, add, remove, inc, dec, clear, total, count }}>
+    <CartContext.Provider value={{ items, isOpen, setOpen, add, remove, inc, dec, clear, count }}>
       {children}
     </CartContext.Provider>
   );
