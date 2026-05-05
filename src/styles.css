@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -59,29 +60,49 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-blush: var(--blush);
+  --color-cream: var(--cream);
+  --font-script: "Dancing Script", cursive;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+  --shadow-soft: 0 10px 40px -10px color-mix(in oklab, var(--rose-deep) 25%, transparent);
+  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--rose-deep) 35%, transparent);
+  --gradient-rose: linear-gradient(135deg, var(--blush), var(--rose));
+  --gradient-gold: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  --gradient-soft: linear-gradient(180deg, var(--cream), var(--background));
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.875rem;
+  --background: oklch(0.99 0.005 20);
+  --foreground: oklch(0.28 0.04 10);
+  --gold: oklch(0.78 0.12 80);
+  --gold-soft: oklch(0.88 0.08 85);
+  --rose: oklch(0.86 0.09 5);
+  --rose-deep: oklch(0.65 0.15 5);
+  --blush: oklch(0.94 0.04 5);
+  --cream: oklch(0.98 0.012 70);
+  --card: oklch(0.99 0.008 20);
+  --card-foreground: oklch(0.28 0.04 10);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.28 0.04 10);
+  --primary: oklch(0.65 0.15 5);
+  --primary-foreground: oklch(0.99 0.005 20);
+  --secondary: oklch(0.94 0.04 5);
+  --secondary-foreground: oklch(0.35 0.08 5);
+  --muted: oklch(0.96 0.015 20);
+  --muted-foreground: oklch(0.5 0.04 10);
+  --accent: oklch(0.88 0.08 85);
+  --accent-foreground: oklch(0.28 0.04 10);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.9 0.03 10);
+  --input: oklch(0.9 0.03 10);
+  --ring: oklch(0.78 0.12 80);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +161,28 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+
+  .font-script {
+    font-family: var(--font-script);
   }
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.8s ease-out both; }
