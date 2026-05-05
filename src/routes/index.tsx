@@ -38,6 +38,7 @@ function Index() {
         <p className="mt-1">© 2026 — Feito com 💗</p>
       </footer>
       <WhatsAppFloat />
+      <InstagramFloat />
     </div>
   );
 }
