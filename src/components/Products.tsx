@@ -12,6 +12,13 @@ import chocoHersheysDark from "@/assets/choco-hersheys-dark.png";
 import chocoHersheysOvo from "@/assets/choco-hersheys-ovomaltine.png";
 import chocoMilka from "@/assets/choco-milka.png";
 import chocoAmandita from "@/assets/choco-amandita.png";
+import cesta1 from "@/assets/cesta-1.png";
+import cesta2 from "@/assets/cesta-2.png";
+import cesta3 from "@/assets/cesta-3.png";
+import cesta4 from "@/assets/cesta-4.png";
+import cesta5 from "@/assets/cesta-5.png";
+import cesta6 from "@/assets/cesta-6.png";
+import cesta7 from "@/assets/cesta-7.png";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 const products = [
@@ -29,6 +36,13 @@ const products = [
   { img: chocoHersheysOvo, emoji: "🍫", name: "Hershey's Ovomaltine", category: "Chocolate" },
   { img: chocoMilka, emoji: "🍫", name: "Milka Choco Moo", category: "Chocolate" },
   { img: chocoAmandita, emoji: "🍫", name: "Amandita Creme com Cacau", category: "Bombons" },
+  { img: cesta1, emoji: "🧺", name: "Cesta Eu Amo Você", category: "Cesta Café da Manhã" },
+  { img: cesta2, emoji: "☕", name: "Cesta Manhã Apaixonada", category: "Cesta Café da Manhã" },
+  { img: cesta3, emoji: "🧺", name: "Cesta Felicidade Especial", category: "Cesta Café da Manhã" },
+  { img: cesta4, emoji: "💝", name: "Cesta Com Amor", category: "Cesta Café da Manhã" },
+  { img: cesta5, emoji: "☕", name: "Cesta Aprecie os Detalhes", category: "Cesta Café da Manhã" },
+  { img: cesta6, emoji: "🧺", name: "Cesta Doce Encontro", category: "Cesta Café da Manhã" },
+  { img: cesta7, emoji: "🌅", name: "Cesta Gratidão", category: "Cesta Café da Manhã" },
 ];
 
 export function Products() {
