@@ -105,10 +105,7 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              <div className="flex justify-between text-base font-medium">
-                <span>Total</span>
-                <span className="text-rose-deep">{formatBRL(total)}</span>
-              </div>
+              
               {step === "cart" ? (
                 <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
                   Continuar
