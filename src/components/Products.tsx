@@ -1,34 +1,34 @@
-import rosesPink from "@/assets/real-roses-pink.png";
+import rosesPink from "@/assets/real-roses-pink.webp";
 import rosesRed from "@/assets/real-roses-red.webp";
-import rosesClassic from "@/assets/real-roses-classic.png";
-import rosesRustic from "@/assets/real-roses-rustic.png";
-import arrChoc from "@/assets/real-arrangement-chocolate.png";
-import arrBucket from "@/assets/real-arrangement-bucket.png";
-import sunflowersBow from "@/assets/real-sunflowers-bow.png";
-import sunflowersBlue from "@/assets/real-sunflowers-blue.png";
-import chocoFerrero from "@/assets/choco-ferrero.png";
-import chocoKinder from "@/assets/choco-kinder-bueno.png";
-import chocoHersheysDark from "@/assets/choco-hersheys-dark.png";
-import chocoHersheysOvo from "@/assets/choco-hersheys-ovomaltine.png";
-import chocoMilka from "@/assets/choco-milka.png";
-import chocoAmandita from "@/assets/choco-amandita.png";
-import cesta1 from "@/assets/cesta-1.png";
-import cesta2 from "@/assets/cesta-2.png";
-import cesta3 from "@/assets/cesta-3.png";
-import cesta4 from "@/assets/cesta-4.png";
-import cesta5 from "@/assets/cesta-5.png";
-import cesta6 from "@/assets/cesta-6.png";
-import cesta7 from "@/assets/cesta-7.png";
-import pelucia1 from "@/assets/pelucia-1.png";
-import pelucia2 from "@/assets/pelucia-2.png";
-import pelucia3 from "@/assets/pelucia-3.png";
-import pelucia4 from "@/assets/pelucia-4.png";
-import pelucia5 from "@/assets/pelucia-5.png";
-import pelucia6 from "@/assets/pelucia-6.png";
-import pelucia7 from "@/assets/pelucia-7.png";
-import pelucia8 from "@/assets/pelucia-8.png";
-import pelucia9 from "@/assets/pelucia-9.png";
-import pelucia10 from "@/assets/pelucia-10.png";
+import rosesClassic from "@/assets/real-roses-classic.webp";
+import rosesRustic from "@/assets/real-roses-rustic.webp";
+import arrChoc from "@/assets/real-arrangement-chocolate.webp";
+import arrBucket from "@/assets/real-arrangement-bucket.webp";
+import sunflowersBow from "@/assets/real-sunflowers-bow.webp";
+import sunflowersBlue from "@/assets/real-sunflowers-blue.webp";
+import chocoFerrero from "@/assets/choco-ferrero.webp";
+import chocoKinder from "@/assets/choco-kinder-bueno.webp";
+import chocoHersheysDark from "@/assets/choco-hersheys-dark.webp";
+import chocoHersheysOvo from "@/assets/choco-hersheys-ovomaltine.webp";
+import chocoMilka from "@/assets/choco-milka.webp";
+import chocoAmandita from "@/assets/choco-amandita.webp";
+import cesta1 from "@/assets/cesta-1.webp";
+import cesta2 from "@/assets/cesta-2.webp";
+import cesta3 from "@/assets/cesta-3.webp";
+import cesta4 from "@/assets/cesta-4.webp";
+import cesta5 from "@/assets/cesta-5.webp";
+import cesta6 from "@/assets/cesta-6.webp";
+import cesta7 from "@/assets/cesta-7.webp";
+import pelucia1 from "@/assets/pelucia-1.webp";
+import pelucia2 from "@/assets/pelucia-2.webp";
+import pelucia3 from "@/assets/pelucia-3.webp";
+import pelucia4 from "@/assets/pelucia-4.webp";
+import pelucia5 from "@/assets/pelucia-5.webp";
+import pelucia6 from "@/assets/pelucia-6.webp";
+import pelucia7 from "@/assets/pelucia-7.webp";
+import pelucia8 from "@/assets/pelucia-8.webp";
+import pelucia9 from "@/assets/pelucia-9.webp";
+import pelucia10 from "@/assets/pelucia-10.webp";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 type Product = { img: string; name: string; tag?: string };
@@ -80,7 +80,7 @@ function Card({ p }: { p: Product }) {
   return (
     <div className="group relative bg-card rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-blush/40">
       <div className="aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
-        <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+        <img src={p.img} alt={p.name} loading="lazy" decoding="async" width={600} height={750} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
       </div>
       {p.tag && (
         <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest bg-gold/95 text-white px-3 py-1 rounded-full shadow-soft">
@@ -104,7 +104,7 @@ function Card({ p }: { p: Product }) {
 
 function Category({ id, kicker, title, accent, items }: { id: string; kicker: string; title: string; accent: string; items: Product[] }) {
   return (
-    <section id={id} className="py-20">
+    <section id={id} className="py-20" style={{ contentVisibility: "auto", containIntrinsicSize: "1200px" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
           <div>

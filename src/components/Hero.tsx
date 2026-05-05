@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0 -z-10">
-        <img src={heroImg} alt="Buquê de rosas cor-de-rosa" width={1536} height={1024} className="h-full w-full object-cover" />
+        <img src={heroImg} alt="Buquê de rosas cor-de-rosa" width={1536} height={1024} fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
       </div>
 
