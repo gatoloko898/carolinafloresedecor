@@ -1,4 +1,4 @@
-import heroImg from "@/assets/hero-flowers.jpg";
+import heroImg from "@/assets/real-storefront.webp";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 export function Hero() {
