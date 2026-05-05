@@ -80,7 +80,7 @@ function Card({ p }: { p: Product }) {
   return (
     <div className="group relative bg-card rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-blush/40">
       <div className="aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
-        <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+        <img src={p.img} alt={p.name} loading="lazy" decoding="async" width={600} height={750} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
       </div>
       {p.tag && (
         <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest bg-gold/95 text-white px-3 py-1 rounded-full shadow-soft">
