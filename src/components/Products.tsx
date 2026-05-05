@@ -104,7 +104,7 @@ function Card({ p }: { p: Product }) {
 
 function Category({ id, kicker, title, accent, items }: { id: string; kicker: string; title: string; accent: string; items: Product[] }) {
   return (
-    <section id={id} className="py-20">
+    <section id={id} className="py-20" style={{ contentVisibility: "auto", containIntrinsicSize: "1200px" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
           <div>
