@@ -60,15 +60,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   const clear = () => setItems([]);
 
-  const { total, count } = useMemo(() => {
-    return {
-      total: items.reduce((s, i) => s + i.price * i.qty, 0),
-      count: items.reduce((s, i) => s + i.qty, 0),
-    };
-  }, [items]);
+  const count = useMemo(() => items.reduce((s, i) => s + i.qty, 0), [items]);
 
   return (
-    <CartContext.Provider value={{ items, isOpen, setOpen, add, remove, inc, dec, clear, total, count }}>
+    <CartContext.Provider value={{ items, isOpen, setOpen, add, remove, inc, dec, clear, count }}>
       {children}
     </CartContext.Provider>
   );
