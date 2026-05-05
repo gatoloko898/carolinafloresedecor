@@ -7,6 +7,7 @@ import { Highlights } from "@/components/Highlights";
 import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { InstagramFloat } from "@/components/InstagramFloat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
