@@ -29,54 +29,56 @@ import pelucia7 from "@/assets/pelucia-7.webp";
 import pelucia8 from "@/assets/pelucia-8.webp";
 import pelucia9 from "@/assets/pelucia-9.webp";
 import pelucia10 from "@/assets/pelucia-10.webp";
-import { WHATSAPP_URL } from "./WhatsAppFloat";
+import { ShoppingBag } from "lucide-react";
+import { useCart, formatBRL } from "@/contexts/CartContext";
 
-type Product = { img: string; name: string; tag?: string };
+type Product = { id: string; img: string; name: string; price: number; tag?: string };
 
 const buques: Product[] = [
-  { img: rosesPink, name: "Buquê Rosa Encanto", tag: "Mais pedido" },
-  { img: rosesRed, name: "Buquê Paixão Vermelha" },
-  { img: rosesClassic, name: "Clássico Romance" },
-  { img: rosesRustic, name: "Rústico Apaixonado" },
-  { img: arrBucket, name: "Balde Encanto Floral" },
-  { img: sunflowersBow, name: "Girassóis com Amor" },
-  { img: sunflowersBlue, name: "Sol & Céu Azul" },
-  { img: arrChoc, name: "Arranjo com Chocolates", tag: "Combo" },
+  { id: "buq-1", img: rosesPink, name: "Buquê Rosa Encanto", price: 159.9, tag: "Mais pedido" },
+  { id: "buq-2", img: rosesRed, name: "Buquê Paixão Vermelha", price: 179.9 },
+  { id: "buq-3", img: rosesClassic, name: "Clássico Romance", price: 169.9 },
+  { id: "buq-4", img: rosesRustic, name: "Rústico Apaixonado", price: 149.9 },
+  { id: "buq-5", img: arrBucket, name: "Balde Encanto Floral", price: 189.9 },
+  { id: "buq-6", img: sunflowersBow, name: "Girassóis com Amor", price: 139.9 },
+  { id: "buq-7", img: sunflowersBlue, name: "Sol & Céu Azul", price: 149.9 },
+  { id: "buq-8", img: arrChoc, name: "Arranjo com Chocolates", price: 219.9, tag: "Combo" },
 ];
 
 const chocolates: Product[] = [
-  { img: chocoFerrero, name: "Ferrero Rocher", tag: "Premium" },
-  { img: chocoKinder, name: "Kinder Bueno" },
-  { img: chocoHersheysDark, name: "Hershey's Special Dark" },
-  { img: chocoHersheysOvo, name: "Hershey's Ovomaltine" },
-  { img: chocoMilka, name: "Milka Choco Moo" },
-  { img: chocoAmandita, name: "Amandita Creme com Cacau" },
+  { id: "cho-1", img: chocoFerrero, name: "Ferrero Rocher", price: 39.9, tag: "Premium" },
+  { id: "cho-2", img: chocoKinder, name: "Kinder Bueno", price: 19.9 },
+  { id: "cho-3", img: chocoHersheysDark, name: "Hershey's Special Dark", price: 14.9 },
+  { id: "cho-4", img: chocoHersheysOvo, name: "Hershey's Ovomaltine", price: 14.9 },
+  { id: "cho-5", img: chocoMilka, name: "Milka Choco Moo", price: 24.9 },
+  { id: "cho-6", img: chocoAmandita, name: "Amandita Creme com Cacau", price: 17.9 },
 ];
 
 const cestas: Product[] = [
-  { img: cesta1, name: "Cesta Eu Amo Você" },
-  { img: cesta2, name: "Cesta Manhã Apaixonada", tag: "Bestseller" },
-  { img: cesta3, name: "Cesta Felicidade Especial" },
-  { img: cesta4, name: "Cesta Com Amor" },
-  { img: cesta5, name: "Cesta Aprecie os Detalhes" },
-  { img: cesta6, name: "Cesta Doce Encontro" },
-  { img: cesta7, name: "Cesta Gratidão" },
+  { id: "ces-1", img: cesta1, name: "Cesta Eu Amo Você", price: 189.9 },
+  { id: "ces-2", img: cesta2, name: "Cesta Manhã Apaixonada", price: 229.9, tag: "Bestseller" },
+  { id: "ces-3", img: cesta3, name: "Cesta Felicidade Especial", price: 199.9 },
+  { id: "ces-4", img: cesta4, name: "Cesta Com Amor", price: 179.9 },
+  { id: "ces-5", img: cesta5, name: "Cesta Aprecie os Detalhes", price: 209.9 },
+  { id: "ces-6", img: cesta6, name: "Cesta Doce Encontro", price: 219.9 },
+  { id: "ces-7", img: cesta7, name: "Cesta Gratidão", price: 169.9 },
 ];
 
 const pelucias: Product[] = [
-  { img: pelucia1, name: "Urso Rosé Laço" },
-  { img: pelucia2, name: "Urso Gigante Bege", tag: "Gigante" },
-  { img: pelucia3, name: "Capivara Fofa" },
-  { img: pelucia4, name: "Urso Te Amo" },
-  { img: pelucia5, name: "Urso Meu Amor Marfim" },
-  { img: pelucia6, name: "Urso Ninho de Felicidade" },
-  { img: pelucia7, name: "Urso Eu Te Amo Coração" },
-  { img: pelucia8, name: "Urso Cestinha do Amor" },
-  { img: pelucia9, name: "Urso Beijoqueiro" },
-  { img: pelucia10, name: "Cachorrinho Lacinho" },
+  { id: "pel-1", img: pelucia1, name: "Urso Rosé Laço", price: 79.9 },
+  { id: "pel-2", img: pelucia2, name: "Urso Gigante Bege", price: 199.9, tag: "Gigante" },
+  { id: "pel-3", img: pelucia3, name: "Capivara Fofa", price: 69.9 },
+  { id: "pel-4", img: pelucia4, name: "Urso Te Amo", price: 89.9 },
+  { id: "pel-5", img: pelucia5, name: "Urso Meu Amor Marfim", price: 89.9 },
+  { id: "pel-6", img: pelucia6, name: "Urso Ninho de Felicidade", price: 99.9 },
+  { id: "pel-7", img: pelucia7, name: "Urso Eu Te Amo Coração", price: 89.9 },
+  { id: "pel-8", img: pelucia8, name: "Urso Cestinha do Amor", price: 99.9 },
+  { id: "pel-9", img: pelucia9, name: "Urso Beijoqueiro", price: 79.9 },
+  { id: "pel-10", img: pelucia10, name: "Cachorrinho Lacinho", price: 69.9 },
 ];
 
 function Card({ p }: { p: Product }) {
+  const { add } = useCart();
   return (
     <div className="group relative bg-card rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-blush/40">
       <div className="aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
@@ -89,14 +91,14 @@ function Card({ p }: { p: Product }) {
       )}
       <div className="p-5 text-center">
         <h3 className="text-base font-medium text-foreground tracking-wide">{p.name}</h3>
-        <a
-          href={`${WHATSAPP_URL}%20-%20${encodeURIComponent(p.name)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full border border-rose-deep/30 text-rose-deep px-5 py-2.5 hover:bg-rose-deep hover:text-white transition-colors"
+        <p className="text-rose-deep font-medium mt-1">{formatBRL(p.price)}</p>
+        <button
+          onClick={() => add({ id: p.id, name: p.name, price: p.price, img: p.img })}
+          className="mt-4 inline-flex items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 transition-colors"
         >
-          Pedir no WhatsApp
-        </a>
+          <ShoppingBag className="h-4 w-4" />
+          Adicionar
+        </button>
       </div>
     </div>
   );
@@ -116,7 +118,7 @@ function Category({ id, kicker, title, accent, items }: { id: string; kicker: st
           <div className="hidden md:block h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent ml-8" />
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {items.map((p) => <Card key={p.name} p={p} />)}
+          {items.map((p) => <Card key={p.id} p={p} />)}
         </div>
       </div>
     </section>
