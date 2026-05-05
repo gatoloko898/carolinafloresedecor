@@ -16,7 +16,6 @@ type CartContextType = {
   inc: (id: string) => void;
   dec: (id: string) => void;
   clear: () => void;
-  total: number;
   count: number;
 };
 
