@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
-import { useCart, formatBRL } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartContext";
 
 const WHATSAPP_NUMBER = "5519993639296";
 
 export function CartDrawer() {
-  const { items, isOpen, setOpen, inc, dec, remove, total, clear } = useCart();
+  const { items, isOpen, setOpen, inc, dec, remove, clear } = useCart();
   const [step, setStep] = useState<"cart" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
 
@@ -22,12 +22,11 @@ export function CartDrawer() {
 
   const finalize = () => {
     const lista = items
-      .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
+      .map((i) => `• ${i.name} — ${i.qty}x`)
       .join("\n");
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
-      `Total: ${formatBRL(total)}\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
@@ -65,7 +64,6 @@ export function CartDrawer() {
                   <img src={i.img} alt={i.name} className="h-20 w-20 rounded-xl object-cover" />
                   <div className="flex-1">
                     <p className="font-medium text-sm">{i.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{formatBRL(i.price)}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button onClick={() => dec(i.id)} className="h-7 w-7 grid place-items-center rounded-full border border-border hover:bg-blush/40">
                         <Minus className="h-3 w-3" />
@@ -79,7 +77,6 @@ export function CartDrawer() {
                       </button>
                     </div>
                   </div>
-                  <p className="text-sm font-medium whitespace-nowrap">{formatBRL(i.price * i.qty)}</p>
                 </li>
               ))}
             </ul>
