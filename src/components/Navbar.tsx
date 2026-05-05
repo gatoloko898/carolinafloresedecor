@@ -2,9 +2,10 @@ import { Flower2 } from "lucide-react";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
-  { href: "#produtos", label: "Buquês" },
-  { href: "#destaques", label: "Diferenciais" },
-  { href: "#avaliacoes", label: "Avaliações" },
+  { href: "#buques", label: "Buquês" },
+  { href: "#cestas", label: "Cestas" },
+  { href: "#chocolates", label: "Chocolates" },
+  { href: "#pelucias", label: "Pelúcias" },
   { href: "#contato", label: "Contato" },
 ];
 
