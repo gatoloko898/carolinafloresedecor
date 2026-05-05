@@ -22,9 +22,9 @@ export function Contact() {
         </a>
 
         <div className="mt-12 grid sm:grid-cols-2 gap-6 max-w-xl mx-auto">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-5 rounded-2xl bg-background/70 backdrop-blur hover:bg-background transition-colors">
+          <a href="https://www.instagram.com/carolinafloresedecor" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-5 rounded-2xl bg-background/70 backdrop-blur hover:bg-background transition-colors">
             <Instagram className="h-5 w-5 text-rose-deep" />
-            <span className="text-sm">@carolinaflores</span>
+            <span className="text-sm">@carolinafloresedecor</span>
           </a>
           <a href="https://wa.me/5519993639296" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-5 rounded-2xl bg-background/70 backdrop-blur hover:bg-background transition-colors">
             <MessageCircle className="h-5 w-5 text-rose-deep" />
