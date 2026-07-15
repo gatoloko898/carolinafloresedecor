@@ -14,7 +14,7 @@ const WHATSAPP_NUMBER = "5519993639296";
 const UPSellSUGGESTIONS = [
   { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, phrase: "Um toque de doçura premium" },
   { id: "pel-1", name: "Urso Rosé Laço", img: pelucia1, phrase: "Um abraço de pelúcia para acompanhar" },
-  { id: "pel-4", name: "Urso Te Amo", img: pelucia4, phrase: "Diga "te amo" sem usar palavras" },
+  { id: "pel-4", name: "Urso Te Amo", img: pelucia4, phrase: "Diga \"te amo\" sem usar palavras" },
 ];
 
 export function CartDrawer() {
