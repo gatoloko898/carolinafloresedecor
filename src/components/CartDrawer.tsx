@@ -3,14 +3,23 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import chocoFerrero from "@/assets/choco-ferrero.webp";
+import pelucia1 from "@/assets/pelucia-1.webp";
+import pelucia4 from "@/assets/pelucia-4.webp";
 
 const WHATSAPP_NUMBER = "5519993639296";
 
+const UPSellSUGGESTIONS = [
+  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, phrase: "Um toque de doçura premium" },
+  { id: "pel-1", name: "Urso Rosé Laço", img: pelucia1, phrase: "Um abraço de pelúcia para acompanhar" },
+  { id: "pel-4", name: "Urso Te Amo", img: pelucia4, phrase: "Diga \"te amo\" sem usar palavras" },
+];
+
 export function CartDrawer() {
-  const { items, isOpen, setOpen, inc, dec, remove, clear } = useCart();
-  const [step, setStep] = useState<"cart" | "checkout">("cart");
+  const { items, isOpen, setOpen, add, inc, dec, remove, clear } = useCart();
+  const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
 
   const handleClose = (open: boolean) => {
@@ -37,17 +46,23 @@ export function CartDrawer() {
     handleClose(false);
   };
 
+  const upsellAdded = (id: string) => items.some((i) => i.id === id);
+
+  const addUpsell = (product: (typeof UPSellSUGGESTIONS)[number]) => {
+    add({ id: product.id, name: product.name, img: product.img });
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>
       <SheetContent className="flex flex-col w-full sm:max-w-md">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 font-script text-2xl text-rose-deep">
-            {step === "checkout" && (
-              <button onClick={() => setStep("cart")} className="text-foreground/60 hover:text-rose-deep">
+            {(step === "upsell" || step === "checkout") && (
+              <button onClick={() => setStep(step === "checkout" ? "upsell" : "cart")} className="text-foreground/60 hover:text-rose-deep">
                 <ArrowLeft className="h-5 w-5" />
               </button>
             )}
-            {step === "cart" ? "Seu Carrinho" : "Finalizar Pedido"}
+            {step === "cart" ? "Seu Carrinho" : step === "upsell" ? "Um carinho a mais?" : "Finalizar Pedido"}
           </SheetTitle>
         </SheetHeader>
 
@@ -80,6 +95,41 @@ export function CartDrawer() {
                 </li>
               ))}
             </ul>
+          ) : step === "upsell" ? (
+            <div className="space-y-5">
+              <div className="bg-blush/30 rounded-2xl p-5 text-center space-y-2">
+                <Heart className="h-6 w-6 mx-auto text-rose-deep" />
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  Que tal tornar esse presente ainda mais inesquecível? Seu amor merece um carinho a mais! 💕
+                </p>
+              </div>
+              <div className="space-y-3">
+                {UPSellSUGGESTIONS.map((p) => {
+                  const added = upsellAdded(p.id);
+                  return (
+                    <div key={p.id} className="flex gap-3 items-center border border-border/50 rounded-2xl p-3 bg-card/50">
+                      <img src={p.img} alt={p.name} className="h-16 w-16 rounded-xl object-cover" />
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm truncate">{p.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{p.phrase}</p>
+                      </div>
+                      <button
+                        onClick={() => addUpsell(p)}
+                        disabled={added}
+                        className={`shrink-0 h-9 w-9 grid place-items-center rounded-full transition-colors ${
+                          added
+                            ? "bg-gold/20 text-gold cursor-default"
+                            : "bg-rose-deep text-white hover:bg-rose-deep/90"
+                        }`}
+                        aria-label={added ? "Adicionado" : `Adicionar ${p.name}`}
+                      >
+                        {added ? <Gift className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           ) : (
             <div className="space-y-4">
               <div>
@@ -105,10 +155,13 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              
               {step === "cart" ? (
-                <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                <Button onClick={() => setStep("upsell")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
                   Continuar
+                </Button>
+              ) : step === "upsell" ? (
+                <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                  Continuar para finalizar
                 </Button>
               ) : (
                 <Button onClick={finalize} disabled={!canFinish} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full h-11">
