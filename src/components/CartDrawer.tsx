@@ -57,12 +57,12 @@ export function CartDrawer() {
       <SheetContent className="flex flex-col w-full sm:max-w-md">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 font-script text-2xl text-rose-deep">
-            {step === "checkout" && (
-              <button onClick={() => setStep("cart")} className="text-foreground/60 hover:text-rose-deep">
+            {(step === "upsell" || step === "checkout") && (
+              <button onClick={() => setStep(step === "checkout" ? "upsell" : "cart")} className="text-foreground/60 hover:text-rose-deep">
                 <ArrowLeft className="h-5 w-5" />
               </button>
             )}
-            {step === "cart" ? "Seu Carrinho" : "Finalizar Pedido"}
+            {step === "cart" ? "Seu Carrinho" : step === "upsell" ? "Um carinho a mais?" : "Finalizar Pedido"}
           </SheetTitle>
         </SheetHeader>
 
