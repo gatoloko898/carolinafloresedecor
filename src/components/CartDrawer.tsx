@@ -95,6 +95,41 @@ export function CartDrawer() {
                 </li>
               ))}
             </ul>
+          ) : step === "upsell" ? (
+            <div className="space-y-5">
+              <div className="bg-blush/30 rounded-2xl p-5 text-center space-y-2">
+                <Heart className="h-6 w-6 mx-auto text-rose-deep" />
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  Que tal tornar esse presente ainda mais inesquecível? Seu amor merece um carinho a mais! 💕
+                </p>
+              </div>
+              <div className="space-y-3">
+                {UPSellSUGGESTIONS.map((p) => {
+                  const added = upsellAdded(p.id);
+                  return (
+                    <div key={p.id} className="flex gap-3 items-center border border-border/50 rounded-2xl p-3 bg-card/50">
+                      <img src={p.img} alt={p.name} className="h-16 w-16 rounded-xl object-cover" />
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm truncate">{p.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{p.phrase}</p>
+                      </div>
+                      <button
+                        onClick={() => addUpsell(p)}
+                        disabled={added}
+                        className={`shrink-0 h-9 w-9 grid place-items-center rounded-full transition-colors ${
+                          added
+                            ? "bg-gold/20 text-gold cursor-default"
+                            : "bg-rose-deep text-white hover:bg-rose-deep/90"
+                        }`}
+                        aria-label={added ? "Adicionado" : `Adicionar ${p.name}`}
+                      >
+                        {added ? <Gift className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           ) : (
             <div className="space-y-4">
               <div>
