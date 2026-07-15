@@ -3,14 +3,23 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import chocoFerrero from "@/assets/choco-ferrero.webp";
+import pelucia1 from "@/assets/pelucia-1.webp";
+import pelucia4 from "@/assets/pelucia-4.webp";
 
 const WHATSAPP_NUMBER = "5519993639296";
 
+const UPSellSUGGESTIONS = [
+  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, phrase: "Um toque de doçura premium" },
+  { id: "pel-1", name: "Urso Rosé Laço", img: pelucia1, phrase: "Um abraço de pelúcia para acompanhar" },
+  { id: "pel-4", name: "Urso Te Amo", img: pelucia4, phrase: "Diga "te amo" sem usar palavras" },
+];
+
 export function CartDrawer() {
-  const { items, isOpen, setOpen, inc, dec, remove, clear } = useCart();
-  const [step, setStep] = useState<"cart" | "checkout">("cart");
+  const { items, isOpen, setOpen, add, inc, dec, remove, clear } = useCart();
+  const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
 
   const handleClose = (open: boolean) => {
@@ -35,6 +44,12 @@ export function CartDrawer() {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
     clear();
     handleClose(false);
+  };
+
+  const upsellAdded = (id: string) => items.some((i) => i.id === id);
+
+  const addUpsell = (product: (typeof UPSellSUGGESTIONS)[number]) => {
+    add({ id: product.id, name: product.name, img: product.img });
   };
 
   return (
