@@ -155,10 +155,13 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              
               {step === "cart" ? (
-                <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                <Button onClick={() => setStep("upsell")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
                   Continuar
+                </Button>
+              ) : step === "upsell" ? (
+                <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                  Continuar para finalizar
                 </Button>
               ) : (
                 <Button onClick={finalize} disabled={!canFinish} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full h-11">
