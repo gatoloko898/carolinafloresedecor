@@ -36,7 +36,7 @@ export function Hero() {
               Pedido no WhatsApp
             </a>
           </div>
-          <p className="mt-8 text-sm text-gold font-medium">✨ Peça hoje e receba no mesmo dia</p>
+          <p className="mt-8 text-sm text-gold font-medium">✨ Entrega R$ 20,00 em toda a cidade • Peça hoje e receba no mesmo dia</p>
         </div>
       </div>
     </section>
