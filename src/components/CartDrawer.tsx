@@ -36,6 +36,7 @@ export function CartDrawer() {
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
+      `Entrega: R$ 20,00 em toda a cidade\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
