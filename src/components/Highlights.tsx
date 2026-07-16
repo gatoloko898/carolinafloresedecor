@@ -1,7 +1,7 @@
 import { Truck, Sparkles, Heart } from "lucide-react";
 
 const items = [
-  { icon: Truck, title: "Entrega Rápida", desc: "Receba no mesmo dia em toda a cidade" },
+  { icon: Truck, title: "Entrega Rápida", desc: "Taxa única de R$ 20,00 em toda a cidade. Receba no mesmo dia." },
   { icon: Sparkles, title: "Flores Frescas", desc: "Selecionadas a cada manhã, direto do produtor" },
   { icon: Heart, title: "Atendimento Personalizado", desc: "Cada pedido é tratado como único e especial" },
 ];

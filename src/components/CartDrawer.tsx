@@ -132,6 +132,9 @@ export function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-4">
+              <div className="bg-gold/10 rounded-xl p-4 text-center">
+                <p className="text-sm font-medium text-foreground/90">Entrega fixa de <span className="font-semibold text-gold">R$ 20,00</span> em toda a cidade</p>
+              </div>
               <div>
                 <Label htmlFor="nome">Nome</Label>
                 <Input id="nome" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} maxLength={100} />
