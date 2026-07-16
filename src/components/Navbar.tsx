@@ -3,9 +3,10 @@ import { useCart } from "@/contexts/CartContext";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
-  { href: "#buques", label: "Buquês" },
+  { href: "#rosas", label: "Rosas" },
+  { href: "#girassois", label: "Girassóis" },
   { href: "#cestas", label: "Cestas" },
-  { href: "#chocolates", label: "Chocolates" },
+  { href: "#kits", label: "Kits" },
   { href: "#pelucias", label: "Pelúcias" },
   { href: "#contato", label: "Contato" },
 ];
