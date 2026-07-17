@@ -3,8 +3,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift, Truck } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
 import pelucia1 from "@/assets/pelucias-new/p6.png";
@@ -29,10 +28,6 @@ export function CartDrawer() {
     remove,
     clear,
     subtotal,
-    delivery,
-    setDelivery,
-    deliveryFee,
-    total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
