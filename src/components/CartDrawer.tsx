@@ -186,6 +186,7 @@ export function CartDrawer() {
                   </span>
                 </span>
               </label>
+            </div>
           )}
         </div>
 
