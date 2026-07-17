@@ -43,16 +43,13 @@ import fcP20 from "@/assets/catalog/fc-p20.jpg";
 import fcP21 from "@/assets/catalog/fc-p21.jpg";
 import fcP22 from "@/assets/catalog/fc-p22.jpg";
 // Pelúcias (mantidas do acervo existente)
-import pelucia1 from "@/assets/pelucia-1.webp";
-import pelucia2 from "@/assets/pelucia-2.webp";
-import pelucia3 from "@/assets/pelucia-3.webp";
-import pelucia4 from "@/assets/pelucia-4.webp";
-import pelucia5 from "@/assets/pelucia-5.webp";
-import pelucia6 from "@/assets/pelucia-6.webp";
-import pelucia7 from "@/assets/pelucia-7.webp";
-import pelucia8 from "@/assets/pelucia-8.webp";
-import pelucia9 from "@/assets/pelucia-9.webp";
-import pelucia10 from "@/assets/pelucia-10.webp";
+import pelucia1 from "@/assets/pelucias-new/p1.png";
+import pelucia2 from "@/assets/pelucias-new/p2.png";
+import pelucia3 from "@/assets/pelucias-new/p3.png";
+import pelucia4 from "@/assets/pelucias-new/p4.png";
+import pelucia5 from "@/assets/pelucias-new/p5.png";
+import pelucia6 from "@/assets/pelucias-new/p6.png";
+import pelucia7 from "@/assets/pelucias-new/p7.png";
 
 // Estrutura preparada para checkout futuro: price fica opcional e ainda não é exibido.
 type Product = { id: string; img: string; name: string; tag?: string; price?: number };
