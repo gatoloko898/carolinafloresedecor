@@ -10,6 +10,7 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { InstagramFloat } from "@/components/InstagramFloat";
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
