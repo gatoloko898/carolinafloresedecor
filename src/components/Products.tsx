@@ -14,7 +14,7 @@ import rosP10 from "@/assets/catalog/ros-p10.jpg";
 import rosP11 from "@/assets/catalog/ros-p11.jpg";
 import rosP12 from "@/assets/catalog/ros-p12.jpg";
 import rosP13 from "@/assets/catalog/ros-p13.jpg";
-import rosP14 from "@/assets/catalog/ros-p14.jpg";
+
 // Girassóis
 import girP2 from "@/assets/catalog/gir-p2.jpg";
 import girP3 from "@/assets/catalog/gir-p3.jpg";
@@ -34,7 +34,7 @@ import fcP7 from "@/assets/catalog/fc-p7.jpg";
 import fcP9 from "@/assets/catalog/fc-p9.jpg";
 import fcP11 from "@/assets/catalog/fc-p11.jpg";
 import fcP12 from "@/assets/catalog/fc-p12.jpg";
-import fcP13 from "@/assets/catalog/fc-p13.jpg";
+
 import fcP14 from "@/assets/catalog/fc-p14.jpg";
 import fcP15 from "@/assets/catalog/fc-p15.jpg";
 import fcP16 from "@/assets/catalog/fc-p16.jpg";
