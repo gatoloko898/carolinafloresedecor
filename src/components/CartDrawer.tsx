@@ -3,8 +3,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
-import { useCart } from "@/contexts/CartContext";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift, Truck } from "lucide-react";
+import { useCart, formatBRL } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
 import pelucia1 from "@/assets/pelucias-new/p6.png";
 import pelucia4 from "@/assets/pelucias-new/p1.png";
@@ -12,13 +13,27 @@ import pelucia4 from "@/assets/pelucias-new/p1.png";
 const WHATSAPP_NUMBER = "5519993639296";
 
 const UPSellSUGGESTIONS = [
-  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, phrase: "Um toque de doçura premium" },
-  { id: "pel-1", name: "Urso Rosé Laço", img: pelucia1, phrase: "Um abraço de pelúcia para acompanhar" },
-  { id: "pel-4", name: "Urso Te Amo", img: pelucia4, phrase: "Diga \"te amo\" sem usar palavras" },
+  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, price: 45, phrase: "Um toque de doçura premium" },
+  { id: "pel-1", name: "Ursa Creme Coração Bordado", img: pelucia4, price: 150, phrase: "Um abraço de pelúcia para acompanhar" },
+  { id: "pel-6-mini", name: "Urso Eu Te Amo", img: pelucia1, price: 480, phrase: "Diga \"te amo\" sem usar palavras" },
 ];
 
 export function CartDrawer() {
-  const { items, isOpen, setOpen, add, inc, dec, remove, clear } = useCart();
+  const {
+    items,
+    isOpen,
+    setOpen,
+    add,
+    inc,
+    dec,
+    remove,
+    clear,
+    subtotal,
+    delivery,
+    setDelivery,
+    deliveryFee,
+    total,
+  } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
 
@@ -31,12 +46,17 @@ export function CartDrawer() {
 
   const finalize = () => {
     const lista = items
-      .map((i) => `• ${i.name} — ${i.qty}x`)
+      .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
       .join("\n");
+    const entregaLinha = delivery
+      ? `Entrega (perímetro urbano de Vargem Grande do Sul): ${formatBRL(deliveryFee)}`
+      : `Entrega: retirada / a combinar`;
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
-      `Entrega: R$ 20,00 em toda a cidade\n\n` +
+      `Subtotal: ${formatBRL(subtotal)}\n` +
+      `${entregaLinha}\n` +
+      `Total: ${formatBRL(total)}\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
@@ -50,7 +70,7 @@ export function CartDrawer() {
   const upsellAdded = (id: string) => items.some((i) => i.id === id);
 
   const addUpsell = (product: (typeof UPSellSUGGESTIONS)[number]) => {
-    add({ id: product.id, name: product.name, img: product.img });
+    add({ id: product.id, name: product.name, img: product.img, price: product.price });
   };
 
   return (
@@ -78,8 +98,9 @@ export function CartDrawer() {
               {items.map((i) => (
                 <li key={i.id} className="flex gap-3 border-b border-border/50 pb-4">
                   <img src={i.img} alt={i.name} className="h-20 w-20 rounded-xl object-cover" />
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">{i.name}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm truncate">{i.name}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{formatBRL(i.price)}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button onClick={() => dec(i.id)} className="h-7 w-7 grid place-items-center rounded-full border border-border hover:bg-blush/40">
                         <Minus className="h-3 w-3" />
@@ -88,6 +109,7 @@ export function CartDrawer() {
                       <button onClick={() => inc(i.id)} className="h-7 w-7 grid place-items-center rounded-full border border-border hover:bg-blush/40">
                         <Plus className="h-3 w-3" />
                       </button>
+                      <span className="ml-2 text-sm font-medium text-rose-deep">{formatBRL(i.price * i.qty)}</span>
                       <button onClick={() => remove(i.id)} className="ml-auto text-rose-deep/70 hover:text-rose-deep">
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -113,6 +135,7 @@ export function CartDrawer() {
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-sm truncate">{p.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{p.phrase}</p>
+                        <p className="text-sm font-medium text-rose-deep mt-1">{formatBRL(p.price)}</p>
                       </div>
                       <button
                         onClick={() => addUpsell(p)}
@@ -133,9 +156,32 @@ export function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="bg-gold/10 rounded-xl p-4 text-center">
-                <p className="text-sm font-medium text-foreground/90">Entrega fixa de <span className="font-semibold text-gold">R$ 20,00</span> em toda a cidade</p>
-              </div>
+              <label
+                htmlFor="delivery"
+                className={`flex items-start gap-3 rounded-2xl border p-4 cursor-pointer transition-colors ${
+                  delivery ? "border-rose-deep bg-rose-deep/5" : "border-border hover:bg-blush/20"
+                }`}
+              >
+                <Checkbox
+                  id="delivery"
+                  checked={delivery}
+                  onCheckedChange={(v) => setDelivery(!!v)}
+                  className="mt-0.5"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-medium flex items-center gap-2">
+                      <Truck className="h-4 w-4 text-rose-deep" />
+                      Entrega em Vargem Grande do Sul
+                    </span>
+                    <span className="text-sm font-semibold text-rose-deep">{formatBRL(20)}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Perímetro urbano — marque para incluir a taxa de entrega no seu pedido.
+                  </p>
+                </div>
+              </label>
+
               <div>
                 <Label htmlFor="nome">Nome</Label>
                 <Input id="nome" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} maxLength={100} />
@@ -159,6 +205,23 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
+              <div className="rounded-2xl bg-blush/25 p-4 space-y-1.5 text-sm">
+                <div className="flex justify-between text-foreground/80">
+                  <span>Subtotal</span>
+                  <span className="font-medium">{formatBRL(subtotal)}</span>
+                </div>
+                <div className="flex justify-between text-foreground/80">
+                  <span>Entrega</span>
+                  <span className="font-medium">
+                    {delivery ? formatBRL(deliveryFee) : "—"}
+                  </span>
+                </div>
+                <div className="flex justify-between pt-1.5 border-t border-rose-deep/10 text-base">
+                  <span className="font-semibold">Total</span>
+                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(total)}</span>
+                </div>
+              </div>
+
               {step === "cart" ? (
                 <Button onClick={() => setStep("upsell")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
                   Continuar

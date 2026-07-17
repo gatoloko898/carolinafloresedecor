@@ -10,6 +10,7 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { InstagramFloat } from "@/components/InstagramFloat";
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,10 +37,7 @@ function Index() {
           <Testimonials />
           <Contact />
         </main>
-        <footer className="py-8 text-center text-sm text-muted-foreground bg-foreground/5">
-          <p className="font-script text-xl text-rose-deep">Carolina Flores & Decor</p>
-          <p className="mt-1">© 2026 — Feito com 💗</p>
-        </footer>
+        <Footer />
         <WhatsAppFloat />
         <InstagramFloat />
         <CartDrawer />
