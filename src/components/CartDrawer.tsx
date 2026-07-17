@@ -28,6 +28,10 @@ export function CartDrawer() {
     remove,
     clear,
     subtotal,
+    delivery,
+    setDelivery,
+    deliveryFee,
+    total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
@@ -43,10 +47,15 @@ export function CartDrawer() {
     const lista = items
       .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
       .join("\n");
+    const entregaLinha = delivery
+      ? `Entrega (perímetro urbano): ${formatBRL(deliveryFee)}\n`
+      : `Entrega: retirar no local\n`;
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
-      `Total: ${formatBRL(subtotal)}\n\n` +
+      `Subtotal: ${formatBRL(subtotal)}\n` +
+      entregaLinha +
+      `Total: ${formatBRL(total)}\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
@@ -162,6 +171,21 @@ export function CartDrawer() {
                 <Label htmlFor="data">Data de entrega</Label>
                 <Input id="data" type="date" value={form.data} onChange={(e) => setForm({ ...form, data: e.target.value })} />
               </div>
+
+              <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-blush/20 p-4 cursor-pointer hover:bg-blush/30 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={delivery}
+                  onChange={(e) => setDelivery(e.target.checked)}
+                  className="mt-1 h-4 w-4 accent-rose-deep"
+                />
+                <span className="flex-1 text-sm">
+                  <span className="block font-medium text-foreground">Adicionar entrega no perímetro urbano</span>
+                  <span className="block text-xs text-muted-foreground mt-0.5">
+                    Taxa opcional de {formatBRL(20)}. Se preferir, retire no local sem custo.
+                  </span>
+                </span>
+              </label>
             </div>
           )}
         </div>
@@ -169,10 +193,20 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              <div className="rounded-2xl bg-blush/25 p-4 text-sm">
-                <div className="flex justify-between items-center text-base">
+              <div className="rounded-2xl bg-blush/25 p-4 text-sm space-y-1.5">
+                <div className="flex justify-between text-foreground/80">
+                  <span>Subtotal</span>
+                  <span>{formatBRL(subtotal)}</span>
+                </div>
+                {delivery && (
+                  <div className="flex justify-between text-foreground/80">
+                    <span>Entrega (perímetro urbano)</span>
+                    <span>{formatBRL(deliveryFee)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center text-base pt-1.5 border-t border-border/40">
                   <span className="font-semibold">Total</span>
-                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(subtotal)}</span>
+                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(total)}</span>
                 </div>
               </div>
 
