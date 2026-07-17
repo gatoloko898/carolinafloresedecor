@@ -105,16 +105,13 @@ const kits: Product[] = [
 ];
 
 const pelucias: Product[] = [
-  { id: "pel-1", img: pelucia1, name: "Urso Rosé Laço" },
-  { id: "pel-2", img: pelucia2, name: "Urso Gigante Bege", tag: "Gigante" },
-  { id: "pel-3", img: pelucia3, name: "Capivara Fofa" },
-  { id: "pel-4", img: pelucia4, name: "Urso Te Amo" },
-  { id: "pel-5", img: pelucia5, name: "Urso Meu Amor Marfim" },
-  { id: "pel-6", img: pelucia6, name: "Urso Ninho de Felicidade" },
-  { id: "pel-7", img: pelucia7, name: "Urso Eu Te Amo Coração" },
-  { id: "pel-8", img: pelucia8, name: "Urso Cestinha do Amor" },
-  { id: "pel-9", img: pelucia9, name: "Urso Beijoqueiro" },
-  { id: "pel-10", img: pelucia10, name: "Cachorrinho Lacinho" },
+  { id: "pel-1", img: pelucia1, name: "Ursa Creme Coração Bordado" },
+  { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol" },
+  { id: "pel-3", img: pelucia3, name: "Urso Caramelo Cachecol Chevron" },
+  { id: "pel-4", img: pelucia4, name: "Urso Coração de Corações" },
+  { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Vermelho", tag: "Gigante" },
+  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo" },
+  { id: "pel-7", img: pelucia7, name: "Panda Laço Vermelho na Caixa", tag: "Exclusivo" },
 ];
 
 function Card({ p }: { p: Product }) {
