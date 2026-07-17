@@ -149,9 +149,6 @@ function Card({ p }: { p: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
-        <h3 className="text-sm md:text-base font-medium text-foreground leading-snug min-h-[2.6em] line-clamp-2">
-          {p.name}
-        </h3>
         {p.description && (
           <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
