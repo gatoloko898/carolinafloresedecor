@@ -118,12 +118,10 @@ const peluciasRaw: Product[] = [
   { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 480, description: "Aprox. 60 cm" },
 ];
 
-// Sort ascending by price and dedupe by id
-const sortAsc = (list: Product[]) => {
+// Dedupe by id, preserve original order
+const dedupe = (list: Product[]) => {
   const seen = new Set<string>();
-  return list
-    .filter((p) => (seen.has(p.id) ? false : (seen.add(p.id), true)))
-    .sort((a, b) => a.price - b.price);
+  return list.filter((p) => (seen.has(p.id) ? false : (seen.add(p.id), true)));
 };
 
 const rosas = sortAsc(rosasRaw);
