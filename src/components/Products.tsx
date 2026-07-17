@@ -43,16 +43,13 @@ import fcP20 from "@/assets/catalog/fc-p20.jpg";
 import fcP21 from "@/assets/catalog/fc-p21.jpg";
 import fcP22 from "@/assets/catalog/fc-p22.jpg";
 // Pelúcias (mantidas do acervo existente)
-import pelucia1 from "@/assets/pelucia-1.webp";
-import pelucia2 from "@/assets/pelucia-2.webp";
-import pelucia3 from "@/assets/pelucia-3.webp";
-import pelucia4 from "@/assets/pelucia-4.webp";
-import pelucia5 from "@/assets/pelucia-5.webp";
-import pelucia6 from "@/assets/pelucia-6.webp";
-import pelucia7 from "@/assets/pelucia-7.webp";
-import pelucia8 from "@/assets/pelucia-8.webp";
-import pelucia9 from "@/assets/pelucia-9.webp";
-import pelucia10 from "@/assets/pelucia-10.webp";
+import pelucia1 from "@/assets/pelucias-new/p1.png";
+import pelucia2 from "@/assets/pelucias-new/p2.png";
+import pelucia3 from "@/assets/pelucias-new/p3.png";
+import pelucia4 from "@/assets/pelucias-new/p4.png";
+import pelucia5 from "@/assets/pelucias-new/p5.png";
+import pelucia6 from "@/assets/pelucias-new/p6.png";
+import pelucia7 from "@/assets/pelucias-new/p7.png";
 
 // Estrutura preparada para checkout futuro: price fica opcional e ainda não é exibido.
 type Product = { id: string; img: string; name: string; tag?: string; price?: number };
@@ -108,16 +105,13 @@ const kits: Product[] = [
 ];
 
 const pelucias: Product[] = [
-  { id: "pel-1", img: pelucia1, name: "Urso Rosé Laço" },
-  { id: "pel-2", img: pelucia2, name: "Urso Gigante Bege", tag: "Gigante" },
-  { id: "pel-3", img: pelucia3, name: "Capivara Fofa" },
-  { id: "pel-4", img: pelucia4, name: "Urso Te Amo" },
-  { id: "pel-5", img: pelucia5, name: "Urso Meu Amor Marfim" },
-  { id: "pel-6", img: pelucia6, name: "Urso Ninho de Felicidade" },
-  { id: "pel-7", img: pelucia7, name: "Urso Eu Te Amo Coração" },
-  { id: "pel-8", img: pelucia8, name: "Urso Cestinha do Amor" },
-  { id: "pel-9", img: pelucia9, name: "Urso Beijoqueiro" },
-  { id: "pel-10", img: pelucia10, name: "Cachorrinho Lacinho" },
+  { id: "pel-1", img: pelucia1, name: "Ursa Creme Coração Bordado" },
+  { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol" },
+  { id: "pel-3", img: pelucia3, name: "Urso Caramelo Cachecol Chevron" },
+  { id: "pel-4", img: pelucia4, name: "Urso Coração de Corações" },
+  { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Vermelho", tag: "Gigante" },
+  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo" },
+  { id: "pel-7", img: pelucia7, name: "Panda Laço Vermelho na Caixa", tag: "Exclusivo" },
 ];
 
 function Card({ p }: { p: Product }) {
