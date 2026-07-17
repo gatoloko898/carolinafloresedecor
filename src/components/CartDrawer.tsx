@@ -171,7 +171,21 @@ export function CartDrawer() {
                 <Label htmlFor="data">Data de entrega</Label>
                 <Input id="data" type="date" value={form.data} onChange={(e) => setForm({ ...form, data: e.target.value })} />
               </div>
-            </div>
+
+              <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-blush/20 p-4 cursor-pointer hover:bg-blush/30 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={delivery}
+                  onChange={(e) => setDelivery(e.target.checked)}
+                  className="mt-1 h-4 w-4 accent-rose-deep"
+                />
+                <span className="flex-1 text-sm">
+                  <span className="block font-medium text-foreground">Adicionar entrega no perímetro urbano</span>
+                  <span className="block text-xs text-muted-foreground mt-0.5">
+                    Taxa opcional de {formatBRL(20)}. Se preferir, retire no local sem custo.
+                  </span>
+                </span>
+              </label>
           )}
         </div>
 
