@@ -6,8 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
-import pelucia1 from "@/assets/pelucia-1.webp";
-import pelucia4 from "@/assets/pelucia-4.webp";
+import pelucia1 from "@/assets/pelucias-new/p6.png";
+import pelucia4 from "@/assets/pelucias-new/p1.png";
 
 const WHATSAPP_NUMBER = "5519993639296";
 
