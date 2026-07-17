@@ -69,9 +69,9 @@ const rosasRaw: Product[] = [
   { id: "ros-p6", img: rosP6, name: "Buquê Rosas Rústico", price: 170 },
   { id: "ros-p11", img: rosP11, name: "Buquê Rosas Delicado", price: 180 },
   { id: "ros-p10", img: rosP10, name: "Buquê Rosas Clássico", price: 280 },
-  { id: "ros-p13", img: rosP13, name: "Box de Rosas Romance", price: 289, tag: "Especial" },
   { id: "ros-p8", img: rosP8, name: "Buquê Rosas Encanto Dourado", price: 299 },
   { id: "ros-p12", img: rosP12, name: "Buquê Rosas Cristal", price: 330 },
+  { id: "ros-p13", img: rosP13, name: "Box de Rosas Romance", price: 289, tag: "Especial" },
 ];
 
 const girassoisRaw: Product[] = [
@@ -81,14 +81,14 @@ const girassoisRaw: Product[] = [
   { id: "gir-p3", img: girP3, name: "Buquê Girassóis Céu Azul", price: 180 },
   { id: "fc-p3", img: fcP3, name: "Buquê do Campo Encanto", price: 220 },
   { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 220 },
-  { id: "gir-p12", img: girP12, name: "Buquê Girassol Cristal", price: 229 },
   { id: "fc-p19", img: fcP19, name: "Buquê do Campo Laço Amarelo", price: 250 },
+  { id: "fc-p7", img: fcP7, name: "Buquê Girassóis do Campo", price: 350 },
+  { id: "fc-p22", img: fcP22, name: "Buquê do Campo Rosa & Sol", price: 300 },
   { id: "fc-p16", img: fcP16, name: "Buquê Multicolorido do Campo", price: 289 },
   { id: "gir-p8", img: girP8, name: "Buquê Girassol & Rosas Vermelhas", price: 299 },
-  { id: "fc-p22", img: fcP22, name: "Buquê do Campo Rosa & Sol", price: 300 },
   { id: "gir-p9", img: girP9, name: "Buquê Girassol & Rosas Azuis", price: 329 },
   { id: "gir-p13", img: girP13, name: "Buquê Girassol & Paixão", price: 349 },
-  { id: "fc-p7", img: fcP7, name: "Buquê Girassóis do Campo", price: 350 },
+  { id: "gir-p12", img: girP12, name: "Buquê Girassol Cristal", price: 229 },
 ];
 
 const cestasRaw: Product[] = [
@@ -99,13 +99,13 @@ const cestasRaw: Product[] = [
 ];
 
 const kitsRaw: Product[] = [
-  { id: "gir-p7", img: girP7, name: "Kit Vaso Girassol & Ferrero", price: 179 },
-  { id: "fc-p14", img: fcP14, name: "Kit Cesta Colorida & Ferrero", price: 229 },
-  { id: "fc-p20", img: fcP20, name: "Kit Alstroemeria & Ferrero", price: 249 },
   { id: "ros-p9", img: rosP9, name: "Kit Rosas & Ferrero Rocher", price: 265, tag: "Apaixonados" },
   { id: "gir-p6", img: girP6, name: "Kit Girassóis & Ferrero", price: 279 },
-  { id: "fc-p9", img: fcP9, name: "Kit Cesta Balde & Ferrero", price: 299 },
+  { id: "gir-p7", img: girP7, name: "Kit Vaso Girassol & Ferrero", price: 179 },
+  { id: "fc-p20", img: fcP20, name: "Kit Alstroemeria & Ferrero", price: 249 },
   { id: "fc-p21", img: fcP21, name: "Kit Buquê Colorido & Ferrero", price: 359 },
+  { id: "fc-p9", img: fcP9, name: "Kit Cesta Balde & Ferrero", price: 299 },
+  { id: "fc-p14", img: fcP14, name: "Kit Cesta Colorida & Ferrero", price: 229 },
 ];
 
 const peluciasRaw: Product[] = [
