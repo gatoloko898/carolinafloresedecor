@@ -37,10 +37,7 @@ function Index() {
           <Testimonials />
           <Contact />
         </main>
-        <footer className="py-8 text-center text-sm text-muted-foreground bg-foreground/5">
-          <p className="font-script text-xl text-rose-deep">Carolina Flores & Decor</p>
-          <p className="mt-1">© 2026 — Feito com 💗</p>
-        </footer>
+        <Footer />
         <WhatsAppFloat />
         <InstagramFloat />
         <CartDrawer />
