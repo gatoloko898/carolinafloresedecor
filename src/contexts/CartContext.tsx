@@ -41,16 +41,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed?.items)) setItems(parsed.items);
-        if (typeof parsed?.delivery === "boolean") setDelivery(parsed.delivery);
       }
     } catch {}
   }, []);
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ items, delivery }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ items }));
     } catch {}
-  }, [items, delivery]);
+  }, [items]);
 
   const add: CartContextType["add"] = (item) => {
     setItems((prev) => {
@@ -69,7 +68,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
         .map((i) => (i.id === id ? { ...i, qty: i.qty - 1 } : i))
         .filter((i) => i.qty > 0)
     );
-  const clear = () => setItems([]);
+  const clear = () => {
+    setItems([]);
+    setDelivery(false);
+  };
 
   const count = useMemo(() => items.reduce((s, i) => s + i.qty, 0), [items]);
   const subtotal = useMemo(() => items.reduce((s, i) => s + i.qty * (i.price || 0), 0), [items]);
