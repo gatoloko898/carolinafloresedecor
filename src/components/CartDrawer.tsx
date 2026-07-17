@@ -28,6 +28,10 @@ export function CartDrawer() {
     remove,
     clear,
     subtotal,
+    delivery,
+    setDelivery,
+    deliveryFee,
+    total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
@@ -43,10 +47,15 @@ export function CartDrawer() {
     const lista = items
       .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
       .join("\n");
+    const entregaLinha = delivery
+      ? `Entrega (perímetro urbano): ${formatBRL(deliveryFee)}\n`
+      : `Entrega: retirar no local\n`;
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
-      `Total: ${formatBRL(subtotal)}\n\n` +
+      `Subtotal: ${formatBRL(subtotal)}\n` +
+      entregaLinha +
+      `Total: ${formatBRL(total)}\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
