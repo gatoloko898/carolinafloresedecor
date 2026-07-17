@@ -193,10 +193,20 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              <div className="rounded-2xl bg-blush/25 p-4 text-sm">
-                <div className="flex justify-between items-center text-base">
+              <div className="rounded-2xl bg-blush/25 p-4 text-sm space-y-1.5">
+                <div className="flex justify-between text-foreground/80">
+                  <span>Subtotal</span>
+                  <span>{formatBRL(subtotal)}</span>
+                </div>
+                {delivery && (
+                  <div className="flex justify-between text-foreground/80">
+                    <span>Entrega (perímetro urbano)</span>
+                    <span>{formatBRL(deliveryFee)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center text-base pt-1.5 border-t border-border/40">
                   <span className="font-semibold">Total</span>
-                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(subtotal)}</span>
+                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(total)}</span>
                 </div>
               </div>
 
