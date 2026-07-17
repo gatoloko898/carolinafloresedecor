@@ -3,8 +3,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift, Truck } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
 import pelucia1 from "@/assets/pelucias-new/p6.png";
@@ -29,10 +28,6 @@ export function CartDrawer() {
     remove,
     clear,
     subtotal,
-    delivery,
-    setDelivery,
-    deliveryFee,
-    total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
@@ -48,15 +43,10 @@ export function CartDrawer() {
     const lista = items
       .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
       .join("\n");
-    const entregaLinha = delivery
-      ? `Entrega (perímetro urbano de Vargem Grande do Sul): ${formatBRL(deliveryFee)}`
-      : `Entrega: retirada / a combinar`;
     const msg =
       `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
       `Pedido:\n${lista}\n\n` +
-      `Subtotal: ${formatBRL(subtotal)}\n` +
-      `${entregaLinha}\n` +
-      `Total: ${formatBRL(total)}\n\n` +
+      `Total: ${formatBRL(subtotal)}\n\n` +
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
@@ -156,32 +146,6 @@ export function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-4">
-              <label
-                htmlFor="delivery"
-                className={`flex items-start gap-3 rounded-2xl border p-4 cursor-pointer transition-colors ${
-                  delivery ? "border-rose-deep bg-rose-deep/5" : "border-border hover:bg-blush/20"
-                }`}
-              >
-                <Checkbox
-                  id="delivery"
-                  checked={delivery}
-                  onCheckedChange={(v) => setDelivery(!!v)}
-                  className="mt-0.5"
-                />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-medium flex items-center gap-2">
-                      <Truck className="h-4 w-4 text-rose-deep" />
-                      Entrega em Vargem Grande do Sul
-                    </span>
-                    <span className="text-sm font-semibold text-rose-deep">{formatBRL(20)}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Perímetro urbano — marque para incluir a taxa de entrega no seu pedido.
-                  </p>
-                </div>
-              </label>
-
               <div>
                 <Label htmlFor="nome">Nome</Label>
                 <Input id="nome" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} maxLength={100} />
@@ -205,20 +169,10 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 pt-4">
             <div className="w-full space-y-3">
-              <div className="rounded-2xl bg-blush/25 p-4 space-y-1.5 text-sm">
-                <div className="flex justify-between text-foreground/80">
-                  <span>Subtotal</span>
-                  <span className="font-medium">{formatBRL(subtotal)}</span>
-                </div>
-                <div className="flex justify-between text-foreground/80">
-                  <span>Entrega</span>
-                  <span className="font-medium">
-                    {delivery ? formatBRL(deliveryFee) : "—"}
-                  </span>
-                </div>
-                <div className="flex justify-between pt-1.5 border-t border-rose-deep/10 text-base">
+              <div className="rounded-2xl bg-blush/25 p-4 text-sm">
+                <div className="flex justify-between items-center text-base">
                   <span className="font-semibold">Total</span>
-                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(total)}</span>
+                  <span className="font-serif text-xl font-semibold text-rose-deep">{formatBRL(subtotal)}</span>
                 </div>
               </div>
 
