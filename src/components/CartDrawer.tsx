@@ -72,6 +72,11 @@ export function CartDrawer() {
     add({ id: product.id, name: product.name, img: product.img, price: product.price });
   };
 
+  const goToCheckout = () => {
+    setDelivery(false);
+    setStep("checkout");
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>
       <SheetContent className="flex flex-col w-full sm:max-w-md">
@@ -215,7 +220,7 @@ export function CartDrawer() {
                   Continuar
                 </Button>
               ) : step === "upsell" ? (
-                <Button onClick={() => setStep("checkout")} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                <Button onClick={goToCheckout} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
                   Continuar para finalizar
                 </Button>
               ) : (
