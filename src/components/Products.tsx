@@ -50,6 +50,15 @@ import pelucia4 from "@/assets/pelucias-new/p4.png";
 import pelucia5 from "@/assets/pelucias-new/p5.png";
 import pelucia6 from "@/assets/pelucias-new/p6.png";
 import pelucia7 from "@/assets/pelucias-new/p7.png";
+// Coroas
+import coroa1 from "@/assets/coroas/c15.jpg";
+import coroa2 from "@/assets/coroas/c16.jpg";
+import coroa3 from "@/assets/coroas/c17.jpg";
+import coroa4 from "@/assets/coroas/c18.jpg";
+import coroa5 from "@/assets/coroas/c19.jpg";
+import coroa6 from "@/assets/coroas/c20.jpg";
+import coroa7 from "@/assets/coroas/c21.jpg";
+import coroa8 from "@/assets/coroas/c22.jpg";
 
 type Product = {
   id: string;
@@ -119,6 +128,15 @@ const peluciasRaw: Product[] = [
   { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 480, description: "Aprox. 60 cm" },
 ];
 
+const coroasImages = [coroa1, coroa2, coroa3, coroa4, coroa5, coroa6, coroa7, coroa8];
+const coroasRaw: Product[] = coroasImages.map((img, i) => ({
+  id: `cor-${i + 1}`,
+  img,
+  name: `Coroa de Flores ${i + 1}`,
+  price: 400,
+  description: "P R$ 400 · M R$ 500 · G R$ 600",
+}));
+
 // Dedupe by id, preserve original order
 const dedupe = (list: Product[]) => {
   const seen = new Set<string>();
@@ -130,6 +148,7 @@ const girassois = dedupe(girassoisRaw);
 const cestas = dedupe(cestasRaw);
 const kits = dedupe(kitsRaw);
 const pelucias = dedupe(peluciasRaw);
+const coroas = dedupe(coroasRaw);
 
 function Card({ p }: { p: Product }) {
   const { add } = useCart();
@@ -150,11 +169,8 @@ function Card({ p }: { p: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
-        <h3 className="text-sm md:text-base font-medium text-foreground leading-snug min-h-[2.6em] line-clamp-2">
-          {p.name}
-        </h3>
         {p.description && (
-          <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
+          <p className="text-xs text-muted-foreground">{p.description}</p>
         )}
         <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
           {formatBRL(p.price)}
@@ -190,6 +206,7 @@ const CATEGORIES: CategoryDef[] = [
   { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas },
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits, tinted: true },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias },
+  { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas, tinted: true },
 ];
 
 function CategoryNav() {
