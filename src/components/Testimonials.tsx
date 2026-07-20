@@ -1,5 +1,5 @@
 const reviews = [
-  { name: "Mariana S.", text: "Comprei pra minha namorada e ela chorou de emoção 😍 Buquê lindo, perfumado e entregue rapidinho!" },
+  { name: "Jonatas", text: "Comprei pra minha namorada e ela chorou de emoção 😍 Buquê lindo, perfumado e entregue rapidinho!" },
   { name: "Rafael T.", text: "Atendimento impecável. As flores chegaram fresquíssimas e a embalagem é de outro mundo." },
   { name: "Juliana P.", text: "Mandei pra minha mãe no dia das mães e ela amou. Já virou minha floricultura oficial 💗" },
 ];

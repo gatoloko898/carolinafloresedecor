@@ -7,7 +7,6 @@ import { Highlights } from "@/components/Highlights";
 import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
-import { InstagramFloat } from "@/components/InstagramFloat";
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Carolina Flores & Decor — Buquês e Presentes Inesquecíveis" },
-      { name: "description", content: "Floricultura premium com buquês exclusivos, arranjos especiais e entrega no mesmo dia. Transformamos sentimentos em flores." },
+      { name: "description", content: "Floricultura premium com buquês exclusivos, arranjos especiais e entrega no mesmo dia. Transformamos sentimentos em Flores." },
       { property: "og:title", content: "Carolina Flores & Decor" },
       { property: "og:description", content: "Buquês exclusivos, presentes inesquecíveis e decoração com amor." },
     ],
@@ -39,7 +38,6 @@ function Index() {
         </main>
         <Footer />
         <WhatsAppFloat />
-        <InstagramFloat />
         <CartDrawer />
       </div>
     </CartProvider>

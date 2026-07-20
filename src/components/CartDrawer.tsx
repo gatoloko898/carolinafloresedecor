@@ -34,7 +34,7 @@ export function CartDrawer() {
     total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
-  const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "" });
+  const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "", periodo: "manha" });
 
   const handleClose = (open: boolean) => {
     setOpen(open);
@@ -59,7 +59,8 @@ export function CartDrawer() {
       `Nome: ${form.nome}\n` +
       `Cidade: ${form.cidade}\n` +
       `Estado: ${form.estado}\n` +
-      `Data de entrega: ${form.data}\n\n` +
+      `Data de entrega: ${form.data}\n` +
+      `Período: ${form.periodo === "manha" ? "Manhã (9h às 12h)" : "Tarde (12h às 17h30)"}\n\n` +
       `Pode me atender? 😊`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
     clear();
@@ -175,6 +176,33 @@ export function CartDrawer() {
               <div>
                 <Label htmlFor="data">Data de entrega</Label>
                 <Input id="data" type="date" value={form.data} onChange={(e) => setForm({ ...form, data: e.target.value })} />
+              </div>
+
+              <div>
+                <Label>Período de entrega</Label>
+                <div className="mt-1.5 grid grid-cols-2 gap-2">
+                  {[
+                    { v: "manha", label: "Manhã", sub: "9h às 12h" },
+                    { v: "tarde", label: "Tarde", sub: "12h às 17h30" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.v}
+                      type="button"
+                      onClick={() => setForm({ ...form, periodo: opt.v })}
+                      className={`rounded-xl border px-3 py-2 text-sm transition-colors ${
+                        form.periodo === opt.v
+                          ? "border-rose-deep bg-rose-deep text-white"
+                          : "border-border/60 bg-background hover:bg-blush/30"
+                      }`}
+                    >
+                      <span className="block font-medium">{opt.label}</span>
+                      <span className="block text-[11px] opacity-80">{opt.sub}</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-1.5 text-[11px] text-muted-foreground">
+                  Pedidos com 2h de antecedência (manhã ou tarde).
+                </p>
               </div>
 
               <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-blush/20 p-4 cursor-pointer hover:bg-blush/30 transition-colors">
