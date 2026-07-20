@@ -1,5 +1,4 @@
-import { Instagram, MapPin, MessageCircle } from "lucide-react";
-import { WHATSAPP_URL } from "./WhatsAppFloat";
+import { MapPin, MessageCircle, Clock } from "lucide-react";
 
 export function Contact() {
   return (
@@ -11,21 +10,18 @@ export function Contact() {
         </h2>
         <p className="mt-4 text-foreground/80">Atendimento todos os dias — entregamos o mesmo amor que você quer enviar.</p>
 
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#25D366] text-white px-10 py-5 text-lg font-medium shadow-elegant hover:scale-105 transition-transform"
-        >
-          <MessageCircle className="h-6 w-6" />
-          Pedir no WhatsApp
-        </a>
+        <div className="mt-10 inline-flex flex-col items-center gap-2 rounded-2xl bg-background/70 backdrop-blur px-8 py-6">
+          <div className="flex items-center gap-2 text-rose-deep font-medium">
+            <Clock className="h-5 w-5" />
+            <span>Horário de entrega</span>
+          </div>
+          <p className="text-sm text-foreground/80">Das 9h às 17h30</p>
+          <p className="text-xs text-foreground/70">
+            Período da manhã: 9h às 12h · Pedidos com 2h de antecedência (manhã ou tarde)
+          </p>
+        </div>
 
         <div className="mt-12 grid sm:grid-cols-2 gap-6 max-w-xl mx-auto">
-          <a href="https://www.instagram.com/carolinafloresedecor" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-5 rounded-2xl bg-background/70 backdrop-blur hover:bg-background transition-colors">
-            <Instagram className="h-5 w-5 text-rose-deep" />
-            <span className="text-sm">@carolinafloresedecor</span>
-          </a>
           <a href="https://wa.me/5519993639296" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-5 rounded-2xl bg-background/70 backdrop-blur hover:bg-background transition-colors">
             <MessageCircle className="h-5 w-5 text-rose-deep" />
             <span className="text-sm">(19) 99363-9296</span>

@@ -1,9 +1,9 @@
-import { Truck, Sparkles, Heart } from "lucide-react";
+import { Truck, Clock, Heart } from "lucide-react";
 
 const items = [
-  { icon: Truck, title: "Entrega Rápida", desc: "Receba no mesmo dia com todo o cuidado." },
-  { icon: Sparkles, title: "Flores Frescas", desc: "Selecionadas a cada manhã, direto do produtor" },
-  { icon: Heart, title: "Atendimento Personalizado", desc: "Cada pedido é tratado como único e especial" },
+  { icon: Truck, title: "Entrega no Mesmo Dia", desc: "Horário de entrega das 9h às 17h30. Pedidos com 2h de antecedência (manhã ou tarde)." },
+  { icon: Clock, title: "Período da Manhã", desc: "Opção de entrega das 9h às 12h para começar o dia com carinho." },
+  { icon: Heart, title: "Atendimento Personalizado", desc: "Cada pedido é tratado como único e especial." },
 ];
 
 export function Highlights() {
