@@ -1,4 +1,4 @@
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, ChevronRight } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 
 // Rosas
@@ -211,17 +211,17 @@ const CATEGORIES: CategoryDef[] = [
 
 function CategoryNav() {
   return (
-    <div className="sticky top-[68px] z-30 bg-background/85 backdrop-blur-md border-y border-border/40">
-      <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 overflow-x-auto">
-        <ul className="flex items-center gap-2 md:gap-3 justify-start md:justify-center min-w-max">
+    <div className="sticky top-[128px] md:top-[168px] z-30 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 py-2.5 overflow-x-auto">
+        <ul className="flex items-center gap-1 md:gap-2 justify-start md:justify-center min-w-max">
           {CATEGORIES.map((c) => (
             <li key={c.id}>
               <a
                 href={`#${c.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-rose-deep/20 bg-white/80 hover:bg-rose-deep hover:text-white hover:border-rose-deep px-4 py-2 text-xs md:text-sm font-medium text-foreground/80 transition-colors whitespace-nowrap shadow-soft"
+                className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-wider text-foreground/70 hover:text-rose-deep hover:bg-rose-deep/10 transition-colors whitespace-nowrap"
               >
                 <span aria-hidden>{c.emoji}</span>
-                <span className="capitalize">{c.kicker.split(" ")[0]}</span>
+                <span>{c.kicker.split(" ")[0]}</span>
               </a>
             </li>
           ))}
@@ -233,20 +233,26 @@ function CategoryNav() {
 
 function Category({ c }: { c: CategoryDef }) {
   return (
-    <section id={c.slug} className="py-16 md:py-24 scroll-mt-32" style={{ contentVisibility: "auto", containIntrinsicSize: "1200px" }}>
+    <section id={c.slug} className="py-10 md:py-14 scroll-mt-[220px]" style={{ contentVisibility: "auto", containIntrinsicSize: "1200px" }}>
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
-          <div>
-            <p className="font-script text-2xl text-gold flex items-center gap-2">
-              <span aria-hidden>{c.emoji}</span> {c.kicker}
-            </p>
-            <h2 className="text-3xl md:text-5xl font-light mt-1 tracking-tight">
-              {c.title} <span className="font-script text-rose-deep">{c.accent}</span>
+        <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm md:text-base font-bold uppercase tracking-[0.2em] text-foreground flex items-center gap-2">
+              <span aria-hidden>{c.emoji}</span>
+              {c.kicker}
             </h2>
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-deep" />
+            <span className="hidden md:block h-px w-24 bg-rose-deep/40" />
           </div>
-          <div className="hidden md:block h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent ml-8" />
+          <a
+            href={`#${c.slug}`}
+            aria-label={`Ver mais em ${c.kicker}`}
+            className="grid h-9 w-9 place-items-center rounded-full border border-rose-deep/30 text-rose-deep hover:bg-rose-deep hover:text-white transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </a>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {c.items.map((p) => (
             <Card key={p.id} p={p} />
           ))}
