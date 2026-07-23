@@ -35,6 +35,35 @@ export function CartDrawer() {
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "", periodo: "manha" });
+  const [paying, setPaying] = useState(false);
+  const [payError, setPayError] = useState<string | null>(null);
+
+  const payOnline = async () => {
+    setPaying(true);
+    setPayError(null);
+    try {
+      const description =
+        items.length === 1
+          ? `${items[0].name} x${items[0].qty}`
+          : `Pedido Carolina Flores (${items.reduce((s, i) => s + i.qty, 0)} itens)`;
+      const priceInCents = Math.round(total * 100);
+      const res = await fetch("https://api.checkout.infinitepay.io/links", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          handle: "paulomello88",
+          items: [{ quantity: 1, price: priceInCents, description }],
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.url) throw new Error(data?.message || "Falha ao gerar link de pagamento");
+      window.open(data.url, "_blank");
+    } catch (e: any) {
+      setPayError(e?.message || "Erro ao processar pagamento");
+    } finally {
+      setPaying(false);
+    }
+  };
 
   const handleClose = (open: boolean) => {
     setOpen(open);
