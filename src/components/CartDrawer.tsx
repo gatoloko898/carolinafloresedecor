@@ -42,22 +42,28 @@ export function CartDrawer() {
     setPaying(true);
     setPayError(null);
     try {
-      const description =
+      const name =
         items.length === 1
           ? `${items[0].name} x${items[0].qty}`
-          : `Pedido Carolina Flores (${items.reduce((s, i) => s + i.qty, 0)} itens)`;
+          : `Pedido Carolina Flores`;
+      const description =
+        items.length === 1
+          ? `${items[0].name} (qtd ${items[0].qty})`
+          : items.map((i) => `${i.name} x${i.qty}`).join(", ");
       const priceInCents = Math.round(total * 100);
+      const orderNsu = `CF-${Date.now()}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
       const res = await fetch("https://api.checkout.infinitepay.io/links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           handle: "paulomello88",
-          items: [{ quantity: 1, price: priceInCents, description }],
+          order_nsu: orderNsu,
+          items: [{ name, description, price: priceInCents, quantity: 1 }],
         }),
       });
       const data = await res.json();
       if (!res.ok || !data?.url) throw new Error(data?.message || "Falha ao gerar link de pagamento");
-      window.open(data.url, "_blank");
+      window.location.href = data.url;
     } catch (e: any) {
       setPayError(e?.message || "Erro ao processar pagamento");
     } finally {
