@@ -11,7 +11,7 @@ export const Route = createFileRoute("/api/public/infinitepay")({
   server: {
     handlers: {
       OPTIONS: async () => new Response(null, { status: 204, headers: CORS }),
-      POST: async ({ request }) => {
+      POST: async ({ request }: { request: Request }) => {
         try {
           const body = await request.json();
           const { handle, order_nsu, items } = body ?? {};
