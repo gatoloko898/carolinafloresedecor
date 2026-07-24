@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type {} from "@tanstack/react-start";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
