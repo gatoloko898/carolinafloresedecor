@@ -52,7 +52,7 @@ export function CartDrawer() {
           : items.map((i) => `${i.name} x${i.qty}`).join(", ");
       const priceInCents = Math.round(total * 100);
       const orderNsu = `CF-${Date.now()}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
-      const res = await fetch("https://api.checkout.infinitepay.io/links", {
+      const res = await fetch("/api/public/infinitepay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

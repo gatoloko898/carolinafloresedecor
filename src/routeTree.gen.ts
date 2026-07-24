@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicInfinitepayRouteImport } from './routes/api/public/infinitepay'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicInfinitepayRoute = ApiPublicInfinitepayRouteImport.update({
+  id: '/api/public/infinitepay',
+  path: '/api/public/infinitepay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/infinitepay'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/infinitepay'
+  id: '__root__' | '/' | '/api/public/infinitepay'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicInfinitepayRoute: typeof ApiPublicInfinitepayRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/infinitepay': {
+      id: '/api/public/infinitepay'
+      path: '/api/public/infinitepay'
+      fullPath: '/api/public/infinitepay'
+      preLoaderRoute: typeof ApiPublicInfinitepayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicInfinitepayRoute: ApiPublicInfinitepayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
