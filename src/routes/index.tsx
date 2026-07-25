@@ -6,6 +6,7 @@ import { Products } from "@/components/Products";
 import { Highlights } from "@/components/Highlights";
 import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
+import { PromoBar } from "@/components/PromoBar";
 
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -27,6 +28,7 @@ function Index() {
   return (
     <CartProvider>
       <div className="min-h-screen">
+        <PromoBar />
         <Navbar />
         <main>
           <Hero />
