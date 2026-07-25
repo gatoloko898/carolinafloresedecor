@@ -211,7 +211,7 @@ const CATEGORIES: CategoryDef[] = [
 
 function CategoryNav() {
   return (
-    <div className="fixed left-0 right-0 top-[68px] md:top-[128px] z-30 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+    <div className="fixed left-0 right-0 top-[104px] md:top-[164px] z-30 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-2.5 overflow-x-auto">
         <ul className="flex items-center gap-1 md:gap-2 justify-start md:justify-center min-w-max">
           {CATEGORIES.map((c) => (

@@ -18,12 +18,15 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md shadow-sm">
+    <header className="fixed top-9 md:top-9 left-0 right-0 z-40 bg-background/95 backdrop-blur-md shadow-sm">
       {/* Top row: logo + search + delivery + help + cart */}
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4 flex items-center gap-3 md:gap-6">
         <a href="#" className="flex items-center gap-2 shrink-0">
           <Flower2 className="h-7 w-7 text-rose-deep" />
-          <span className="font-script text-2xl md:text-3xl text-rose-deep leading-none">Carolina Flores</span>
+          <div className="flex flex-col leading-none">
+            <span className="font-script text-2xl md:text-3xl text-rose-deep">Carolina Flores</span>
+            <span className="text-[10px] md:text-[11px] tracking-[0.25em] text-muted-foreground mt-0.5">FLORICULTURA &amp; DECOR</span>
+          </div>
         </a>
 
         <div className="hidden md:flex flex-1 items-center gap-3 max-w-2xl mx-auto">
