@@ -35,41 +35,6 @@ export function CartDrawer() {
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "", periodo: "manha" });
-  const [paying, setPaying] = useState(false);
-  const [payError, setPayError] = useState<string | null>(null);
-
-  const payOnline = async () => {
-    setPaying(true);
-    setPayError(null);
-    try {
-      const name =
-        items.length === 1
-          ? `${items[0].name} x${items[0].qty}`
-          : `Pedido Carolina Flores`;
-      const description =
-        items.length === 1
-          ? `${items[0].name} (qtd ${items[0].qty})`
-          : items.map((i) => `${i.name} x${i.qty}`).join(", ");
-      const priceInCents = Math.round(total * 100);
-      const orderNsu = `CF-${Date.now()}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
-      const res = await fetch("/api/public/infinitepay", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          handle: "paulomello88",
-          order_nsu: orderNsu,
-          items: [{ name, description, price: priceInCents, quantity: 1 }],
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data?.url) throw new Error(data?.message || "Falha ao gerar link de pagamento");
-      window.location.href = data.url;
-    } catch (e: any) {
-      setPayError(e?.message || "Erro ao processar pagamento");
-    } finally {
-      setPaying(false);
-    }
-  };
 
   const handleClose = (open: boolean) => {
     setOpen(open);
@@ -287,15 +252,9 @@ export function CartDrawer() {
                   Continuar para finalizar
                 </Button>
               ) : (
-                <div className="space-y-2">
-                  <Button onClick={payOnline} disabled={paying || items.length === 0} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
-                    {paying ? "Gerando link..." : `Pagar ${formatBRL(total)} online`}
-                  </Button>
-                  {payError && <p className="text-xs text-red-600 text-center">{payError}</p>}
-                  <Button onClick={finalize} disabled={!canFinish} variant="outline" className="w-full rounded-full h-11 border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10">
-                    Finalizar no WhatsApp
-                  </Button>
-                </div>
+                <Button onClick={finalize} disabled={!canFinish} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full h-11">
+                  Finalizar Pedido no WhatsApp
+                </Button>
               )}
             </div>
           </SheetFooter>
