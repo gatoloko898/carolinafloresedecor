@@ -6,7 +6,7 @@ import { Products } from "@/components/Products";
 import { Highlights } from "@/components/Highlights";
 import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
-import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -37,7 +37,7 @@ function Index() {
           <Contact />
         </main>
         <Footer />
-        <WhatsAppFloat />
+        
         <CartDrawer />
       </div>
     </CartProvider>
