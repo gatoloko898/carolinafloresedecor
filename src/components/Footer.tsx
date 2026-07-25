@@ -1,4 +1,4 @@
-import { Flower2, Heart, MessageCircle, Shield, Cookie, RefreshCw, HeadphonesIcon, Users, Briefcase } from "lucide-react";
+import { Flower2, Heart, MessageCircle, MapPin, Shield, Cookie, RefreshCw, HeadphonesIcon, Users, Briefcase } from "lucide-react";
 
 const maisProcurados = [
   "Buquê de Rosas Vermelhas",
@@ -72,17 +72,27 @@ export function Footer() {
             <p className="mt-4 text-sm text-background/70 leading-relaxed max-w-xs">
               Buquês exclusivos, cestas e presentes inesquecíveis, feitos com carinho para transformar sentimentos em Flores.
             </p>
-            <div className="mt-5 flex items-center gap-3">
-              <a
-                href="https://wa.me/5519993639296"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="WhatsApp"
-                className="h-10 w-10 grid place-items-center rounded-full bg-rose-deep/20 hover:bg-rose-deep hover:text-white text-rose-deep transition-colors"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Avenida+da+Saudade+121+Vila+Santana+Vargem+Grande+do+Sul+SP"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 flex items-start gap-2 text-sm text-background/70 hover:text-rose-deep transition-colors"
+            >
+              <MapPin className="h-4 w-4 mt-0.5 text-rose-deep shrink-0" />
+              <span>
+                Av. da Saudade, 121 — Vila Santana<br />
+                Vargem Grande do Sul — SP, 13884-266
+              </span>
+            </a>
+            <a
+              href="https://wa.me/5519993639296"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-rose-deep/20 text-rose-deep hover:bg-rose-deep hover:text-white transition-colors px-4 py-2 text-sm font-semibold"
+            >
+              <MessageCircle className="h-4 w-4" />
+              (19) 99363-9296
+            </a>
           </div>
 
           {columns.map((col) => (
