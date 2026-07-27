@@ -169,8 +169,11 @@ function Card({ p }: { p: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
+        <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
+          {p.name}
+        </h3>
         {p.description && (
-          <p className="text-xs text-muted-foreground">{p.description}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
         <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
           {formatBRL(p.price)}
