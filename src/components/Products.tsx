@@ -71,6 +71,9 @@ import coroa8 from "@/assets/coroas/c22.jpg";
 import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
 import { Sparkles, AlertTriangle } from "lucide-react";
 
+type SizeKey = "P" | "M" | "G";
+type SizeOption = { key: SizeKey; label: string; price: number };
+
 type Product = {
   id: string;
   img: string;
@@ -78,6 +81,7 @@ type Product = {
   price: number;
   tag?: string;
   description?: string;
+  sizes?: SizeOption[];
 };
 
 const rosasRaw: Product[] = [
