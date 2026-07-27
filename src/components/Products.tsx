@@ -180,6 +180,20 @@ const coroas = dedupe(coroasRaw);
 
 function Card({ p }: { p: Product }) {
   const { add } = useCart();
+  const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
+  const currentPrice = size ? size.price : p.price;
+  const handleAdd = () => {
+    if (size) {
+      add({
+        id: `${p.id}-${size.key}`,
+        name: `${p.name} — Tamanho ${size.key}`,
+        img: p.img,
+        price: size.price,
+      });
+    } else {
+      add({ id: p.id, name: p.name, img: p.img, price: p.price });
+    }
+  };
   return (
     <div className="group flex h-full flex-col bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1.5 border border-blush/50">
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
@@ -203,13 +217,36 @@ function Card({ p }: { p: Product }) {
         {p.description && (
           <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
+        {p.sizes && size && (
+          <div className="mt-3 flex flex-col items-center gap-2">
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <span className="text-xs text-muted-foreground">Tamanho:</span>
+              {p.sizes.map((s) => {
+                const active = s.key === size.key;
+                return (
+                  <button
+                    key={s.key}
+                    type="button"
+                    onClick={() => setSize(s)}
+                    aria-pressed={active}
+                    className={`h-8 w-8 grid place-items-center rounded-full text-xs font-semibold transition-all ${
+                      active
+                        ? "bg-rose-deep text-white shadow-soft"
+                        : "bg-blush/40 text-rose-deep hover:bg-blush"
+                    }`}
+                  >
+                    {s.key}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
+          </div>
+        )}
         <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
-          {formatBRL(p.price)}
+          {formatBRL(currentPrice)}
         </p>
-        <button
-          onClick={() => add({ id: p.id, name: p.name, img: p.img, price: p.price })}
-          className="mt-auto pt-4"
-        >
+        <button onClick={handleAdd} className="mt-auto pt-4">
           <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
             <ShoppingBag className="h-4 w-4" />
             Adicionar
