@@ -50,6 +50,15 @@ import pelucia4 from "@/assets/pelucias-new/p4.png";
 import pelucia5 from "@/assets/pelucias-new/p5.png";
 import pelucia6 from "@/assets/pelucias-new/p6.png";
 import pelucia7 from "@/assets/pelucias-new/p7.png";
+import pelucia8 from "@/assets/pelucias-new/p8-doce-coracao.jpg";
+import pelucia9 from "@/assets/pelucias-new/p9-vestidinho.jpg";
+import pelucia10 from "@/assets/pelucias-new/p10-rosa-cetim.jpg";
+import pelucia11 from "@/assets/pelucias-new/p11-azul-cetim.jpg";
+import pelucia12 from "@/assets/pelucias-new/p12-coelho.jpg";
+import pelucia13 from "@/assets/pelucias-new/p13-canguru.jpg";
+import pelucia14 from "@/assets/pelucias-new/p14-menta.jpg";
+import pelucia15 from "@/assets/pelucias-new/p15-listrada.jpg";
+import { useState } from "react";
 // Coroas
 import coroa1 from "@/assets/coroas/c15.jpg";
 import coroa2 from "@/assets/coroas/c16.jpg";
