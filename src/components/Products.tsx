@@ -59,6 +59,8 @@ import coroa5 from "@/assets/coroas/c19.jpg";
 import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
+import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
+import { Sparkles, AlertTriangle } from "lucide-react";
 
 type Product = {
   id: string;
