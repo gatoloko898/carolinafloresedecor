@@ -50,6 +50,15 @@ import pelucia4 from "@/assets/pelucias-new/p4.png";
 import pelucia5 from "@/assets/pelucias-new/p5.png";
 import pelucia6 from "@/assets/pelucias-new/p6.png";
 import pelucia7 from "@/assets/pelucias-new/p7.png";
+import pelucia8 from "@/assets/pelucias-new/p8-doce-coracao.jpg";
+import pelucia9 from "@/assets/pelucias-new/p9-vestidinho.jpg";
+import pelucia10 from "@/assets/pelucias-new/p10-rosa-cetim.jpg";
+import pelucia11 from "@/assets/pelucias-new/p11-azul-cetim.jpg";
+import pelucia12 from "@/assets/pelucias-new/p12-coelho.jpg";
+import pelucia13 from "@/assets/pelucias-new/p13-canguru.jpg";
+import pelucia14 from "@/assets/pelucias-new/p14-menta.jpg";
+import pelucia15 from "@/assets/pelucias-new/p15-listrada.jpg";
+import { useState } from "react";
 // Coroas
 import coroa1 from "@/assets/coroas/c15.jpg";
 import coroa2 from "@/assets/coroas/c16.jpg";
@@ -62,6 +71,9 @@ import coroa8 from "@/assets/coroas/c22.jpg";
 import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
 import { Sparkles, AlertTriangle } from "lucide-react";
 
+type SizeKey = "P" | "M" | "G";
+type SizeOption = { key: SizeKey; label: string; price: number };
+
 type Product = {
   id: string;
   img: string;
@@ -69,6 +81,7 @@ type Product = {
   price: number;
   tag?: string;
   description?: string;
+  sizes?: SizeOption[];
 };
 
 const rosasRaw: Product[] = [
@@ -122,7 +135,15 @@ const kitsRaw: Product[] = [
 
 const peluciasRaw: Product[] = [
   { id: "pel-1", img: pelucia1, name: "Ursa Creme Coração Bordado", price: 150, description: "Aprox. 28 cm" },
+  { id: "pel-15", img: pelucia15, name: "Ursinho Camisa Listrada", price: 160, description: "Aprox. 30 cm · Camiseta azul listrada", tag: "Infantil" },
+  { id: "pel-10", img: pelucia10, name: "Urso Rosa Laço de Cetim", price: 180, description: "Aprox. 35 cm · Laço rosa delicado", tag: "Delicado" },
+  { id: "pel-11", img: pelucia11, name: "Urso Azul Laço de Cetim", price: 180, description: "Aprox. 35 cm · Laço azul super fofo", tag: "Infantil" },
+  { id: "pel-14", img: pelucia14, name: "Urso Menta Laço Verde", price: 190, description: "Aprox. 35 cm · Tom menta com laço" },
+  { id: "pel-9", img: pelucia9, name: "Ursinha de Vestidinho Xadrez", price: 220, description: "Aprox. 40 cm · Vestido e tiara combinando", tag: "Fofo" },
+  { id: "pel-12", img: pelucia12, name: "Coelho de Páscoa de Pelúcia", price: 250, description: "Aprox. 45 cm · Coelho macio com laço", tag: "Especial" },
   { id: "pel-7", img: pelucia7, name: "Panda Laço Vermelho na Caixa", price: 270, description: "Aprox. 60 cm", tag: "Exclusivo" },
+  { id: "pel-8", img: pelucia8, name: "Urso Doce Coração Bordado", price: 280, description: "Aprox. 50 cm · Coração de veludo trabalhado", tag: "Destaque" },
+  { id: "pel-13", img: pelucia13, name: "Mamãe Canguru com Filhote", price: 290, description: "Aprox. 50 cm · Filhote no bolso", tag: "Exclusivo" },
   { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol", price: 330, description: "Aprox. 65 cm" },
   { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Vermelho", price: 330, description: "Aprox. 70 cm", tag: "Gigante" },
   { id: "pel-3", img: pelucia3, name: "Urso Caramelo Cachecol Chevron", price: 430, description: "Aprox. 70 cm" },
@@ -130,13 +151,18 @@ const peluciasRaw: Product[] = [
   { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 480, description: "Aprox. 60 cm" },
 ];
 
+const CORONA_SIZES: SizeOption[] = [
+  { key: "P", label: "P · 80 cm", price: 400 },
+  { key: "M", label: "M · 1 m", price: 500 },
+  { key: "G", label: "G · 1,20 m", price: 600 },
+];
 const coroasImages = [coroa1, coroa2, coroa3, coroa4, coroa5, coroa6, coroa7, coroa8];
 const coroasRaw: Product[] = coroasImages.map((img, i) => ({
   id: `cor-${i + 1}`,
   img,
   name: `Coroa de Flores ${i + 1}`,
   price: 400,
-  description: "P R$ 400 · M R$ 500 · G R$ 600",
+  sizes: CORONA_SIZES,
 }));
 
 // Dedupe by id, preserve original order
@@ -154,6 +180,20 @@ const coroas = dedupe(coroasRaw);
 
 function Card({ p }: { p: Product }) {
   const { add } = useCart();
+  const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
+  const currentPrice = size ? size.price : p.price;
+  const handleAdd = () => {
+    if (size) {
+      add({
+        id: `${p.id}-${size.key}`,
+        name: `${p.name} — Tamanho ${size.key}`,
+        img: p.img,
+        price: size.price,
+      });
+    } else {
+      add({ id: p.id, name: p.name, img: p.img, price: p.price });
+    }
+  };
   return (
     <div className="group flex h-full flex-col bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1.5 border border-blush/50">
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
@@ -177,13 +217,36 @@ function Card({ p }: { p: Product }) {
         {p.description && (
           <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
+        {p.sizes && size && (
+          <div className="mt-3 flex flex-col items-center gap-2">
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <span className="text-xs text-muted-foreground">Tamanho:</span>
+              {p.sizes.map((s) => {
+                const active = s.key === size.key;
+                return (
+                  <button
+                    key={s.key}
+                    type="button"
+                    onClick={() => setSize(s)}
+                    aria-pressed={active}
+                    className={`h-8 w-8 grid place-items-center rounded-full text-xs font-semibold transition-all ${
+                      active
+                        ? "bg-rose-deep text-white shadow-soft"
+                        : "bg-blush/40 text-rose-deep hover:bg-blush"
+                    }`}
+                  >
+                    {s.key}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
+          </div>
+        )}
         <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
-          {formatBRL(p.price)}
+          {formatBRL(currentPrice)}
         </p>
-        <button
-          onClick={() => add({ id: p.id, name: p.name, img: p.img, price: p.price })}
-          className="mt-auto pt-4"
-        >
+        <button onClick={handleAdd} className="mt-auto pt-4">
           <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
             <ShoppingBag className="h-4 w-4" />
             Adicionar
