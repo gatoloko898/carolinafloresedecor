@@ -59,6 +59,8 @@ import coroa5 from "@/assets/coroas/c19.jpg";
 import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
+import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
+import { Sparkles, AlertTriangle } from "lucide-react";
 
 type Product = {
   id: string;
@@ -169,8 +171,11 @@ function Card({ p }: { p: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
+        <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
+          {p.name}
+        </h3>
         {p.description && (
-          <p className="text-xs text-muted-foreground">{p.description}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
         <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
           {formatBRL(p.price)}
@@ -262,19 +267,96 @@ function Category({ c }: { c: CategoryDef }) {
   );
 }
 
+function PremiumCoroa() {
+  const { add } = useCart();
+  const premium = {
+    id: "cor-premium-luxo",
+    name: "Coroa de Flores Luxo White Premium",
+    img: coroaPremium,
+    price: 990,
+  };
+  return (
+    <section className="py-10 md:py-14">
+      <div className="mx-auto max-w-5xl px-4 md:px-6">
+        <div className="relative overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-cream via-background to-blush/40 shadow-elegant">
+          <div className="grid md:grid-cols-2 gap-0">
+            <div className="relative aspect-square md:aspect-auto md:min-h-[520px] bg-gradient-to-br from-blush/40 to-cream">
+              <span className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 text-[10px] md:text-xs uppercase tracking-widest bg-gold text-white px-3 py-1.5 rounded-full shadow-soft">
+                <Sparkles className="h-3 w-3" /> Edição Luxo
+              </span>
+              <img
+                src={premium.img}
+                alt={premium.name}
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <div className="p-6 md:p-10 flex flex-col justify-center text-center md:text-left">
+              <span className="inline-flex items-center self-center md:self-start gap-1.5 text-[10px] uppercase tracking-widest bg-rose-deep/10 text-rose-deep px-3 py-1 rounded-full">
+                <Sparkles className="h-3 w-3" /> Coroa Especial de Homenagem
+              </span>
+              <h3 className="mt-4 font-serif text-2xl md:text-3xl text-foreground leading-tight">
+                {premium.name}
+              </h3>
+              <p className="mt-3 text-sm md:text-base text-muted-foreground">
+                Orquídeas Phalaenopsis, gérberas e rosas brancas de alto padrão
+                com faixa de homenagem personalizada inclusa (Armação/Suporte
+                não incluso).
+              </p>
+              <div className="mt-5 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-rose-deep/10 text-rose-deep text-xs md:text-sm font-semibold px-4 py-2">
+                Tamanho Único Exclusivo: 1,30 m (130 cm)
+              </div>
+              <div className="mt-3 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-gold/15 text-gold text-xs px-4 py-2">
+                <AlertTriangle className="h-3.5 w-3.5" />
+                Armação de Suporte NÃO inclusa
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                • Faixa de Homenagem Personalizada Inclusa
+              </p>
+              <div className="mt-6 flex items-center justify-center md:justify-start gap-5 flex-wrap">
+                <span className="font-serif text-3xl md:text-4xl text-rose-deep font-semibold">
+                  {formatBRL(premium.price)}
+                </span>
+                <button
+                  onClick={() => add(premium)}
+                  className="inline-flex items-center gap-2 rounded-full bg-rose-deep text-white px-6 py-3 text-xs md:text-sm uppercase tracking-widest font-medium shadow-soft hover:shadow-elegant hover:bg-rose-deep/90 transition-all"
+                >
+                  <ShoppingBag className="h-4 w-4" />
+                  Adicionar Coroa Premium
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Products() {
   return (
     <div id="produtos">
       <CategoryNav />
-      {CATEGORIES.map((c) =>
-        c.tinted ? (
+      {CATEGORIES.map((c) => {
+        const node = c.tinted ? (
           <div key={c.id} className="bg-blush/30">
             <Category c={c} />
           </div>
         ) : (
           <Category key={c.id} c={c} />
-        )
-      )}
+        );
+        if (c.id === "coroas") {
+          return (
+            <div key={c.id}>
+              <PremiumCoroa />
+              {node}
+            </div>
+          );
+        }
+        return node;
+      })}
     </div>
   );
 }
