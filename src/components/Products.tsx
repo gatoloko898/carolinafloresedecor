@@ -135,7 +135,15 @@ const kitsRaw: Product[] = [
 
 const peluciasRaw: Product[] = [
   { id: "pel-1", img: pelucia1, name: "Ursa Creme Coração Bordado", price: 150, description: "Aprox. 28 cm" },
+  { id: "pel-15", img: pelucia15, name: "Ursinho Camisa Listrada", price: 160, description: "Aprox. 30 cm · Camiseta azul listrada", tag: "Infantil" },
+  { id: "pel-10", img: pelucia10, name: "Urso Rosa Laço de Cetim", price: 180, description: "Aprox. 35 cm · Laço rosa delicado", tag: "Delicado" },
+  { id: "pel-11", img: pelucia11, name: "Urso Azul Laço de Cetim", price: 180, description: "Aprox. 35 cm · Laço azul super fofo", tag: "Infantil" },
+  { id: "pel-14", img: pelucia14, name: "Urso Menta Laço Verde", price: 190, description: "Aprox. 35 cm · Tom menta com laço" },
+  { id: "pel-9", img: pelucia9, name: "Ursinha de Vestidinho Xadrez", price: 220, description: "Aprox. 40 cm · Vestido e tiara combinando", tag: "Fofo" },
+  { id: "pel-12", img: pelucia12, name: "Coelho de Páscoa de Pelúcia", price: 250, description: "Aprox. 45 cm · Coelho macio com laço", tag: "Especial" },
   { id: "pel-7", img: pelucia7, name: "Panda Laço Vermelho na Caixa", price: 270, description: "Aprox. 60 cm", tag: "Exclusivo" },
+  { id: "pel-8", img: pelucia8, name: "Urso Doce Coração Bordado", price: 280, description: "Aprox. 50 cm · Coração de veludo trabalhado", tag: "Destaque" },
+  { id: "pel-13", img: pelucia13, name: "Mamãe Canguru com Filhote", price: 290, description: "Aprox. 50 cm · Filhote no bolso", tag: "Exclusivo" },
   { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol", price: 330, description: "Aprox. 65 cm" },
   { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Vermelho", price: 330, description: "Aprox. 70 cm", tag: "Gigante" },
   { id: "pel-3", img: pelucia3, name: "Urso Caramelo Cachecol Chevron", price: 430, description: "Aprox. 70 cm" },
@@ -143,13 +151,18 @@ const peluciasRaw: Product[] = [
   { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 480, description: "Aprox. 60 cm" },
 ];
 
+const CORONA_SIZES: SizeOption[] = [
+  { key: "P", label: "P · 80 cm", price: 400 },
+  { key: "M", label: "M · 1 m", price: 500 },
+  { key: "G", label: "G · 1,20 m", price: 600 },
+];
 const coroasImages = [coroa1, coroa2, coroa3, coroa4, coroa5, coroa6, coroa7, coroa8];
 const coroasRaw: Product[] = coroasImages.map((img, i) => ({
   id: `cor-${i + 1}`,
   img,
   name: `Coroa de Flores ${i + 1}`,
   price: 400,
-  description: "P R$ 400 · M R$ 500 · G R$ 600",
+  sizes: CORONA_SIZES,
 }));
 
 // Dedupe by id, preserve original order
