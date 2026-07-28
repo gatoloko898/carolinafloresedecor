@@ -104,16 +104,23 @@ import c6box from "@/assets/caixas/c6.png.asset.json";
 import c7box from "@/assets/caixas/c7.png.asset.json";
 
 // Orquídeas
-const orquideasModules = import.meta.glob("@/assets/orquideas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasModules = import.meta.glob("@/assets/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const orquideasUrls = Object.entries(orquideasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Canecas
-const canecasModules = import.meta.glob("@/assets/canecas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasModules = import.meta.glob("@/assets/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const canecasUrls = Object.entries(canecasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
+
+// Begônias
+const begoniasModules = import.meta.glob("@/assets/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const begoniasUrls = Object.entries(begoniasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
 
 // Cestas novas (sem nome/preço)
 const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
