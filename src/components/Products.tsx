@@ -142,7 +142,7 @@ const peluciasRaw: Product[] = [
   { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol", price: 379, description: "Aprox. 60 cm" },
   { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Luxo", price: 479, description: "Aprox. 70 cm", tag: "Gigante" },
   { id: "pel-8", img: pelucia8, name: "Urso Doce Coração Bordado", price: 549, description: "Aprox. 60 cm", tag: "Destaque" },
-  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 599, description: "Aprox. 60 cm" },
+  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 549, description: "Aprox. 60 cm" },
 ];
 
 const CORONA_SIZES: SizeOption[] = [
