@@ -92,28 +92,30 @@ const rosasRaw: Product[] = [
   { id: "ros-p6", img: rosP6, name: "Buquê Primeiro Amor", price: 140 },
   { id: "ros-p7", img: rosP7, name: "Buquê Compacto sem Rosas", price: 170 },
   { id: "ros-p8", img: rosP8, name: "Buquê Rosas Encanto Dourado", price: 180 },
-  { id: "gir-p9", img: girP9, name: "Buquê Girassol e Rosas Azuis", price: 250 },
   { id: "ros-p10", img: rosP10, name: "Buquê Rosas Clássico (12 Rosas Vermelhas)", price: 280 },
   { id: "ros-p13", img: rosP13, name: "Flower Box de Rosas Romance", price: 289, tag: "Especial" },
   { id: "ros-p11", img: rosP11, name: "Buquê Tradicional Dez Rosas Vermelhas", price: 299 },
   { id: "ros-p12", img: rosP12, name: "Buquê Grande / Dez Premium de Rosas Vermelhas", price: 330 },
-  { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
-  { id: "gir-p12", img: girP12, name: "Buquê Girassol Premium", price: 399 },
 ];
 
 const girassoisRaw: Product[] = [
   { id: "gir-p4", img: girP4, name: "Buquê Girassol Estilo Jornal", price: 120 },
   { id: "gir-p3", img: girP3, name: "Gran Buquê / 4 Rosas Girassol", price: 160 },
-  { id: "gir-p8", img: girP8, name: "Buquê Girassol 5 Rosas Vermelhas", price: 220 },
-  { id: "fc-p3", img: fcP3, name: "Flores do Campo Encanto", price: 229 },
+  { id: "gir-p8", img: girP8, name: "Buquê Girassóis e Paixão", price: 220 },
   { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 250 },
+  { id: "gir-p9", img: girP9, name: "Buquê Girassol e Rosas Azuis", price: 250 },
   { id: "gir-p11", img: girP11, name: "Buquê Girassol Tradicional", price: 270 },
-  { id: "fc-p7", img: fcP7, name: "Buquê Girassóis de Campo", price: 289 },
-  { id: "fc-p16", img: fcP16, name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
-  { id: "fc-p19", img: fcP19, name: "Flores do Campo Grande", price: 329 },
-  { id: "gir-p13", img: girP13, name: "Buquê Girassol e Ruskus", price: 379 },
+  { id: "gir-p13", img: girP13, name: "Buquê Girassóis e Ruskus", price: 379 },
+  { id: "gir-p12", img: girP12, name: "Buquê Girassol Premium", price: 399 },
 ];
 
+const floresCampoRaw: Product[] = [
+  { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
+  { id: "fc-p3", img: fcP3, name: "Buquê Flores do Campo Encanto", price: 229 },
+  { id: "fc-p7", img: fcP7, name: "Buquê Girassóis de Campo", price: 289 },
+  { id: "fc-p16", img: fcP16, name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
+  { id: "fc-p19", img: fcP19, name: "Buquê Grande de Flores do Campo", price: 329 },
+];
 
 const cestasRaw: Product[] = [
   { id: "fc-p6", img: fcP6, name: "Flower Box Pequeno Encanto", price: 229 },
@@ -131,7 +133,7 @@ const kitsRaw: Product[] = [
 ];
 
 const peluciasRaw: Product[] = [
-  { id: "pel-15", img: pelucia15, name: "Ursinho Camisa Lutador", price: 65, description: "Aprox. 18 cm", tag: "Infantil" },
+  { id: "pel-15", img: pelucia15, name: "Ursinho Camisa Listrada", price: 65, description: "Aprox. 18 cm", tag: "Infantil" },
   { id: "pel-10", img: pelucia10, name: "Urso Rosa Laço de Cetim", price: 69, description: "Aprox. 18 cm", tag: "Delicado" },
   { id: "pel-11", img: pelucia11, name: "Urso Azul Laço de Cetim", price: 69, description: "Aprox. 18 cm", tag: "Infantil" },
   { id: "pel-14", img: pelucia14, name: "Urso Menta Laço de Cetim Verde", price: 89, description: "Aprox. 25 cm" },
@@ -167,6 +169,7 @@ const dedupe = (list: Product[]) => {
 
 const rosas = dedupe(rosasRaw);
 const girassois = dedupe(girassoisRaw);
+const floresCampo = dedupe(floresCampoRaw);
 const cestas = dedupe(cestasRaw);
 const kits = dedupe(kitsRaw);
 const pelucias = dedupe(peluciasRaw);
@@ -264,11 +267,12 @@ type CategoryDef = {
 
 const CATEGORIES: CategoryDef[] = [
   { id: "rosas", slug: "rosas", emoji: "🌹", kicker: "buquês de rosas", title: "Rosas que", accent: "encantam", items: rosas },
-  { id: "girassois", slug: "girassois", emoji: "🌻", kicker: "girassóis & flores do campo", title: "Girassóis que", accent: "iluminam", items: girassois, tinted: true },
-  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas },
-  { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits, tinted: true },
-  { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias },
-  { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas, tinted: true },
+  { id: "girassois", slug: "girassois", emoji: "🌻", kicker: "girassóis", title: "Girassóis que", accent: "iluminam", items: girassois, tinted: true },
+  { id: "flores-campo", slug: "flores-campo", emoji: "🌾", kicker: "flores do campo", title: "Flores do", accent: "campo", items: floresCampo },
+  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas, tinted: true },
+  { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
+  { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
+  { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
 
 function CategoryNav() {
