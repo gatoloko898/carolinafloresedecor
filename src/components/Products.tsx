@@ -125,7 +125,7 @@ const cestasRaw: Product[] = [
 const kitsRaw: Product[] = [
   { id: "gir-p6", img: girP6, name: "Kit Girassol e Ferrero Rocher", price: 185 },
   { id: "fc-p21", img: fcP21, name: "Kit Buquê Colorido e Ferrero Rocher", price: 249 },
-  { id: "ros-p9", img: rosP9, name: "Kit Coração de Girassol com Rosas Vermelhas e Ferrero Rocher", price: 295, tag: "Apaixonados" },
+  { id: "ros-p9", img: rosP9, name: "Buquê de rosas com Ferrero Rocher", price: 265, tag: "Apaixonados" },
   { id: "fc-p20", img: fcP20, name: "Kit Alstroemérias e Ferrero Rocher", price: 299 },
   { id: "fc-p9", img: fcP9, name: "Kit Flower Box Rústico Fino e Ferrero Rocher", price: 344 },
 ];
