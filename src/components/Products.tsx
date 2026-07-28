@@ -343,7 +343,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
             <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
           </div>
         )}
-        {!hidePrice && (
+        {!shouldHidePrice && (
           <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
             {formatBRL(currentPrice)}
           </p>
