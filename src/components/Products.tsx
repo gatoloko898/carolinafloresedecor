@@ -392,7 +392,7 @@ function Category({ c }: { c: CategoryDef }) {
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {c.items.map((p) => (
-            <Card key={p.id} p={p} />
+            <Card key={p.id} p={p} hidePrice={c.hidePrice} />
           ))}
         </div>
       </div>
