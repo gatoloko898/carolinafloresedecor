@@ -256,7 +256,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
         price: size.price,
       });
     } else {
-      add({ id: p.id, name: p.name, img: p.img, price: p.price });
+      add({ id: p.id, name: p.name || `Item ${p.id}`, img: p.img, price: p.price });
     }
   };
   return (
