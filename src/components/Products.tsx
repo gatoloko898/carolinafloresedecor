@@ -68,7 +68,7 @@ import coroa5 from "@/assets/coroas/c19.jpg";
 import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
-import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
+import coroaPremium from "@/assets/coroas/premium-luxo.png.asset.json";
 import { Sparkles } from "lucide-react";
 
 // Vasos
@@ -442,7 +442,7 @@ function PremiumCoroa() {
   const premium = {
     id: "cor-premium-luxo",
     name: "Coroa de Flores Luxo White Premium",
-    img: coroaPremium,
+    img: coroaPremium.url,
     price: 990,
   };
   return (
