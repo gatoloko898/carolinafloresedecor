@@ -394,6 +394,8 @@ const CATEGORIES: CategoryDef[] = [
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
   { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
   { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
+  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, hidePrice: true, tinted: true },
+
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
 
