@@ -169,6 +169,7 @@ const dedupe = (list: Product[]) => {
 
 const rosas = dedupe(rosasRaw);
 const girassois = dedupe(girassoisRaw);
+const floresCampo = dedupe(floresCampoRaw);
 const cestas = dedupe(cestasRaw);
 const kits = dedupe(kitsRaw);
 const pelucias = dedupe(peluciasRaw);
