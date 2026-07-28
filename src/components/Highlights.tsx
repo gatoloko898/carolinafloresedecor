@@ -4,17 +4,17 @@ const items = [
   {
     icon: MapPin,
     title: "ENTREGA RÁPIDA",
-    desc: "Receba suas flores no mesmo dia — pedidos com 2h de antecedência, manhã ou tarde.",
+    desc: "Receba no mesmo dia em Vargem Grande do Sul — pedidos com no mínimo 2h de antecedência.",
   },
   {
     icon: Truck,
     title: "ENTREGA URBANA",
-    desc: "Taxa opcional de R$ 20 no perímetro urbano. Se preferir, retire no local sem custo.",
+    desc: "Taxa de R$ 20 no perímetro urbano de Vargem Grande do Sul — SP. Retirada no local sem custo.",
   },
   {
     icon: Clock,
     title: "HORÁRIOS FLEXÍVEIS",
-    desc: "Atendemos das 9h às 17h30 — período da manhã (9h–12h) ou tarde (12h–17h30).",
+    desc: "Segunda a sábado, das 9h às 18h (tarde 12h–18h; sábado até 16h).",
   },
 ];
 
