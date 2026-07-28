@@ -191,13 +191,6 @@ const kitsRaw: Product[] = [
 ];
 
 const peluciasRaw: Product[] = [
-  { id: "pel-15", img: pelucia15, name: "Ursinho Camisa Listrada", price: 65, description: "Aprox. 18 cm", tag: "Infantil" },
-  { id: "pel-10", img: pelucia10, name: "Urso Rosa Laço de Cetim", price: 69, description: "Aprox. 18 cm", tag: "Delicado" },
-  { id: "pel-11", img: pelucia11, name: "Urso Azul Laço de Cetim", price: 69, description: "Aprox. 18 cm", tag: "Infantil" },
-  { id: "pel-14", img: pelucia14, name: "Urso Menta Laço de Cetim Verde", price: 89, description: "Aprox. 25 cm" },
-  { id: "pel-9", img: pelucia9, name: "Ursinha Vestidinho Xadrez", price: 169, description: "Aprox. 27 cm", tag: "Fofo" },
-  { id: "pel-13", img: pelucia13, name: "Canguru com Filhote", price: 179, description: "Aprox. 30 cm", tag: "Exclusivo" },
-  { id: "pel-12", img: pelucia12, name: "Coelho de Páscoa de Pelúcia", price: 179, description: "Aprox. 37 cm", tag: "Especial" },
   { id: "pel-7", img: pelucia7, name: "Panda Laço Vermelho", price: 299, description: "Aprox. 60 cm", tag: "Exclusivo" },
   { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol", price: 379, description: "Aprox. 60 cm" },
   { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Luxo", price: 479, description: "Aprox. 70 cm", tag: "Gigante" },
