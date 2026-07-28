@@ -40,13 +40,13 @@ export function Footer() {
             MAIS PROCURADOS
           </h3>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {maisProcurados.map((label) => (
-              <li key={label}>
+            {maisProcurados.map((item) => (
+              <li key={item.label}>
                 <a
-                  href="#produtos"
+                  href={item.href}
                   className="text-xs uppercase tracking-wider text-background/70 hover:text-rose-deep transition-colors"
                 >
-                  {label}
+                  {item.label}
                 </a>
               </li>
             ))}
