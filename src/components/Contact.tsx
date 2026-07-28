@@ -94,7 +94,6 @@ export function Contact() {
             Entrega urbana em Vargem Grande do Sul — SP: taxa de R$ 20 · Retirada no local sem custo.
           </p>
         </div>
-        </div>
 
         {/* Mapa */}
         <div className="mt-8 rounded-2xl overflow-hidden shadow-elegant border border-blush/60 bg-background">
