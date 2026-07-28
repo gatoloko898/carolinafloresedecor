@@ -71,6 +71,37 @@ import coroa8 from "@/assets/coroas/c22.jpg";
 import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
 import { Sparkles } from "lucide-react";
 
+// Vasos
+import v1 from "@/assets/vasos/v1.png.asset.json";
+import v2 from "@/assets/vasos/v2.png.asset.json";
+import v3 from "@/assets/vasos/v3.png.asset.json";
+import v4 from "@/assets/vasos/v4.png.asset.json";
+import v5 from "@/assets/vasos/v5.png.asset.json";
+import v6 from "@/assets/vasos/v6.png.asset.json";
+import v7 from "@/assets/vasos/v7.png.asset.json";
+import v8 from "@/assets/vasos/v8.png.asset.json";
+import v9 from "@/assets/vasos/v9.png.asset.json";
+import v10 from "@/assets/vasos/v10.png.asset.json";
+import v11 from "@/assets/vasos/v11.png.asset.json";
+import v12 from "@/assets/vasos/v12.png.asset.json";
+import v13 from "@/assets/vasos/v13.png.asset.json";
+import v14 from "@/assets/vasos/v14.png.asset.json";
+import v15 from "@/assets/vasos/v15.png.asset.json";
+import v16 from "@/assets/vasos/v16.png.asset.json";
+import v17 from "@/assets/vasos/v17.png.asset.json";
+import v18 from "@/assets/vasos/v18.png.asset.json";
+import v19 from "@/assets/vasos/v19.png.asset.json";
+import v20 from "@/assets/vasos/v20.png.asset.json";
+import v21 from "@/assets/vasos/v21.png.asset.json";
+// Caixas
+import c1box from "@/assets/caixas/c1.png.asset.json";
+import c2box from "@/assets/caixas/c2.png.asset.json";
+import c3box from "@/assets/caixas/c3.png.asset.json";
+import c4box from "@/assets/caixas/c4.png.asset.json";
+import c5box from "@/assets/caixas/c5.png.asset.json";
+import c6box from "@/assets/caixas/c6.png.asset.json";
+import c7box from "@/assets/caixas/c7.png.asset.json";
+
 type SizeKey = "P" | "M" | "G";
 type SizeOption = { key: SizeKey; label: string; price: number };
 
