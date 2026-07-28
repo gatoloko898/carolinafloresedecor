@@ -267,11 +267,12 @@ type CategoryDef = {
 
 const CATEGORIES: CategoryDef[] = [
   { id: "rosas", slug: "rosas", emoji: "🌹", kicker: "buquês de rosas", title: "Rosas que", accent: "encantam", items: rosas },
-  { id: "girassois", slug: "girassois", emoji: "🌻", kicker: "girassóis & flores do campo", title: "Girassóis que", accent: "iluminam", items: girassois, tinted: true },
-  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas },
-  { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits, tinted: true },
-  { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias },
-  { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas, tinted: true },
+  { id: "girassois", slug: "girassois", emoji: "🌻", kicker: "girassóis", title: "Girassóis que", accent: "iluminam", items: girassois, tinted: true },
+  { id: "flores-campo", slug: "flores-campo", emoji: "🌾", kicker: "flores do campo", title: "Flores do", accent: "campo", items: floresCampo },
+  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas, tinted: true },
+  { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
+  { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
+  { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
 
 function CategoryNav() {
