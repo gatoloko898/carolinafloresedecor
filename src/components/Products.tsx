@@ -180,37 +180,37 @@ const peluciasRaw: Product[] = [
 ];
 
 const vasosRaw: Product[] = [
-  { id: "vas-1", img: v1.url, name: "Vaso Cerâmica Bronze Envelhecido", price: 89 },
-  { id: "vas-2", img: v2.url, name: "Vaso de Vidro Branco Clássico", price: 59 },
-  { id: "vas-3", img: v3.url, name: "Vaso de Vidro Vermelho Paixão", price: 59 },
-  { id: "vas-4", img: v4.url, name: "Vaso Cerâmica Verde Canelado", price: 79 },
-  { id: "vas-5", img: v5.url, name: "Vaso Cerâmica Rosé Canelado", price: 69 },
-  { id: "vas-6", img: v6.url, name: "Vaso Cerâmica Rosa Alto Canelado", price: 79 },
-  { id: "vas-7", img: v7.url, name: "Vaso Cerâmica Rosa Love is Sweet", price: 89, tag: "Especial" },
-  { id: "vas-8", img: v8.url, name: "Vaso Cerâmica Branco Love is Sweet", price: 89, tag: "Especial" },
-  { id: "vas-9", img: v9.url, name: "Vaso Cerâmica Amarelo Canelado", price: 79 },
-  { id: "vas-10", img: v10.url, name: "Vaso de Vidro Azul Quadrado", price: 79 },
-  { id: "vas-11", img: v11.url, name: "Vaso Cerâmica Branco Fosco", price: 65 },
-  { id: "vas-12", img: v12.url, name: "Vaso Cerâmica Delicado Canelado", price: 69 },
-  { id: "vas-13", img: v13.url, name: "Vaso Cerâmica Rosé Fosco", price: 65 },
-  { id: "vas-14", img: v14.url, name: "Vaso de Vidro Azul Quadrado Rústico", price: 79 },
-  { id: "vas-15", img: v15.url, name: "Vaso Cerâmica Branco Minimal", price: 55 },
-  { id: "vas-16", img: v16.url, name: "Vaso de Vidro Trabalhado com Laço", price: 89 },
-  { id: "vas-17", img: v17.url, name: "Vaso de Vidro Azul Fosco com Laço", price: 99 },
-  { id: "vas-18", img: v18.url, name: "Vaso Cerâmica Laranja Detalhado", price: 89 },
+  { id: "vas-1", img: v1.url, name: "", price: 89 },
+  { id: "vas-2", img: v2.url, name: "", price: 59 },
+  { id: "vas-3", img: v3.url, name: "", price: 59 },
+  { id: "vas-4", img: v4.url, name: "", price: 79 },
+  { id: "vas-5", img: v5.url, name: "", price: 69 },
+  { id: "vas-6", img: v6.url, name: "", price: 79 },
+  { id: "vas-7", img: v7.url, name: "", price: 89 },
+  { id: "vas-8", img: v8.url, name: "", price: 89 },
+  { id: "vas-9", img: v9.url, name: "", price: 79 },
+  { id: "vas-10", img: v10.url, name: "", price: 79 },
+  { id: "vas-11", img: v11.url, name: "", price: 65 },
+  { id: "vas-12", img: v12.url, name: "", price: 69 },
+  { id: "vas-13", img: v13.url, name: "", price: 65 },
+  { id: "vas-14", img: v14.url, name: "", price: 79 },
+  { id: "vas-15", img: v15.url, name: "", price: 55 },
+  { id: "vas-16", img: v16.url, name: "", price: 89 },
+  { id: "vas-17", img: v17.url, name: "", price: 99 },
+  { id: "vas-c7", img: c7box.url, name: "", price: 99 },
 ];
 
 const caixasRaw: Product[] = [
-  { id: "cax-1", img: c1box.url, name: "Caixa Redonda Pink com Alça", price: 79 },
-  { id: "cax-2", img: c2box.url, name: "Caixa Redonda Menta com Cordão", price: 79 },
-  { id: "cax-3", img: c3box.url, name: "Caixa Redonda Roxa com Cordão", price: 89 },
-  { id: "cax-4", img: c4box.url, name: "Caixa Redonda Vermelha com Alça", price: 79 },
-  { id: "cax-5", img: c5box.url, name: "Caixa Redonda Branca Perolada", price: 69 },
-  { id: "cax-6", img: c6box.url, name: "Caixa Redonda Rosa Bebê", price: 69 },
-  { id: "cax-7", img: c7box.url, name: "Caixa Coração Vermelha", price: 99, tag: "Apaixonados" },
-  { id: "cax-8", img: v19.url, name: "Caixa Redonda Baixa", price: 45 },
-  { id: "cax-9", img: v20.url, name: "Caixa Redonda Alta", price: 55 },
-  { id: "cax-10", img: v21.url, name: "Caixa Redonda Bojuda", price: 69 },
+  { id: "cax-1", img: c1box.url, name: "", price: 79 },
+  { id: "cax-2", img: c2box.url, name: "", price: 79 },
+  { id: "cax-3", img: c3box.url, name: "", price: 89 },
+  { id: "cax-4", img: c4box.url, name: "", price: 79 },
+  { id: "cax-5", img: c5box.url, name: "", price: 69 },
+  { id: "cax-6", img: c6box.url, name: "", price: 69 },
+  { id: "cax-v18", img: v18.url, name: "", price: 89 },
+  { id: "cax-8", img: v19.url, name: "", price: 45 },
+  { id: "cax-9", img: v20.url, name: "", price: 55 },
+  { id: "cax-10", img: v21.url, name: "", price: 69 },
 ];
 
 const CORONA_SIZES: SizeOption[] = [
@@ -256,7 +256,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
         price: size.price,
       });
     } else {
-      add({ id: p.id, name: p.name, img: p.img, price: p.price });
+      add({ id: p.id, name: p.name || `Item ${p.id}`, img: p.img, price: p.price });
     }
   };
   return (
@@ -276,9 +276,11 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
-        <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
-          {p.name}
-        </h3>
+        {p.name && (
+          <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
+            {p.name}
+          </h3>
+        )}
         {p.description && (
           <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
