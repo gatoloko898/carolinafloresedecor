@@ -69,7 +69,7 @@ import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
 import coroaPremium from "@/assets/coroas/premium-luxo.jpg";
-import { Sparkles, AlertTriangle } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 type SizeKey = "P" | "M" | "G";
 type SizeOption = { key: SizeKey; label: string; price: number };
@@ -125,7 +125,7 @@ const cestasRaw: Product[] = [
 const kitsRaw: Product[] = [
   { id: "gir-p6", img: girP6, name: "Kit Girassol e Ferrero Rocher", price: 185 },
   { id: "fc-p21", img: fcP21, name: "Kit Buquê Colorido e Ferrero Rocher", price: 249 },
-  { id: "ros-p9", img: rosP9, name: "Kit Coração de Girassol com Rosas Vermelhas e Ferrero Rocher", price: 295, tag: "Apaixonados" },
+  { id: "ros-p9", img: rosP9, name: "Buquê de rosas com Ferrero Rocher", price: 265, tag: "Apaixonados" },
   { id: "fc-p20", img: fcP20, name: "Kit Alstroemérias e Ferrero Rocher", price: 299 },
   { id: "fc-p9", img: fcP9, name: "Kit Flower Box Rústico Fino e Ferrero Rocher", price: 344 },
 ];
@@ -142,7 +142,7 @@ const peluciasRaw: Product[] = [
   { id: "pel-2", img: pelucia2, name: "Urso Chocolate Cachecol", price: 379, description: "Aprox. 60 cm" },
   { id: "pel-5", img: pelucia5, name: "Urso Gigante Cachecol Luxo", price: 479, description: "Aprox. 70 cm", tag: "Gigante" },
   { id: "pel-8", img: pelucia8, name: "Urso Doce Coração Bordado", price: 549, description: "Aprox. 60 cm", tag: "Destaque" },
-  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 599, description: "Aprox. 60 cm" },
+  { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 549, description: "Aprox. 60 cm" },
 ];
 
 const CORONA_SIZES: SizeOption[] = [
@@ -359,15 +359,10 @@ function PremiumCoroa() {
               </h3>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 Orquídeas Phalaenopsis, gérberas e rosas brancas de alto padrão
-                com faixa de homenagem personalizada inclusa (Armação/Suporte
-                não incluso).
+                com faixa de homenagem personalizada inclusa.
               </p>
               <div className="mt-5 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-rose-deep/10 text-rose-deep text-xs md:text-sm font-semibold px-4 py-2">
                 Tamanho Único Exclusivo: 1,30 m (130 cm)
-              </div>
-              <div className="mt-3 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-gold/15 text-gold text-xs px-4 py-2">
-                <AlertTriangle className="h-3.5 w-3.5" />
-                Armação de Suporte NÃO inclusa
               </div>
               <p className="mt-3 text-xs text-muted-foreground">
                 • Faixa de Homenagem Personalizada Inclusa
