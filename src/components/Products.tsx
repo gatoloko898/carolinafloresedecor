@@ -198,9 +198,6 @@ const vasosRaw: Product[] = [
   { id: "vas-16", img: v16.url, name: "Vaso de Vidro Trabalhado com Laço", price: 89 },
   { id: "vas-17", img: v17.url, name: "Vaso de Vidro Azul Fosco com Laço", price: 99 },
   { id: "vas-18", img: v18.url, name: "Vaso Cerâmica Laranja Detalhado", price: 89 },
-  { id: "vas-19", img: v19.url, name: "Vaso de Vidro Baixo Redondo", price: 45 },
-  { id: "vas-20", img: v20.url, name: "Vaso de Vidro Cilindro Alto", price: 55 },
-  { id: "vas-21", img: v21.url, name: "Vaso de Vidro Clássico Bojudo", price: 69 },
 ];
 
 const caixasRaw: Product[] = [
@@ -211,6 +208,9 @@ const caixasRaw: Product[] = [
   { id: "cax-5", img: c5box.url, name: "Caixa Redonda Branca Perolada", price: 69 },
   { id: "cax-6", img: c6box.url, name: "Caixa Redonda Rosa Bebê", price: 69 },
   { id: "cax-7", img: c7box.url, name: "Caixa Coração Vermelha", price: 99, tag: "Apaixonados" },
+  { id: "cax-8", img: v19.url, name: "Caixa Redonda Baixa", price: 45 },
+  { id: "cax-9", img: v20.url, name: "Caixa Redonda Alta", price: 55 },
+  { id: "cax-10", img: v21.url, name: "Caixa Redonda Bojuda", price: 69 },
 ];
 
 const CORONA_SIZES: SizeOption[] = [
