@@ -243,7 +243,7 @@ const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
 
-function Card({ p }: { p: Product }) {
+function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
   const { add } = useCart();
   const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
   const currentPrice = size ? size.price : p.price;
@@ -308,9 +308,11 @@ function Card({ p }: { p: Product }) {
             <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
           </div>
         )}
-        <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
-          {formatBRL(currentPrice)}
-        </p>
+        {!hidePrice && (
+          <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
+            {formatBRL(currentPrice)}
+          </p>
+        )}
         <button onClick={handleAdd} className="mt-auto pt-4">
           <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
             <ShoppingBag className="h-4 w-4" />
