@@ -359,15 +359,10 @@ function PremiumCoroa() {
               </h3>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 Orquídeas Phalaenopsis, gérberas e rosas brancas de alto padrão
-                com faixa de homenagem personalizada inclusa (Armação/Suporte
-                não incluso).
+                com faixa de homenagem personalizada inclusa.
               </p>
               <div className="mt-5 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-rose-deep/10 text-rose-deep text-xs md:text-sm font-semibold px-4 py-2">
                 Tamanho Único Exclusivo: 1,30 m (130 cm)
-              </div>
-              <div className="mt-3 inline-flex self-center md:self-start items-center gap-2 rounded-full bg-gold/15 text-gold text-xs px-4 py-2">
-                <AlertTriangle className="h-3.5 w-3.5" />
-                Armação de Suporte NÃO inclusa
               </div>
               <p className="mt-3 text-xs text-muted-foreground">
                 • Faixa de Homenagem Personalizada Inclusa
