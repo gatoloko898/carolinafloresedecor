@@ -173,6 +173,13 @@ const cestasRaw: Product[] = [
   { id: "fc-p12", img: fcP12, name: "Flower Box Rústico Fino", price: 279 },
   { id: "fc-p15", img: fcP15, name: "Flower Box Rainbow", price: 289 },
   { id: "fc-p11", img: fcP11, name: "Flower Box Clássico", price: 299 },
+  ...cestasNovasUrls.map((url, i) => ({
+    id: `cesta-nova-${i + 1}`,
+    img: url,
+    name: "",
+    price: 0,
+    hidePrice: true,
+  })),
 ];
 
 const kitsRaw: Product[] = [
