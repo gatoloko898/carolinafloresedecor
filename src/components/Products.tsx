@@ -388,7 +388,7 @@ const CATEGORIES: CategoryDef[] = [
   { id: "rosas", slug: "rosas", emoji: "🌹", kicker: "buquês de rosas", title: "Rosas que", accent: "encantam", items: rosas },
   { id: "girassois", slug: "girassois", emoji: "🌻", kicker: "girassóis", title: "Girassóis que", accent: "iluminam", items: girassois, tinted: true },
   { id: "flores-campo", slug: "flores-campo", emoji: "🌾", kicker: "flores do campo", title: "Flores do", accent: "campo", items: floresCampo },
-  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas exclusivas", title: "Cestas para", accent: "presentear", items: cestas, tinted: true },
+  { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas especiais", title: "Cestas para", accent: "presentear", items: cestas, tinted: true },
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
