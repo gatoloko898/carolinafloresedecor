@@ -268,11 +268,18 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
+const orquideas: Product[] = orquideasUrls.map((url, i) => ({
+  id: `orq-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+const canecas: Product[] = canecasUrls.map((url, i) => ({
+  id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
   const { add } = useCart();
   const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
   const currentPrice = size ? size.price : p.price;
+  const shouldHidePrice = hidePrice || p.hidePrice;
   const handleAdd = () => {
     if (size) {
       add({
