@@ -283,6 +283,10 @@ const orquideas: Product[] = orquideasUrls.map((url, i) => ({
 const canecas: Product[] = canecasUrls.map((url, i) => ({
   id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
 }));
+const begonias: Product[] = begoniasUrls.map((url, i) => ({
+  id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
   const { add } = useCart();
