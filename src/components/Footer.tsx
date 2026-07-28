@@ -1,26 +1,19 @@
-import { Flower2, Heart, MessageCircle, MapPin, Shield, Cookie, RefreshCw, HeadphonesIcon, Users, Briefcase } from "lucide-react";
+import { Flower2, Heart, MessageCircle, MapPin, Shield, Cookie, Users, Briefcase } from "lucide-react";
 
-const maisProcurados = [
-  "Buquê de Rosas Vermelhas",
-  "Buquê de Girassóis",
-  "Cesta de Café da Manhã",
-  "Arranjo de Flores do Campo",
-  "Kit Apaixonados com Ferrero Rocher",
-  "Pelúcias Personalizadas",
-  "Coroa de Flores",
-  "Buquê Rosa Solitária",
-  "Buquê Girassol Rústico",
-  "Box de Rosas Romance",
+const maisProcurados: { label: string; href: string }[] = [
+  { label: "Buquê de Rosas Vermelhas", href: "#rosas" },
+  { label: "Buquê de Girassóis", href: "#girassois" },
+  { label: "Cesta de Café da Manhã", href: "#cestas" },
+  { label: "Arranjo de Flores do Campo", href: "#flores-campo" },
+  { label: "Kit Apaixonados com Ferrero Rocher", href: "#kits" },
+  { label: "Pelúcias Personalizadas", href: "#pelucias" },
+  { label: "Coroa de Flores", href: "#coroas" },
+  { label: "Orquídeas Exclusivas", href: "#orquideas" },
+  { label: "Vasos & Caixas", href: "#vasos-caixas" },
+  { label: "Canecas Personalizadas", href: "#canecas" },
 ];
 
 const columns = [
-  {
-    title: "Atendimento",
-    links: [
-      { label: "SAC", href: "#contato", icon: HeadphonesIcon },
-      { label: "Devoluções e Reembolsos", href: "#", icon: RefreshCw },
-    ],
-  },
   {
     title: "A Carolina",
     links: [
