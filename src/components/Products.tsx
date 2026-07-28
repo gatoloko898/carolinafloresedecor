@@ -18,6 +18,7 @@ import rosP13 from "@/assets/catalog/ros-p13.jpg";
 // Girassóis
 import girP2 from "@/assets/catalog/gir-p2.jpg";
 import girP3 from "@/assets/catalog/gir-p3.jpg";
+import girP5 from "@/assets/catalog/gir-p5.jpg";
 import girP4 from "@/assets/catalog/gir-p4.jpg";
 import girP6 from "@/assets/catalog/gir-p6.jpg";
 import girP7 from "@/assets/catalog/gir-p7.jpg";
@@ -151,6 +152,7 @@ const rosasRaw: Product[] = [
 const girassoisRaw: Product[] = [
   { id: "gir-p2", img: girP2, name: "Buquê Girassol Unitário", price: 40 },
   { id: "gir-p3", img: girP3, name: "Buquê Dois Girassóis", price: 80 },
+  { id: "gir-p5", img: girP5, name: "Buquê Quatro Girassóis", price: 160 },
   { id: "gir-p4", img: girP4, name: "Buquê Girassol Estilo Jornal", price: 120 },
   { id: "gir-p8", img: girP8, name: "Buquê Girassóis e Paixão", price: 220 },
   { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 250 },
