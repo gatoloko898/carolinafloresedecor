@@ -104,16 +104,23 @@ import c6box from "@/assets/caixas/c6.png.asset.json";
 import c7box from "@/assets/caixas/c7.png.asset.json";
 
 // Orquídeas
-const orquideasModules = import.meta.glob("@/assets/orquideas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasModules = import.meta.glob("@/assets/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const orquideasUrls = Object.entries(orquideasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Canecas
-const canecasModules = import.meta.glob("@/assets/canecas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasModules = import.meta.glob("@/assets/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const canecasUrls = Object.entries(canecasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
+
+// Begônias
+const begoniasModules = import.meta.glob("@/assets/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const begoniasUrls = Object.entries(begoniasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
 
 // Cestas novas (sem nome/preço)
 const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
@@ -276,6 +283,10 @@ const orquideas: Product[] = orquideasUrls.map((url, i) => ({
 const canecas: Product[] = canecasUrls.map((url, i) => ({
   id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
 }));
+const begonias: Product[] = begoniasUrls.map((url, i) => ({
+  id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
   const { add } = useCart();
@@ -383,6 +394,8 @@ const CATEGORIES: CategoryDef[] = [
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
   { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
   { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
+  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, hidePrice: true, tinted: true },
+
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
 
