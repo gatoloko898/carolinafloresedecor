@@ -442,7 +442,7 @@ function PremiumCoroa() {
   const premium = {
     id: "cor-premium-luxo",
     name: "Coroa de Flores Luxo White Premium",
-    img: coroaPremium,
+    img: coroaPremium.url,
     price: 990,
   };
   return (
