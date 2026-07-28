@@ -23,19 +23,20 @@ export function Contact() {
           <div className="rounded-2xl bg-background/80 backdrop-blur p-6 md:p-7 shadow-soft border border-blush/60">
             <div className="flex items-center gap-2 text-rose-deep">
               <Clock className="h-5 w-5" />
-              <h3 className="font-serif text-xl">Horários de Entrega</h3>
+              <h3 className="font-serif text-xl">Horário de Atendimento</h3>
             </div>
             <p className="mt-4 text-sm text-foreground/80">
-              Atendimento presencial e entregas das{" "}
-              <span className="font-semibold text-rose-deep">9h às 17h30</span>.
+              Segunda a sábado, das{" "}
+              <span className="font-semibold text-rose-deep">9h às 18h</span>.
             </p>
             <ul className="mt-3 space-y-1.5 text-sm text-foreground/80">
               <li>• Período da Manhã: 9h às 12h</li>
-              <li>• Período da Tarde: 12h às 17h30</li>
+              <li>• Período da Tarde: 12h às 18h</li>
+              <li>• Sábado: até 16h</li>
             </ul>
             <div className="mt-5 pt-4 border-t border-blush/60 flex items-center gap-2 text-xs text-rose-deep">
               <Sparkles className="h-4 w-4" />
-              <span>Peça com 2h de antecedência</span>
+              <span>Peça com no mínimo 2h de antecedência (Vargem Grande do Sul — SP)</span>
             </div>
           </div>
 
@@ -52,9 +53,47 @@ export function Contact() {
             <p className="text-sm text-rose-deep">Vargem Grande do Sul — SP · CEP 13884-266</p>
             <div className="mt-4 pt-4 border-t border-blush/60 flex items-center gap-2 text-xs text-foreground/70">
               <CalendarDays className="h-4 w-4 text-rose-deep" />
-              <span>Atendimento e entregas de Segunda a Domingo</span>
+              <span>Atendimento de Segunda a Sábado</span>
             </div>
           </div>
+        </div>
+
+        {/* Cidades atendidas */}
+        <div className="mt-6 rounded-2xl bg-background/80 backdrop-blur p-6 md:p-7 shadow-soft border border-blush/60">
+          <div className="flex items-center gap-2 text-rose-deep">
+            <Navigation className="h-5 w-5" />
+            <h3 className="font-serif text-xl">Cidades atendidas para entrega</h3>
+          </div>
+          <ul className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-4 text-sm text-foreground/80">
+            {[
+              "Vargem Grande do Sul — SP",
+              "São João da Boa Vista — SP",
+              "Itobi — SP",
+              "Casa Branca — SP",
+              "São Sebastião da Grama — SP",
+              "São José do Rio Pardo — SP",
+              "Aguaí — SP",
+              "Caconde — SP",
+              "Divinolândia — SP",
+              "Poços de Caldas — MG",
+              "Espírito Santo do Pinhal — SP",
+              "Mococa — SP",
+              "Santa Cruz das Palmeiras — SP",
+              "Tambaú — SP",
+              "Tapiratiba — SP",
+              "Andradas — MG",
+              "Santo Antônio do Jardim — SP",
+            ].map((city) => (
+              <li key={city} className="flex items-start gap-1.5">
+                <span className="text-rose-deep mt-0.5">•</span>
+                <span>{city}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 pt-4 border-t border-blush/60 text-xs text-foreground/70">
+            Entrega urbana em Vargem Grande do Sul — SP: taxa de R$ 20 · Retirada no local sem custo.
+          </p>
+        </div>
         </div>
 
         {/* Mapa */}
