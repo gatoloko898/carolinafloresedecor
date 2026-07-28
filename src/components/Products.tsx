@@ -162,17 +162,17 @@ const girassoisRaw: Product[] = [
 
 const floresCampoRaw: Product[] = [
   { id: "fc-p3", img: fcP3, name: "Buquê Flores do Campo Encanto", price: 229 },
+  { id: "fc-p6", img: fcP6, name: "Flower Box Pequeno Encanto", price: 229 },
+  { id: "fc-p12", img: fcP12, name: "Flower Box Rústico Fino", price: 279 },
   { id: "fc-p7", img: fcP7, name: "Buquê Girassóis de Campo", price: 289 },
+  { id: "fc-p15", img: fcP15, name: "Flower Box Rainbow", price: 289 },
   { id: "fc-p16", img: fcP16, name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
+  { id: "fc-p11", img: fcP11, name: "Flower Box Clássico", price: 299 },
   { id: "fc-p19", img: fcP19, name: "Buquê Grande de Flores do Campo", price: 329 },
   { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
 ];
 
 const cestasRaw: Product[] = [
-  { id: "fc-p6", img: fcP6, name: "Flower Box Pequeno Encanto", price: 229 },
-  { id: "fc-p12", img: fcP12, name: "Flower Box Rústico Fino", price: 279 },
-  { id: "fc-p15", img: fcP15, name: "Flower Box Rainbow", price: 289 },
-  { id: "fc-p11", img: fcP11, name: "Flower Box Clássico", price: 299 },
   ...cestasNovasUrls.map((url, i) => ({
     id: `cesta-nova-${i + 1}`,
     img: url,
