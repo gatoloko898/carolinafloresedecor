@@ -102,6 +102,24 @@ import c5box from "@/assets/caixas/c5.png.asset.json";
 import c6box from "@/assets/caixas/c6.png.asset.json";
 import c7box from "@/assets/caixas/c7.png.asset.json";
 
+// Orquídeas
+const orquideasModules = import.meta.glob("@/assets/orquideas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasUrls = Object.entries(orquideasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
+// Canecas
+const canecasModules = import.meta.glob("@/assets/canecas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasUrls = Object.entries(canecasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
+// Cestas novas (sem nome/preço)
+const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const cestasNovasUrls = Object.entries(cestasNovasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
 type SizeKey = "P" | "M" | "G";
 type SizeOption = { key: SizeKey; label: string; price: number };
 
@@ -113,6 +131,7 @@ type Product = {
   tag?: string;
   description?: string;
   sizes?: SizeOption[];
+  hidePrice?: boolean;
 };
 
 const rosasRaw: Product[] = [
@@ -154,6 +173,13 @@ const cestasRaw: Product[] = [
   { id: "fc-p12", img: fcP12, name: "Flower Box Rústico Fino", price: 279 },
   { id: "fc-p15", img: fcP15, name: "Flower Box Rainbow", price: 289 },
   { id: "fc-p11", img: fcP11, name: "Flower Box Clássico", price: 299 },
+  ...cestasNovasUrls.map((url, i) => ({
+    id: `cesta-nova-${i + 1}`,
+    img: url,
+    name: "",
+    price: 0,
+    hidePrice: true,
+  })),
 ];
 
 const kitsRaw: Product[] = [
@@ -242,11 +268,18 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
+const orquideas: Product[] = orquideasUrls.map((url, i) => ({
+  id: `orq-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+const canecas: Product[] = canecasUrls.map((url, i) => ({
+  id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
   const { add } = useCart();
   const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
   const currentPrice = size ? size.price : p.price;
+  const shouldHidePrice = hidePrice || p.hidePrice;
   const handleAdd = () => {
     if (size) {
       add({
@@ -310,7 +343,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
             <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
           </div>
         )}
-        {!hidePrice && (
+        {!shouldHidePrice && (
           <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
             {formatBRL(currentPrice)}
           </p>
@@ -346,6 +379,8 @@ const CATEGORIES: CategoryDef[] = [
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
+  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
+  { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
 
