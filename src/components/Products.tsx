@@ -159,11 +159,11 @@ const rosasRaw: Product[] = [
 const girassoisRaw: Product[] = [
   { id: "gir-p2", img: girP2, name: "Buquê Girassol Unitário", price: 40 },
   { id: "gir-p3", img: girP3, name: "Buquê Dois Girassóis", price: 80 },
-  { id: "gir-p5", img: girP5, name: "Buquê Quatro Girassóis", price: 160 },
   { id: "gir-p4", img: girP4, name: "Buquê Girassol Estilo Jornal", price: 120 },
+  { id: "gir-p5", img: girP5, name: "Buquê Quatro Girassóis", price: 160 },
   { id: "gir-p8", img: girP8, name: "Buquê Girassóis e Paixão", price: 220 },
-  { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 250 },
   { id: "gir-p9", img: girP9, name: "Buquê Girassol e Rosas Azuis", price: 250 },
+  { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 250 },
   { id: "gir-p11", img: girP11, name: "Buquê Girassol Tradicional", price: 270 },
   { id: "gir-p13", img: girP13, name: "Buquê Girassóis e Ruskus", price: 379 },
   { id: "gir-p12", img: girP12, name: "Buquê Girassol Premium", price: 399 },
