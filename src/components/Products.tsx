@@ -102,6 +102,24 @@ import c5box from "@/assets/caixas/c5.png.asset.json";
 import c6box from "@/assets/caixas/c6.png.asset.json";
 import c7box from "@/assets/caixas/c7.png.asset.json";
 
+// Orquídeas
+const orquideasModules = import.meta.glob("@/assets/orquideas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasUrls = Object.entries(orquideasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
+// Canecas
+const canecasModules = import.meta.glob("@/assets/canecas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasUrls = Object.entries(canecasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
+// Cestas novas (sem nome/preço)
+const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const cestasNovasUrls = Object.entries(cestasNovasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
+
 type SizeKey = "P" | "M" | "G";
 type SizeOption = { key: SizeKey; label: string; price: number };
 
@@ -113,6 +131,7 @@ type Product = {
   tag?: string;
   description?: string;
   sizes?: SizeOption[];
+  hidePrice?: boolean;
 };
 
 const rosasRaw: Product[] = [
