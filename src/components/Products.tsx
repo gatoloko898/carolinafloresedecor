@@ -276,9 +276,11 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
-        <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
-          {p.name}
-        </h3>
+        {p.name && (
+          <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
+            {p.name}
+          </h3>
+        )}
         {p.description && (
           <p className="mt-1 text-xs text-muted-foreground">{p.description}</p>
         )}
