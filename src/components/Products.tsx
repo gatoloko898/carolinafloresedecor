@@ -515,8 +515,8 @@ export function Products() {
         if (c.id === "coroas") {
           return (
             <div key={c.id}>
-              <PremiumCoroa />
               {node}
+              <PremiumCoroa />
             </div>
           );
         }
