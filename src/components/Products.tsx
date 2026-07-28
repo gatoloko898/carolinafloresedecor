@@ -240,6 +240,8 @@ const cestas = dedupe(cestasRaw);
 const kits = dedupe(kitsRaw);
 const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
+const vasos = dedupe(vasosRaw);
+const caixas = dedupe(caixasRaw);
 
 function Card({ p }: { p: Product }) {
   const { add } = useCart();
