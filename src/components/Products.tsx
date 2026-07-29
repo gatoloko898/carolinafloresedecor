@@ -579,7 +579,7 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
   const id = `cartao-${index + 1}`;
   return (
     <div className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-neutral-200">
-      <div className="relative aspect-[4/5] overflow-hidden bg-white">
+      <div className="relative aspect-[3/4] overflow-hidden bg-white">
         <img
           src={pair.closed}
           alt={`Cartão ${index + 1} fechado`}
