@@ -35,6 +35,8 @@ export function CartDrawer() {
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
   const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "", periodo: "manha" });
+  const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
 
   const handleClose = (open: boolean) => {
     setOpen(open);
@@ -43,29 +45,50 @@ export function CartDrawer() {
 
   const canFinish = form.nome && form.cidade && form.estado && form.data && items.length > 0;
 
-  const finalize = () => {
-    const lista = items
-      .map((i) => `• ${i.name} — ${i.qty}x — ${formatBRL(i.price * i.qty)}`)
-      .join("\n");
-    const entregaLinha = delivery
-      ? `Entrega (perímetro urbano): ${formatBRL(deliveryFee)}\n`
-      : `Entrega: retirar no local\n`;
-    const msg =
-      `Olá! Vim pelo site Carolina Flores 🌸\n\n` +
-      `Pedido:\n${lista}\n\n` +
-      `Subtotal: ${formatBRL(subtotal)}\n` +
-      entregaLinha +
-      `Total: ${formatBRL(total)}\n\n` +
-      `Nome: ${form.nome}\n` +
-      `Cidade: ${form.cidade}\n` +
-      `Estado: ${form.estado}\n` +
-      `Data de entrega: ${form.data}\n` +
-      `Período: ${form.periodo === "manha" ? "Manhã (9h às 12h)" : "Tarde (12h às 17h30)"}\n\n` +
-      `Pode me atender? 😊`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
-    clear();
-    handleClose(false);
+  const finalize = async () => {
+    setErro(null);
+    setLoading(true);
+    try {
+      const orderNsu = `CF-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      const payloadItems = items.map((i) => ({
+        name: i.name,
+        description: i.name,
+        price: Math.round(i.price * 100),
+        quantity: i.qty,
+      }));
+      if (delivery) {
+        payloadItems.push({
+          name: "Entrega (perímetro urbano)",
+          description: "Taxa de entrega no perímetro urbano",
+          price: Math.round(deliveryFee * 100),
+          quantity: 1,
+        });
+      }
+
+      const res = await fetch("/api/public/infinitepay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          handle: "paulomello88",
+          order_nsu: orderNsu,
+          items: payloadItems,
+          customer: form,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.url) {
+        throw new Error(data?.error || "Não foi possível gerar o link de pagamento.");
+      }
+      clear();
+      handleClose(false);
+      window.location.href = data.url;
+    } catch (e: any) {
+      setErro(e?.message || "Erro ao iniciar o pagamento. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   const upsellAdded = (id: string) => items.some((i) => i.id === id);
 
