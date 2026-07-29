@@ -9,7 +9,6 @@ import chocoFerrero from "@/assets/choco-ferrero.webp";
 import pelucia1 from "@/assets/pelucias-new/p6.png";
 import pelucia4 from "@/assets/pelucias-new/p1.png";
 
-const WHATSAPP_NUMBER = "5519993639296";
 
 const UPSellSUGGESTIONS = [
   { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, price: 45, phrase: "Um toque de doçura premium" },
