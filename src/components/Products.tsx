@@ -1,4 +1,4 @@
-import { ShoppingBag, ChevronRight, ChevronLeft } from "lucide-react";
+import { ShoppingBag, ChevronRight, ChevronLeft, Share2 } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 
 // Rosas
