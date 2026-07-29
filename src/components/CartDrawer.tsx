@@ -275,9 +275,12 @@ export function CartDrawer() {
                   Continuar para finalizar
                 </Button>
               ) : (
-                <Button onClick={finalize} disabled={!canFinish} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full h-11">
-                  Finalizar Pedido no WhatsApp
-                </Button>
+                <>
+                  {erro && <p className="text-xs text-destructive text-center">{erro}</p>}
+                  <Button onClick={finalize} disabled={!canFinish || loading} className="w-full bg-rose-deep hover:bg-rose-deep/90 text-white rounded-full h-11">
+                    {loading ? "Gerando pagamento..." : "Finalizar e Pagar"}
+                  </Button>
+                </>
               )}
             </div>
           </SheetFooter>
