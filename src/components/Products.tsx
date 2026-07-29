@@ -498,11 +498,11 @@ const CATEGORIES: CategoryDef[] = [
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
-  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
-  { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
-  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, hidePrice: true, tinted: true },
-  { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais, hidePrice: true },
-  { id: "chocolates", slug: "chocolates", emoji: "🍫", kicker: "chocolates", title: "Chocolates", accent: "irresistíveis", items: chocolates, hidePrice: true, tinted: true },
+  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, tinted: true },
+  { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas },
+  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, tinted: true },
+  { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais },
+  { id: "chocolates", slug: "chocolates", emoji: "🍫", kicker: "chocolates", title: "Chocolates", accent: "irresistíveis", items: chocolates, tinted: true },
 
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
