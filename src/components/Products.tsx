@@ -1,4 +1,5 @@
-import { ShoppingBag, ChevronRight, ChevronLeft } from "lucide-react";
+import { ShoppingBag, ChevronRight, ChevronLeft, Share2 } from "lucide-react";
+import { shareProduct } from "@/lib/share";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 
 // Rosas
@@ -246,39 +247,74 @@ const peluciasRaw: Product[] = [
   { id: "pel-6", img: pelucia6, name: "Urso Eu Te Amo", price: 549, description: "Aprox. 60 cm" },
 ];
 
-const vasosRaw: Product[] = [
-  { id: "vas-1", img: v1.url, name: "", price: 89 },
-  { id: "vas-2", img: v2.url, name: "", price: 59 },
-  { id: "vas-3", img: v3.url, name: "", price: 59 },
-  { id: "vas-4", img: v4.url, name: "", price: 79 },
-  { id: "vas-5", img: v5.url, name: "", price: 69 },
-  { id: "vas-6", img: v6.url, name: "", price: 79 },
-  { id: "vas-7", img: v7.url, name: "", price: 89 },
-  { id: "vas-8", img: v8.url, name: "", price: 89 },
-  { id: "vas-9", img: v9.url, name: "", price: 79 },
-  { id: "vas-10", img: v10.url, name: "", price: 79 },
-  { id: "vas-11", img: v11.url, name: "", price: 65 },
-  { id: "vas-12", img: v12.url, name: "", price: 69 },
-  { id: "vas-13", img: v13.url, name: "", price: 65 },
-  { id: "vas-14", img: v14.url, name: "", price: 79 },
-  { id: "vas-15", img: v15.url, name: "", price: 55 },
-  { id: "vas-16", img: v16.url, name: "", price: 89 },
-  { id: "vas-17", img: v17.url, name: "", price: 99 },
-  { id: "vas-c7", img: c7box.url, name: "", price: 99 },
+const VASO_INFO: { name: string; description: string }[] = [
+  { name: "Vaso de Cerâmica Cobre", description: "A: 21 cm | L: 24 cm" },
+  { name: "Vaso de Vidro Polônia", description: "A: 16 cm | L: 17 cm" },
+  { name: "Vaso de Vidro Vermelho", description: "A: 16 cm | L: 17 cm" },
+  { name: "Vaso de Cerâmica Verde", description: "A: 14 cm | L: 15 cm" },
+  { name: "Vaso de Cerâmica Rosa", description: "A: 14 cm | L: 15 cm" },
+  { name: "Vaso Dolomita Stripe", description: "A: 18 cm | L: 12 cm" },
+  { name: "Vaso Cerâmica Love Sweet Rosa", description: "A: 13 cm | L: 15 cm" },
+  { name: "Vaso Cerâmica Love Sweet Branco", description: "A: 13 cm | L: 15 cm" },
+  { name: "Vaso Cerâmica Love Sweet Amarelo", description: "A: 13 cm | L: 15 cm" },
+  { name: "Vaso de Vidro Azul Pastel", description: "A: 12 cm | L: 11,5 cm" },
+  { name: "Vaso Cerâmica Branco Liso", description: "A: 17 cm | L: 15 cm" },
+  { name: "Vaso de Vidro Chape", description: "A: 18 cm | L: 9,5 cm" },
+  { name: "Vaso de Vidro Chape Azul Jateado", description: "A: 18 cm | L: 9,5 cm" },
+  { name: "Vaso Cerâmica Laranja Provençal", description: "A: 13 cm | L: 16 cm" },
+  { name: "Aquário/Terrário de Vidro", description: "A: 14 cm | L: 23,5 cm" },
+  { name: "Vaso de Vidro Cilindro", description: "A: 20 cm | L: 10 cm" },
+  { name: "Vaso de Vidro Haiti Transparente", description: "A: 16,5 cm | L: 8 cm" },
+  { name: "Jarra de Metal Provençal", description: "A: 15,5 cm | L: 7,5 cm" },
 ];
 
-const caixasRaw: Product[] = [
-  { id: "cax-1", img: c1box.url, name: "", price: 79 },
-  { id: "cax-2", img: c2box.url, name: "", price: 79 },
-  { id: "cax-3", img: c3box.url, name: "", price: 89 },
-  { id: "cax-4", img: c4box.url, name: "", price: 79 },
-  { id: "cax-5", img: c5box.url, name: "", price: 69 },
-  { id: "cax-6", img: c6box.url, name: "", price: 69 },
-  { id: "cax-v18", img: v18.url, name: "", price: 89 },
-  { id: "cax-8", img: v19.url, name: "", price: 45 },
-  { id: "cax-9", img: v20.url, name: "", price: 55 },
-  { id: "cax-10", img: v21.url, name: "", price: 69 },
+const CAIXA_INFO: { name: string; description: string }[] = [
+  { name: "Cachepot Vasinho Cilindro", description: "A: 10 cm | L: 12 cm" },
+  { name: "Cachepot Vasinho Cilindro Rosa", description: "A: 10 cm | L: 12 cm" },
+  { name: "Caixa Coração Cartonada com Tampa", description: "A: 8,5 cm | L: 23 cm" },
+  { name: "Balde Flowers & Garden", description: "A: 10 cm | L: 10,5 cm" },
+  { name: "Vaso de Vidro Futuro Vermelho", description: "A: 9 cm | L: 9 cm" },
+  { name: "Vaso de Vidro Futuro Pink", description: "A: 9 cm | L: 9 cm" },
+  { name: "Caixa Cartonada Redonda com Tampa", description: "A: 11 cm | L: 16 cm" },
+  { name: "Caixa Cartonada Redonda com Tampa", description: "A: 15 cm | L: 12,5 cm" },
+  { name: "Caixa Cartonada Redonda com Tampa e Alça", description: "A: 15 cm | L: 12,5 cm" },
+  { name: "Caixa Cartonada Redonda com Tampa e Alça Vermelha", description: "A: 18 cm | L: 16 cm" },
 ];
+
+const vasosRaw: Product[] = [
+  { id: "vas-1", img: v1.url, price: 89 },
+  { id: "vas-2", img: v2.url, price: 59 },
+  { id: "vas-3", img: v3.url, price: 59 },
+  { id: "vas-4", img: v4.url, price: 79 },
+  { id: "vas-5", img: v5.url, price: 69 },
+  { id: "vas-6", img: v6.url, price: 79 },
+  { id: "vas-7", img: v7.url, price: 89 },
+  { id: "vas-8", img: v8.url, price: 89 },
+  { id: "vas-9", img: v9.url, price: 79 },
+  { id: "vas-10", img: v10.url, price: 79 },
+  { id: "vas-11", img: v11.url, price: 65 },
+  { id: "vas-12", img: v12.url, price: 69 },
+  { id: "vas-13", img: v13.url, price: 65 },
+  { id: "vas-14", img: v14.url, price: 79 },
+  { id: "vas-15", img: v15.url, price: 55 },
+  { id: "vas-16", img: v16.url, price: 89 },
+  { id: "vas-17", img: v17.url, price: 99 },
+  { id: "vas-c7", img: c7box.url, price: 99 },
+].map((p, i) => ({ ...p, name: VASO_INFO[i]?.name ?? "", description: VASO_INFO[i]?.description }));
+
+const caixasRaw: Product[] = [
+  { id: "cax-1", img: c1box.url, price: 79 },
+  { id: "cax-2", img: c2box.url, price: 79 },
+  { id: "cax-3", img: c3box.url, price: 89 },
+  { id: "cax-4", img: c4box.url, price: 79 },
+  { id: "cax-5", img: c5box.url, price: 69 },
+  { id: "cax-6", img: c6box.url, price: 69 },
+  { id: "cax-v18", img: v18.url, price: 89 },
+  { id: "cax-8", img: v19.url, price: 45 },
+  { id: "cax-9", img: v20.url, price: 55 },
+  { id: "cax-10", img: v21.url, price: 69 },
+].map((p, i) => ({ ...p, name: CAIXA_INFO[i]?.name ?? "", description: CAIXA_INFO[i]?.description }));
+
 
 const CORONA_SIZES: SizeOption[] = [
   { key: "P", label: "P · 80 cm", price: 400 },
@@ -309,21 +345,54 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
+const ORQUIDEA_SIZES: SizeOption[] = [
+  { key: "P", label: "Pequena", price: 119 },
+  { key: "G", label: "Grande", price: 179 },
+];
 const orquideas: Product[] = orquideasUrls.map((url, i) => ({
-  id: `orq-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `orq-${i + 1}`, img: url, name: `Orquídea ${i + 1}`, price: 119, sizes: ORQUIDEA_SIZES,
 }));
+
+const CANECA_PRICES = [49, 49, 49, 49, 49, 49, 49, 29, 49, 29, 49];
 const canecas: Product[] = canecasUrls.map((url, i) => ({
-  id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `can-${i + 1}`, img: url, name: "", price: CANECA_PRICES[i] ?? 49,
 }));
-const begonias: Product[] = begoniasUrls.map((url, i) => ({
-  id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+
+const begonias: Product[] = begoniasUrls.slice(0, 1).map((url) => ({
+  id: "beg-holambra", img: url, name: "Begônia Holambra", price: 80,
 }));
+
+const FLORES_ARTIFICIAIS_INFO: { name: string; description: string; price: number; hidePrice?: boolean }[] = [
+  { name: "Arranjo de Gipsofila com Rosas Brancas Importadas em Bacia", description: "30 × 35 cm", price: 429 },
+  { name: "Vaso Branco com Rosas Importadas Brancas e Amarelas", description: "50 × 35 cm", price: 379 },
+  { name: "Vaso Cubo Preto com Rosas Importadas Amarelas", description: "40 × 35 cm", price: 379 },
+  { name: "Vaso Dolomita Stripe Verde com Rosas Importadas Pink e Folhas Champagne", description: "45 × 35 cm", price: 0, hidePrice: true },
+  { name: "Arranjo de Rosas Importadas em Bacia Thais Verde", description: "30 × 35 cm", price: 429 },
+];
 const floresArtificiais: Product[] = floresArtificiaisUrls.map((url, i) => ({
-  id: `fa-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `fa-${i + 1}`,
+  img: url,
+  name: FLORES_ARTIFICIAIS_INFO[i]?.name ?? "",
+  description: FLORES_ARTIFICIAIS_INFO[i]?.description,
+  price: FLORES_ARTIFICIAIS_INFO[i]?.price ?? 0,
+  hidePrice: FLORES_ARTIFICIAIS_INFO[i]?.hidePrice,
 }));
+
+const CHOCOLATES_INFO: { name: string; price: number }[] = [
+  { name: "Caixa Lacta", price: 25 },
+  { name: "Caixa Ferrero Rocher 12 un.", price: 95 },
+  { name: "Suflair", price: 20 },
+  { name: "KitKat", price: 12.9 },
+  { name: "Kinder Bueno", price: 12.9 },
+  { name: "Chocolate Premium Lindt", price: 300 },
+];
 const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
-  id: `choc-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `choc-${i + 1}`,
+  img: url,
+  name: CHOCOLATES_INFO[i]?.name ?? "",
+  price: CHOCOLATES_INFO[i]?.price ?? 0,
 }));
+
 
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
@@ -399,12 +468,23 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
             {formatBRL(currentPrice)}
           </p>
         )}
-        <button onClick={handleAdd} className="mt-auto pt-4">
-          <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
-            <ShoppingBag className="h-4 w-4" />
-            Adicionar
-          </span>
-        </button>
+        <div className="mt-auto pt-4 flex items-center gap-2">
+          <button onClick={handleAdd} className="flex-1">
+            <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
+              <ShoppingBag className="h-4 w-4" />
+              Adicionar
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => shareProduct({ name: p.name || "Produto especial", price: currentPrice, hidePrice: shouldHidePrice })}
+            aria-label="Compartilhar no WhatsApp"
+            title="Compartilhar"
+            className="shrink-0 grid h-10 w-10 place-items-center rounded-full border border-rose-deep/30 text-rose-deep hover:bg-rose-deep hover:text-white transition-colors"
+          >
+            <Share2 className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -430,11 +510,11 @@ const CATEGORIES: CategoryDef[] = [
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
   { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
-  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
-  { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
-  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, hidePrice: true, tinted: true },
-  { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais, hidePrice: true },
-  { id: "chocolates", slug: "chocolates", emoji: "🍫", kicker: "chocolates", title: "Chocolates", accent: "irresistíveis", items: chocolates, hidePrice: true, tinted: true },
+  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, tinted: true },
+  { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas },
+  { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, tinted: true },
+  { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais },
+  { id: "chocolates", slug: "chocolates", emoji: "🍫", kicker: "chocolates", title: "Chocolates", accent: "irresistíveis", items: chocolates, tinted: true },
 
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
@@ -499,7 +579,7 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
   const id = `cartao-${index + 1}`;
   return (
     <div className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-neutral-200">
-      <div className="relative aspect-[4/5] overflow-hidden bg-white">
+      <div className="relative aspect-[3/4] overflow-hidden bg-white">
         <img
           src={pair.closed}
           alt={`Cartão ${index + 1} fechado`}
