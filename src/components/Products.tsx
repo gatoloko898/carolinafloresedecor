@@ -344,21 +344,54 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
+const ORQUIDEA_SIZES: SizeOption[] = [
+  { key: "P", label: "Pequena", price: 119 },
+  { key: "G", label: "Grande", price: 179 },
+];
 const orquideas: Product[] = orquideasUrls.map((url, i) => ({
-  id: `orq-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `orq-${i + 1}`, img: url, name: `Orquídea ${i + 1}`, price: 119, sizes: ORQUIDEA_SIZES,
 }));
+
+const CANECA_PRICES = [49, 49, 49, 49, 49, 49, 49, 29, 49, 29, 49];
 const canecas: Product[] = canecasUrls.map((url, i) => ({
-  id: `can-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `can-${i + 1}`, img: url, name: "", price: CANECA_PRICES[i] ?? 49,
 }));
-const begonias: Product[] = begoniasUrls.map((url, i) => ({
-  id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+
+const begonias: Product[] = begoniasUrls.slice(0, 1).map((url) => ({
+  id: "beg-holambra", img: url, name: "Begônia Holambra", price: 80,
 }));
+
+const FLORES_ARTIFICIAIS_INFO: { name: string; description: string; price: number; hidePrice?: boolean }[] = [
+  { name: "Arranjo de Gipsofila com Rosas Brancas Importadas em Bacia", description: "30 × 35 cm", price: 429 },
+  { name: "Vaso Branco com Rosas Importadas Brancas e Amarelas", description: "50 × 35 cm", price: 379 },
+  { name: "Vaso Cubo Preto com Rosas Importadas Amarelas", description: "40 × 35 cm", price: 379 },
+  { name: "Vaso Dolomita Stripe Verde com Rosas Importadas Pink e Folhas Champagne", description: "45 × 35 cm", price: 0, hidePrice: true },
+  { name: "Arranjo de Rosas Importadas em Bacia Thais Verde", description: "30 × 35 cm", price: 429 },
+];
 const floresArtificiais: Product[] = floresArtificiaisUrls.map((url, i) => ({
-  id: `fa-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `fa-${i + 1}`,
+  img: url,
+  name: FLORES_ARTIFICIAIS_INFO[i]?.name ?? "",
+  description: FLORES_ARTIFICIAIS_INFO[i]?.description,
+  price: FLORES_ARTIFICIAIS_INFO[i]?.price ?? 0,
+  hidePrice: FLORES_ARTIFICIAIS_INFO[i]?.hidePrice,
 }));
+
+const CHOCOLATES_INFO: { name: string; price: number }[] = [
+  { name: "Caixa Lacta", price: 25 },
+  { name: "Caixa Ferrero Rocher 12 un.", price: 95 },
+  { name: "Suflair", price: 20 },
+  { name: "KitKat", price: 12.9 },
+  { name: "Kinder Bueno", price: 12.9 },
+  { name: "Chocolate Premium Lindt", price: 300 },
+];
 const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
-  id: `choc-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+  id: `choc-${i + 1}`,
+  img: url,
+  name: CHOCOLATES_INFO[i]?.name ?? "",
+  price: CHOCOLATES_INFO[i]?.price ?? 0,
 }));
+
 
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
