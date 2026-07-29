@@ -121,7 +121,7 @@ const begoniasUrls = Object.entries(begoniasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
-// Cartões (pares: fechado + aberto, na ordem em que foram fotografados)
+// Cartões pequenos (pares: fechado + aberto)
 const cartoesModules = import.meta.glob("@/assets/cartoes/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
 const cartoesUrls = Object.entries(cartoesModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
@@ -130,6 +130,28 @@ const cartoesPairs: { closed: string; open: string }[] = [];
 for (let i = 0; i < cartoesUrls.length; i += 2) {
   cartoesPairs.push({ closed: cartoesUrls[i], open: cartoesUrls[i + 1] ?? cartoesUrls[i] });
 }
+
+// Cartões grandes (verticais, pares fechado + aberto)
+const cartoesGrandesModules = import.meta.glob("@/assets/cartoes-grandes/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const cartoesGrandesUrls = Object.entries(cartoesGrandesModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
+const cartoesGrandesPairs: { closed: string; open: string }[] = [];
+for (let i = 0; i < cartoesGrandesUrls.length; i += 2) {
+  cartoesGrandesPairs.push({ closed: cartoesGrandesUrls[i], open: cartoesGrandesUrls[i + 1] ?? cartoesGrandesUrls[i] });
+}
+
+// Flores artificiais
+const floresArtificiaisModules = import.meta.glob("@/assets/flores-artificiais/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const floresArtificiaisUrls = Object.entries(floresArtificiaisModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
+
+// Chocolates
+const chocolatesModules = import.meta.glob("@/assets/chocolates/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const chocolatesUrls = Object.entries(chocolatesModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
 
 
 // Cestas novas (sem nome/preço)
@@ -295,6 +317,12 @@ const canecas: Product[] = canecasUrls.map((url, i) => ({
 }));
 const begonias: Product[] = begoniasUrls.map((url, i) => ({
   id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+const floresArtificiais: Product[] = floresArtificiaisUrls.map((url, i) => ({
+  id: `fa-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
+  id: `choc-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
 }));
 
 
