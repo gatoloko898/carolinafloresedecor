@@ -758,6 +758,7 @@ export function Products() {
         return node;
       })}
       <Cartoes />
+      <CartoesGrandes />
     </div>
 
   );
