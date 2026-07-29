@@ -467,12 +467,23 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
             {formatBRL(currentPrice)}
           </p>
         )}
-        <button onClick={handleAdd} className="mt-auto pt-4">
-          <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
-            <ShoppingBag className="h-4 w-4" />
-            Adicionar
-          </span>
-        </button>
+        <div className="mt-auto pt-4 flex items-center gap-2">
+          <button onClick={handleAdd} className="flex-1">
+            <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
+              <ShoppingBag className="h-4 w-4" />
+              Adicionar
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => shareProduct({ name: p.name || "Produto especial", price: currentPrice, hidePrice: shouldHidePrice })}
+            aria-label="Compartilhar no WhatsApp"
+            title="Compartilhar"
+            className="shrink-0 grid h-10 w-10 place-items-center rounded-full border border-rose-deep/30 text-rose-deep hover:bg-rose-deep hover:text-white transition-colors"
+          >
+            <Share2 className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
