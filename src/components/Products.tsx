@@ -121,7 +121,7 @@ const begoniasUrls = Object.entries(begoniasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
-// Cartões (pares: fechado + aberto, na ordem em que foram fotografados)
+// Cartões pequenos (pares: fechado + aberto)
 const cartoesModules = import.meta.glob("@/assets/cartoes/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
 const cartoesUrls = Object.entries(cartoesModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
@@ -130,6 +130,28 @@ const cartoesPairs: { closed: string; open: string }[] = [];
 for (let i = 0; i < cartoesUrls.length; i += 2) {
   cartoesPairs.push({ closed: cartoesUrls[i], open: cartoesUrls[i + 1] ?? cartoesUrls[i] });
 }
+
+// Cartões grandes (verticais, pares fechado + aberto)
+const cartoesGrandesModules = import.meta.glob("@/assets/cartoes-grandes/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const cartoesGrandesUrls = Object.entries(cartoesGrandesModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
+const cartoesGrandesPairs: { closed: string; open: string }[] = [];
+for (let i = 0; i < cartoesGrandesUrls.length; i += 2) {
+  cartoesGrandesPairs.push({ closed: cartoesGrandesUrls[i], open: cartoesGrandesUrls[i + 1] ?? cartoesGrandesUrls[i] });
+}
+
+// Flores artificiais
+const floresArtificiaisModules = import.meta.glob("@/assets/flores-artificiais/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const floresArtificiaisUrls = Object.entries(floresArtificiaisModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
+
+// Chocolates
+const chocolatesModules = import.meta.glob("@/assets/chocolates/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
+const chocolatesUrls = Object.entries(chocolatesModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
 
 
 // Cestas novas (sem nome/preço)
@@ -296,6 +318,12 @@ const canecas: Product[] = canecasUrls.map((url, i) => ({
 const begonias: Product[] = begoniasUrls.map((url, i) => ({
   id: `beg-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
 }));
+const floresArtificiais: Product[] = floresArtificiaisUrls.map((url, i) => ({
+  id: `fa-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
+const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
+  id: `choc-${i + 1}`, img: url, name: "", price: 0, hidePrice: true,
+}));
 
 
 function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
@@ -405,6 +433,8 @@ const CATEGORIES: CategoryDef[] = [
   { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, hidePrice: true, tinted: true },
   { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas, hidePrice: true },
   { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, hidePrice: true, tinted: true },
+  { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais, hidePrice: true },
+  { id: "chocolates", slug: "chocolates", emoji: "🍫", kicker: "chocolates", title: "Chocolates", accent: "irresistíveis", items: chocolates, hidePrice: true, tinted: true },
 
   { id: "coroas", slug: "coroas", emoji: "🕊️", kicker: "coroas de flores", title: "Coroas de", accent: "homenagem", items: coroas },
 ];
@@ -550,6 +580,97 @@ function Cartoes() {
   );
 }
 
+function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: string }; index: number }) {
+  const { add } = useCart();
+  const [open, setOpen] = useState(false);
+  const price = 21.9;
+  const id = `cartao-grande-${index + 1}`;
+  return (
+    <div className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-neutral-200">
+      <div className="relative aspect-[3/4] overflow-hidden bg-white">
+        <img
+          src={pair.closed}
+          alt={`Cartão grande ${index + 1} fechado`}
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
+        />
+        <img
+          src={pair.open}
+          alt={`Cartão grande ${index + 1} aberto`}
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
+        />
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Ver cartão fechado" : "Ver cartão aberto"}
+          className="absolute inset-y-0 right-0 w-1/2 flex items-center justify-end pr-3 text-rose-deep opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+        >
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-white/90 shadow-soft">
+            {open ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Ver cartão fechado" : "Ver cartão aberto"}
+          className="absolute inset-y-0 left-0 w-1/2"
+        />
+        <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest bg-white/90 text-foreground/70 px-2.5 py-1 rounded-full shadow-soft">
+          {open ? "Aberto" : "Toque para abrir"}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-4 md:p-5 text-center">
+        <h3 className="font-serif text-base md:text-lg text-foreground leading-snug">
+          Cartão Grande {index + 1}
+        </h3>
+        <p className="mt-2 font-serif text-xl md:text-2xl text-rose-deep font-semibold tracking-tight">
+          {formatBRL(price)}
+        </p>
+        <button
+          onClick={() => add({ id, name: `Cartão Grande ${index + 1}`, img: pair.closed, price })}
+          className="mt-auto pt-4"
+        >
+          <span className="inline-flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest rounded-full bg-rose-deep text-white px-5 py-2.5 hover:bg-rose-deep/90 hover:shadow-elegant transition-all duration-300 font-medium">
+            <ShoppingBag className="h-4 w-4" />
+            Adicionar
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function CartoesGrandes() {
+  if (!cartoesGrandesPairs.length) return null;
+  return (
+    <section id="cartoes-grandes" className="py-10 md:py-14 scroll-mt-[220px] bg-white">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm md:text-base font-bold uppercase tracking-[0.2em] text-foreground flex items-center gap-2">
+              <span aria-hidden>💐</span>
+              cartões grandes
+            </h2>
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-deep" />
+            <span className="hidden md:block h-px w-24 bg-rose-deep/40" />
+          </div>
+        </div>
+        <p className="mb-6 text-sm text-muted-foreground">Cartões grandes na vertical — toque para abrir e ver a mensagem por dentro.</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {cartoesGrandesPairs.map((pair, i) => (
+            <CartaoGrandeCard key={i} pair={pair} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 
 function PremiumCoroa() {
   const { add } = useCart();
@@ -637,6 +758,7 @@ export function Products() {
         return node;
       })}
       <Cartoes />
+      <CartoesGrandes />
     </div>
 
   );
