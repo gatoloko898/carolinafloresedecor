@@ -533,6 +533,7 @@ type CategoryDef = {
   items: Product[];
   tinted?: boolean;
   hidePrice?: boolean;
+  navLabel?: string;
 };
 
 const CATEGORIES: CategoryDef[] = [
