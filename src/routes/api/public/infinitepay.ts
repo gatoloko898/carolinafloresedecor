@@ -19,7 +19,7 @@ export const Route = createFileRoute("/api/public/infinitepay")({
       POST: async ({ request }: { request: Request }) => {
         try {
           const body = (await request.json()) as any;
-          const { handle, order_nsu, items, customer } = body ?? {};
+          const { handle, order_nsu, items, customer, redirect_url } = body ?? {};
 
           if (!handle || !order_nsu || !Array.isArray(items) || items.length === 0) {
             return json({ error: "Parâmetros inválidos: handle, order_nsu e items são obrigatórios." }, 400);
@@ -34,7 +34,14 @@ export const Route = createFileRoute("/api/public/infinitepay")({
           const res = await fetch("https://api.checkout.infinitepay.io/links", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ handle, order_nsu, items }),
+            body: JSON.stringify({
+              handle,
+              order_nsu,
+              items,
+              ...(typeof redirect_url === "string" && redirect_url.startsWith("http")
+                ? { redirect_url }
+                : {}),
+            }),
           });
 
           const text = await res.text();
