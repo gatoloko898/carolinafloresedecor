@@ -72,12 +72,16 @@ export function CartDrawer() {
           order_nsu: orderNsu,
           items: payloadItems,
           customer: form,
+          redirect_url: `${window.location.origin}/pedido?nsu=${encodeURIComponent(orderNsu)}`,
         }),
       });
       const data = await res.json();
       if (!res.ok || !data?.url) {
         throw new Error(data?.error || "Não foi possível gerar o link de pagamento.");
       }
+      try {
+        localStorage.setItem("carolina-last-order", orderNsu);
+      } catch {}
       clear();
       handleClose(false);
       window.location.href = data.url;

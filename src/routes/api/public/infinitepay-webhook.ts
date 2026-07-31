@@ -28,6 +28,37 @@ async function notifyWhatsApp(message: string) {
   }
 }
 
+const NOTIFY_EMAIL = "carolinafloresedecor@hotmail.com";
+
+async function notifyEmail(subject: string, message: string) {
+  const resendKey = process.env.RESEND_API_KEY;
+  const lovableKey = process.env.LOVABLE_API_KEY;
+  const from = process.env.EMAIL_FROM;
+
+  if (!resendKey || !lovableKey || !from) {
+    console.log(`[infinitepay-webhook] E-mail não configurado. Pedido pago (${NOTIFY_EMAIL}):\n` + message);
+    return;
+  }
+
+  const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${lovableKey}`,
+      "X-Connection-Api-Key": resendKey,
+    },
+    body: JSON.stringify({
+      from,
+      to: [NOTIFY_EMAIL],
+      subject,
+      text: message,
+    }),
+  });
+  if (!res.ok) {
+    console.error("[infinitepay-webhook] falha ao enviar e-mail:", res.status, await res.text());
+  }
+}
+
 export const Route = createFileRoute("/api/public/infinitepay-webhook")({
   server: {
     handlers: {
@@ -78,7 +109,10 @@ export const Route = createFileRoute("/api/public/infinitepay-webhook")({
             `Itens:\n${lista || "-"}\n\n` +
             `Total pago: ${formatBRL(pedido?.total_centavos ?? 0)}`;
 
-          await notifyWhatsApp(msg);
+          await Promise.allSettled([
+            notifyWhatsApp(msg),
+            notifyEmail(`Pedido pago ${orderNsu} — Carolina Flores & Decor`, msg),
+          ]);
 
           return new Response("ok", { status: 200 });
         } catch (err: any) {

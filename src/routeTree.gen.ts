@@ -9,13 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicPedidoStatusRouteImport } from './routes/api/public/pedido-status'
 import { Route as ApiPublicInfinitepayWebhookRouteImport } from './routes/api/public/infinitepay-webhook'
 import { Route as ApiPublicInfinitepayRouteImport } from './routes/api/public/infinitepay'
 
+const PedidoRoute = PedidoRouteImport.update({
+  id: '/pedido',
+  path: '/pedido',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPedidoStatusRoute = ApiPublicPedidoStatusRouteImport.update({
+  id: '/api/public/pedido-status',
+  path: '/api/public/pedido-status',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicInfinitepayWebhookRoute =
@@ -32,45 +44,79 @@ const ApiPublicInfinitepayRoute = ApiPublicInfinitepayRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/pedido': typeof PedidoRoute
   '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
   '/api/public/infinitepay-webhook': typeof ApiPublicInfinitepayWebhookRoute
+  '/api/public/pedido-status': typeof ApiPublicPedidoStatusRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/pedido': typeof PedidoRoute
   '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
   '/api/public/infinitepay-webhook': typeof ApiPublicInfinitepayWebhookRoute
+  '/api/public/pedido-status': typeof ApiPublicPedidoStatusRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/pedido': typeof PedidoRoute
   '/api/public/infinitepay': typeof ApiPublicInfinitepayRoute
   '/api/public/infinitepay-webhook': typeof ApiPublicInfinitepayWebhookRoute
+  '/api/public/pedido-status': typeof ApiPublicPedidoStatusRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/infinitepay' | '/api/public/infinitepay-webhook'
+  fullPaths:
+    | '/'
+    | '/pedido'
+    | '/api/public/infinitepay'
+    | '/api/public/infinitepay-webhook'
+    | '/api/public/pedido-status'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/infinitepay' | '/api/public/infinitepay-webhook'
+  to:
+    | '/'
+    | '/pedido'
+    | '/api/public/infinitepay'
+    | '/api/public/infinitepay-webhook'
+    | '/api/public/pedido-status'
   id:
     | '__root__'
     | '/'
+    | '/pedido'
     | '/api/public/infinitepay'
     | '/api/public/infinitepay-webhook'
+    | '/api/public/pedido-status'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PedidoRoute: typeof PedidoRoute
   ApiPublicInfinitepayRoute: typeof ApiPublicInfinitepayRoute
   ApiPublicInfinitepayWebhookRoute: typeof ApiPublicInfinitepayWebhookRoute
+  ApiPublicPedidoStatusRoute: typeof ApiPublicPedidoStatusRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/pedido': {
+      id: '/pedido'
+      path: '/pedido'
+      fullPath: '/pedido'
+      preLoaderRoute: typeof PedidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/pedido-status': {
+      id: '/api/public/pedido-status'
+      path: '/api/public/pedido-status'
+      fullPath: '/api/public/pedido-status'
+      preLoaderRoute: typeof ApiPublicPedidoStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/infinitepay-webhook': {
@@ -92,8 +138,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PedidoRoute: PedidoRoute,
   ApiPublicInfinitepayRoute: ApiPublicInfinitepayRoute,
   ApiPublicInfinitepayWebhookRoute: ApiPublicInfinitepayWebhookRoute,
+  ApiPublicPedidoStatusRoute: ApiPublicPedidoStatusRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

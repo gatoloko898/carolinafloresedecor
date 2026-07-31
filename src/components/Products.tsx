@@ -161,8 +161,8 @@ const cestasNovasUrls = Object.entries(cestasNovasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
-type SizeKey = "P" | "M" | "G";
-type SizeOption = { key: SizeKey; label: string; price: number };
+type SizeKey = string;
+type SizeOption = { key: SizeKey; label: string; price: number; short?: string };
 
 type Product = {
   id: string;
@@ -214,11 +214,27 @@ const floresCampoRaw: Product[] = [
   { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
 ];
 
+const CESTA_NOMES = [
+  "Cesta Café da Manhã Encanto",
+  "Cesta Doce Despertar",
+  "Cesta Carinho Especial",
+  "Cesta Manhã Apaixonada",
+  "Cesta Delícias do Dia",
+  "Cesta Bom Dia Florido",
+  "Cesta Momento Dourado",
+  "Cesta Amor & Chocolate",
+  "Cesta Surpresa Perfeita",
+  "Cesta Gourmet Elegance",
+  "Cesta Ternura",
+  "Cesta Celebração",
+  "Cesta Luxo Premium",
+];
+
 const cestasRaw: Product[] = [
   ...cestasNovasUrls.map((url, i) => ({
     id: `cesta-nova-${i + 1}`,
     img: url,
-    name: "",
+    name: CESTA_NOMES[i] ?? `Cesta Especial ${i + 1}`,
     price: 0,
     hidePrice: true,
   })),
@@ -282,37 +298,37 @@ const CAIXA_INFO: { name: string; description: string }[] = [
 ];
 
 const vasosRaw: Product[] = [
-  { id: "vas-1", img: v1.url, price: 89 },
-  { id: "vas-2", img: v2.url, price: 59 },
-  { id: "vas-3", img: v3.url, price: 59 },
-  { id: "vas-4", img: v4.url, price: 79 },
-  { id: "vas-5", img: v5.url, price: 69 },
-  { id: "vas-6", img: v6.url, price: 79 },
-  { id: "vas-7", img: v7.url, price: 89 },
-  { id: "vas-8", img: v8.url, price: 89 },
-  { id: "vas-9", img: v9.url, price: 79 },
-  { id: "vas-10", img: v10.url, price: 79 },
-  { id: "vas-11", img: v11.url, price: 65 },
-  { id: "vas-12", img: v12.url, price: 69 },
-  { id: "vas-13", img: v13.url, price: 65 },
-  { id: "vas-14", img: v14.url, price: 79 },
-  { id: "vas-15", img: v15.url, price: 55 },
-  { id: "vas-16", img: v16.url, price: 89 },
-  { id: "vas-17", img: v17.url, price: 99 },
-  { id: "vas-c7", img: c7box.url, price: 99 },
+  { id: "vas-1", img: v1.url, price: 160 },
+  { id: "vas-2", img: v2.url, price: 120 },
+  { id: "vas-3", img: v3.url, price: 120 },
+  { id: "vas-4", img: v4.url, price: 70 },
+  { id: "vas-5", img: v5.url, price: 70 },
+  { id: "vas-6", img: v6.url, price: 70 },
+  { id: "vas-7", img: v7.url, price: 70 },
+  { id: "vas-8", img: v8.url, price: 70 },
+  { id: "vas-9", img: v9.url, price: 70 },
+  { id: "vas-10", img: v10.url, price: 65 },
+  { id: "vas-11", img: v11.url, price: 60 },
+  { id: "vas-12", img: v12.url, price: 60 },
+  { id: "vas-13", img: v13.url, price: 60 },
+  { id: "vas-14", img: v14.url, price: 85 },
+  { id: "vas-15", img: v15.url, price: 140 },
+  { id: "vas-16", img: v16.url, price: 130 },
+  { id: "vas-17", img: v17.url, price: 49 },
+  { id: "vas-c7", img: c7box.url, price: 59 },
 ].map((p, i) => ({ ...p, name: VASO_INFO[i]?.name ?? "", description: VASO_INFO[i]?.description }));
 
 const caixasRaw: Product[] = [
-  { id: "cax-1", img: c1box.url, price: 79 },
-  { id: "cax-2", img: c2box.url, price: 79 },
-  { id: "cax-3", img: c3box.url, price: 89 },
-  { id: "cax-4", img: c4box.url, price: 79 },
-  { id: "cax-5", img: c5box.url, price: 69 },
-  { id: "cax-6", img: c6box.url, price: 69 },
-  { id: "cax-v18", img: v18.url, price: 89 },
-  { id: "cax-8", img: v19.url, price: 45 },
-  { id: "cax-9", img: v20.url, price: 55 },
-  { id: "cax-10", img: v21.url, price: 69 },
+  { id: "cax-1", img: c1box.url, price: 29 },
+  { id: "cax-2", img: c2box.url, price: 29 },
+  { id: "cax-3", img: c3box.url, price: 69 },
+  { id: "cax-4", img: c4box.url, price: 49 },
+  { id: "cax-5", img: c5box.url, price: 25 },
+  { id: "cax-6", img: c6box.url, price: 25 },
+  { id: "cax-v18", img: v18.url, price: 59 },
+  { id: "cax-8", img: v19.url, price: 80 },
+  { id: "cax-9", img: v20.url, price: 80 },
+  { id: "cax-10", img: v21.url, price: 80 },
 ].map((p, i) => ({ ...p, name: CAIXA_INFO[i]?.name ?? "", description: CAIXA_INFO[i]?.description }));
 
 
@@ -345,12 +361,29 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
-const ORQUIDEA_SIZES: SizeOption[] = [
-  { key: "P", label: "Pequena", price: 119 },
-  { key: "G", label: "Grande", price: 179 },
+const ORQUIDEA_GRANDE_SIZES: SizeOption[] = [
+  { key: "sem-vaso", short: "Sem vaso", label: "Sem vaso", price: 179 },
+  { key: "com-vaso", short: "Com vaso", label: "Com vaso de cerâmica/cachepot", price: 319 },
 ];
-const orquideas: Product[] = orquideasUrls.map((url, i) => ({
-  id: `orq-${i + 1}`, img: url, name: `Orquídea ${i + 1}`, price: 119, sizes: ORQUIDEA_SIZES,
+const ORQUIDEA_MINI_SIZES: SizeOption[] = [
+  { key: "sem-vaso", short: "Sem vaso", label: "Sem vaso", price: 119 },
+  { key: "com-vaso", short: "Com vaso", label: "Com vaso de cerâmica/cachepot", price: 179 },
+];
+
+const orquideasGrandes: Product[] = orquideasUrls.slice(0, 7).map((url, i) => ({
+  id: `orq-g-${i + 1}`,
+  img: url,
+  name: `Vaso de Orquídea Phalaenopsis Pote 15 — ${i + 1}`,
+  price: 179,
+  sizes: ORQUIDEA_GRANDE_SIZES,
+}));
+
+const orquideasMini: Product[] = orquideasUrls.slice(7).map((url, i) => ({
+  id: `orq-m-${i + 1}`,
+  img: url,
+  name: `Mini Orquídea Phalaenopsis Pote 11 — ${i + 1}`,
+  price: 119,
+  sizes: ORQUIDEA_MINI_SIZES,
 }));
 
 const CANECA_PRICES = [49, 49, 49, 49, 49, 49, 49, 29, 49, 29, 49];
@@ -404,7 +437,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
     if (size) {
       add({
         id: `${p.id}-${size.key}`,
-        name: `${p.name} — Tamanho ${size.key}`,
+        name: `${p.name} — ${size.label}`,
         img: p.img,
         price: size.price,
       });
@@ -449,18 +482,18 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
                     type="button"
                     onClick={() => setSize(s)}
                     aria-pressed={active}
-                    className={`h-8 w-8 grid place-items-center rounded-full text-xs font-semibold transition-all ${
+                    className={`h-8 min-w-8 px-3 grid place-items-center rounded-full text-xs font-semibold transition-all ${
                       active
                         ? "bg-rose-deep text-white shadow-soft"
                         : "bg-blush/40 text-rose-deep hover:bg-blush"
                     }`}
                   >
-                    {s.key}
+                    {s.short ?? s.key}
                   </button>
                 );
               })}
             </div>
-            <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
+            <p className="text-[11px] text-muted-foreground">{size.label}</p>
           </div>
         )}
         {!shouldHidePrice && (
@@ -500,6 +533,7 @@ type CategoryDef = {
   items: Product[];
   tinted?: boolean;
   hidePrice?: boolean;
+  navLabel?: string;
 };
 
 const CATEGORIES: CategoryDef[] = [
@@ -509,8 +543,9 @@ const CATEGORIES: CategoryDef[] = [
   { id: "cestas", slug: "cestas", emoji: "🧺", kicker: "cestas especiais", title: "Cestas para", accent: "presentear", items: cestas, tinted: true },
   { id: "kits", slug: "kits", emoji: "❤️", kicker: "kits apaixonados", title: "Kits", accent: "apaixonados", items: kits },
   { id: "pelucias", slug: "pelucias", emoji: "🧸", kicker: "abraços de pelúcia", title: "Ursinhos &", accent: "fofuras", items: pelucias, tinted: true },
-  { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], hidePrice: true },
-  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas", title: "Orquídeas", accent: "exclusivas", items: orquideas, tinted: true },
+  { id: "vasos-caixas", slug: "vasos-caixas", emoji: "🏺", kicker: "vasos & caixas", title: "Vasos &", accent: "caixas", items: [...vasos, ...caixas], navLabel: "vasos" },
+  { id: "orquideas", slug: "orquideas", emoji: "🌸", kicker: "orquídeas grandes", title: "Orquídeas", accent: "Pote 15", items: orquideasGrandes, tinted: true, navLabel: "orquídeas" },
+  { id: "mini-orquideas", slug: "mini-orquideas", emoji: "🌸", kicker: "mini orquídeas", title: "Mini Orquídeas", accent: "Pote 11", items: orquideasMini, navLabel: "mini orquídeas" },
   { id: "canecas", slug: "canecas", emoji: "☕", kicker: "canecas", title: "Canecas", accent: "personalizadas", items: canecas },
   { id: "begonias", slug: "begonias", emoji: "🌺", kicker: "begônias", title: "Begônias", accent: "encantadoras", items: begonias, tinted: true },
   { id: "flores-artificiais", slug: "flores-artificiais", emoji: "🌷", kicker: "flores artificiais", title: "Flores", accent: "artificiais", items: floresArtificiais },
@@ -531,7 +566,7 @@ function CategoryNav() {
                 className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-wider text-foreground/70 hover:text-rose-deep hover:bg-rose-deep/10 transition-colors whitespace-nowrap"
               >
                 <span aria-hidden>{c.emoji}</span>
-                <span>{c.kicker.split(" ")[0]}</span>
+                <span>{c.navLabel ?? c.kicker.split(" ")[0]}</span>
               </a>
             </li>
           ))}
