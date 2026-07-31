@@ -361,12 +361,29 @@ const pelucias = dedupe(peluciasRaw);
 const coroas = dedupe(coroasRaw);
 const vasos = dedupe(vasosRaw);
 const caixas = dedupe(caixasRaw);
-const ORQUIDEA_SIZES: SizeOption[] = [
-  { key: "P", label: "Pequena", price: 119 },
-  { key: "G", label: "Grande", price: 179 },
+const ORQUIDEA_GRANDE_SIZES: SizeOption[] = [
+  { key: "sem-vaso", short: "Sem vaso", label: "Sem vaso", price: 179 },
+  { key: "com-vaso", short: "Com vaso", label: "Com vaso de cerâmica/cachepot", price: 319 },
 ];
-const orquideas: Product[] = orquideasUrls.map((url, i) => ({
-  id: `orq-${i + 1}`, img: url, name: `Orquídea ${i + 1}`, price: 119, sizes: ORQUIDEA_SIZES,
+const ORQUIDEA_MINI_SIZES: SizeOption[] = [
+  { key: "sem-vaso", short: "Sem vaso", label: "Sem vaso", price: 119 },
+  { key: "com-vaso", short: "Com vaso", label: "Com vaso de cerâmica/cachepot", price: 179 },
+];
+
+const orquideasGrandes: Product[] = orquideasUrls.slice(0, 7).map((url, i) => ({
+  id: `orq-g-${i + 1}`,
+  img: url,
+  name: `Vaso de Orquídea Phalaenopsis Pote 15 — ${i + 1}`,
+  price: 179,
+  sizes: ORQUIDEA_GRANDE_SIZES,
+}));
+
+const orquideasMini: Product[] = orquideasUrls.slice(7).map((url, i) => ({
+  id: `orq-m-${i + 1}`,
+  img: url,
+  name: `Mini Orquídea Phalaenopsis Pote 11 — ${i + 1}`,
+  price: 119,
+  sizes: ORQUIDEA_MINI_SIZES,
 }));
 
 const CANECA_PRICES = [49, 49, 49, 49, 49, 49, 49, 29, 49, 29, 49];
