@@ -566,7 +566,7 @@ function CategoryNav() {
                 className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-wider text-foreground/70 hover:text-rose-deep hover:bg-rose-deep/10 transition-colors whitespace-nowrap"
               >
                 <span aria-hidden>{c.emoji}</span>
-                <span>{c.kicker.split(" ")[0]}</span>
+                <span>{c.navLabel ?? c.kicker.split(" ")[0]}</span>
               </a>
             </li>
           ))}
