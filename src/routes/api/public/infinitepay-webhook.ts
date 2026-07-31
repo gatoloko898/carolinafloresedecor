@@ -109,7 +109,10 @@ export const Route = createFileRoute("/api/public/infinitepay-webhook")({
             `Itens:\n${lista || "-"}\n\n` +
             `Total pago: ${formatBRL(pedido?.total_centavos ?? 0)}`;
 
-          await notifyWhatsApp(msg);
+          await Promise.allSettled([
+            notifyWhatsApp(msg),
+            notifyEmail(`Pedido pago ${orderNsu} — Carolina Flores & Decor`, msg),
+          ]);
 
           return new Response("ok", { status: 200 });
         } catch (err: any) {
