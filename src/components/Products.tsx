@@ -161,7 +161,7 @@ const cestasNovasUrls = Object.entries(cestasNovasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
-type SizeKey = "P" | "M" | "G";
+type SizeKey = string;
 type SizeOption = { key: SizeKey; label: string; price: number };
 
 type Product = {
