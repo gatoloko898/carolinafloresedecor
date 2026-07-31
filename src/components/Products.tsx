@@ -404,7 +404,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
     if (size) {
       add({
         id: `${p.id}-${size.key}`,
-        name: `${p.name} — Tamanho ${size.key}`,
+        name: `${p.name} — ${size.label}`,
         img: p.img,
         price: size.price,
       });
