@@ -214,11 +214,27 @@ const floresCampoRaw: Product[] = [
   { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
 ];
 
+const CESTA_NOMES = [
+  "Cesta Café da Manhã Encanto",
+  "Cesta Doce Despertar",
+  "Cesta Carinho Especial",
+  "Cesta Manhã Apaixonada",
+  "Cesta Delícias do Dia",
+  "Cesta Bom Dia Florido",
+  "Cesta Momento Dourado",
+  "Cesta Amor & Chocolate",
+  "Cesta Surpresa Perfeita",
+  "Cesta Gourmet Elegance",
+  "Cesta Ternura",
+  "Cesta Celebração",
+  "Cesta Luxo Premium",
+];
+
 const cestasRaw: Product[] = [
   ...cestasNovasUrls.map((url, i) => ({
     id: `cesta-nova-${i + 1}`,
     img: url,
-    name: "",
+    name: CESTA_NOMES[i] ?? `Cesta Especial ${i + 1}`,
     price: 0,
     hidePrice: true,
   })),
