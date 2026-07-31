@@ -162,7 +162,7 @@ const cestasNovasUrls = Object.entries(cestasNovasModules)
   .map(([, m]) => m.default.url);
 
 type SizeKey = string;
-type SizeOption = { key: SizeKey; label: string; price: number };
+type SizeOption = { key: SizeKey; label: string; price: number; short?: string };
 
 type Product = {
   id: string;
