@@ -460,7 +460,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
                 );
               })}
             </div>
-            <p className="text-[11px] text-muted-foreground">Tamanho {size.label}</p>
+            <p className="text-[11px] text-muted-foreground">{size.label}</p>
           </div>
         )}
         {!shouldHidePrice && (
