@@ -449,13 +449,13 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
                     type="button"
                     onClick={() => setSize(s)}
                     aria-pressed={active}
-                    className={`h-8 w-8 grid place-items-center rounded-full text-xs font-semibold transition-all ${
+                    className={`h-8 min-w-8 px-3 grid place-items-center rounded-full text-xs font-semibold transition-all ${
                       active
                         ? "bg-rose-deep text-white shadow-soft"
                         : "bg-blush/40 text-rose-deep hover:bg-blush"
                     }`}
                   >
-                    {s.key}
+                    {s.short ?? s.key}
                   </button>
                 );
               })}
