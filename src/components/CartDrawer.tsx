@@ -11,7 +11,7 @@ import pelucia4 from "@/assets/pelucias-new/p1.png";
 
 
 const UPSellSUGGESTIONS = [
-  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, price: 45, phrase: "Um toque de doçura premium" },
+  { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, price: 65, phrase: "Um toque de doçura premium" },
   { id: "pel-1", name: "Ursa Creme Coração Bordado", img: pelucia4, price: 150, phrase: "Um abraço de pelúcia para acompanhar" },
   { id: "pel-6-mini", name: "Urso Eu Te Amo", img: pelucia1, price: 480, phrase: "Diga \"te amo\" sem usar palavras" },
 ];
