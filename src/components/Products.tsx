@@ -446,14 +446,14 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
     }
   };
   return (
-    <div className="group flex h-full flex-col bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1.5 border border-blush/50">
-      <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-blush via-cream to-background">
+    <div className="group flex h-full flex-col bg-product-surface rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1.5 border border-border/60">
+      <div className="relative aspect-[4/5] overflow-hidden bg-product-surface">
         <img
           src={p.img}
           alt={p.name}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="h-full w-full object-contain bg-product-surface group-hover:scale-105 transition-transform duration-700"
         />
         {p.tag && (
           <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest bg-gold/95 text-white px-3 py-1 rounded-full shadow-soft">
@@ -613,21 +613,21 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
   const price = 11.9;
   const id = `cartao-${index + 1}`;
   return (
-    <div className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-neutral-200">
-      <div className="relative aspect-[3/4] overflow-hidden bg-white">
+    <div className="group flex h-full flex-col bg-product-surface rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-border/60">
+      <div className="relative aspect-[3/4] overflow-hidden bg-product-surface">
         <img
           src={pair.closed}
           alt={`Cartão ${index + 1} fechado`}
           loading="lazy"
           decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
         />
         <img
           src={pair.open}
           alt={`Cartão ${index + 1} aberto`}
           loading="lazy"
           decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
         />
         <button
           type="button"
@@ -672,7 +672,7 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
 
 function Cartoes() {
   return (
-    <section id="cartoes" className="py-10 md:py-14 scroll-mt-[220px] bg-white">
+    <section id="cartoes" className="py-10 md:py-14 scroll-mt-[220px] bg-product-surface">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
           <div className="flex items-center gap-3">
@@ -701,21 +701,21 @@ function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: strin
   const price = 21.9;
   const id = `cartao-grande-${index + 1}`;
   return (
-    <div className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-neutral-200">
-      <div className="relative aspect-[3/4] overflow-hidden bg-white">
+    <div className="group flex h-full flex-col bg-product-surface rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 border border-border/60">
+      <div className="relative aspect-[3/4] overflow-hidden bg-product-surface">
         <img
           src={pair.closed}
           alt={`Cartão grande ${index + 1} fechado`}
           loading="lazy"
           decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
         />
         <img
           src={pair.open}
           alt={`Cartão grande ${index + 1} aberto`}
           loading="lazy"
           decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-white transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
         />
         <button
           type="button"
@@ -761,7 +761,7 @@ function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: strin
 function CartoesGrandes() {
   if (!cartoesGrandesPairs.length) return null;
   return (
-    <section id="cartoes-grandes" className="py-10 md:py-14 scroll-mt-[220px] bg-white">
+    <section id="cartoes-grandes" className="py-10 md:py-14 scroll-mt-[220px] bg-product-surface">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
           <div className="flex items-center gap-3">
