@@ -45,13 +45,13 @@ import fcP20 from "@/assets/catalog/fc-p20.jpg";
 import fcP21 from "@/assets/catalog/fc-p21.jpg";
 import fcP22 from "@/assets/catalog/fc-p22.jpg";
 // Pelúcias
-import pelucia1 from "@/assets/pelucias-new/p1.png";
-import pelucia2 from "@/assets/pelucias-new/p2.png";
-import pelucia3 from "@/assets/pelucias-new/p3.png";
-import pelucia4 from "@/assets/pelucias-new/p4.png";
-import pelucia5 from "@/assets/pelucias-new/p5.png";
-import pelucia6 from "@/assets/pelucias-new/p6.png";
-import pelucia7 from "@/assets/pelucias-new/p7.png";
+import pelucia1 from "@/assets/pelucias-new/p1-white.jpg";
+import pelucia2 from "@/assets/pelucias-new/p2-white.jpg";
+import pelucia3 from "@/assets/pelucias-new/p3-white.jpg";
+import pelucia4 from "@/assets/pelucias-new/p4-white.jpg";
+import pelucia5 from "@/assets/pelucias-new/p5-white.jpg";
+import pelucia6 from "@/assets/pelucias-new/p6-white.jpg";
+import pelucia7 from "@/assets/pelucias-new/p7-white.jpg";
 import pelucia8 from "@/assets/pelucias-new/p8-doce-coracao.jpg";
 import pelucia9 from "@/assets/pelucias-new/p9-vestidinho.jpg";
 import pelucia10 from "@/assets/pelucias-new/p10-rosa-cetim.jpg";
@@ -70,54 +70,34 @@ import coroa5 from "@/assets/coroas/c19.jpg";
 import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
-import coroaPremium from "@/assets/coroas/premium-luxo.png.asset.json";
+import coroaPremium from "@/assets/white-bg-upload/coroas/premium-luxo.jpg.asset.json";
 import { Sparkles } from "lucide-react";
 
 // Vasos
-import v1 from "@/assets/vasos/v1.png.asset.json";
-import v2 from "@/assets/vasos/v2.png.asset.json";
-import v3 from "@/assets/vasos/v3.png.asset.json";
-import v4 from "@/assets/vasos/v4.png.asset.json";
-import v5 from "@/assets/vasos/v5.png.asset.json";
-import v6 from "@/assets/vasos/v6.png.asset.json";
-import v7 from "@/assets/vasos/v7.png.asset.json";
-import v8 from "@/assets/vasos/v8.png.asset.json";
-import v9 from "@/assets/vasos/v9.png.asset.json";
-import v10 from "@/assets/vasos/v10.png.asset.json";
-import v11 from "@/assets/vasos/v11.png.asset.json";
-import v12 from "@/assets/vasos/v12.png.asset.json";
-import v13 from "@/assets/vasos/v13.png.asset.json";
-import v14 from "@/assets/vasos/v14.png.asset.json";
-import v15 from "@/assets/vasos/v15.png.asset.json";
-import v16 from "@/assets/vasos/v16.png.asset.json";
-import v17 from "@/assets/vasos/v17.png.asset.json";
-import v18 from "@/assets/vasos/v18.png.asset.json";
-import v19 from "@/assets/vasos/v19.png.asset.json";
-import v20 from "@/assets/vasos/v20.png.asset.json";
-import v21 from "@/assets/vasos/v21.png.asset.json";
+const vasosModules = import.meta.glob("@/assets/white-bg-upload/vasos/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const vasosUrls = Object.entries(vasosModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
 // Caixas
-import c1box from "@/assets/caixas/c1.png.asset.json";
-import c2box from "@/assets/caixas/c2.png.asset.json";
-import c3box from "@/assets/caixas/c3.png.asset.json";
-import c4box from "@/assets/caixas/c4.png.asset.json";
-import c5box from "@/assets/caixas/c5.png.asset.json";
-import c6box from "@/assets/caixas/c6.png.asset.json";
-import c7box from "@/assets/caixas/c7.png.asset.json";
+const caixasModules = import.meta.glob("@/assets/white-bg-upload/caixas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const caixasUrls = Object.entries(caixasModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, m]) => m.default.url);
 
 // Orquídeas
-const orquideasModules = import.meta.glob("@/assets/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasModules = import.meta.glob("@/assets/white-bg-upload/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const orquideasUrls = Object.entries(orquideasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Canecas
-const canecasModules = import.meta.glob("@/assets/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasModules = import.meta.glob("@/assets/white-bg-upload/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const canecasUrls = Object.entries(canecasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Begônias
-const begoniasModules = import.meta.glob("@/assets/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const begoniasModules = import.meta.glob("@/assets/white-bg-upload/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const begoniasUrls = Object.entries(begoniasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
@@ -156,7 +136,7 @@ const chocolatesUrls = Object.entries(chocolatesModules)
 
 
 // Cestas novas (sem nome/preço)
-const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const cestasNovasModules = import.meta.glob("@/assets/white-bg-upload/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const cestasNovasUrls = Object.entries(cestasNovasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
@@ -298,37 +278,17 @@ const CAIXA_INFO: { name: string; description: string }[] = [
 ];
 
 const vasosRaw: Product[] = [
-  { id: "vas-1", img: v1.url, price: 160 },
-  { id: "vas-2", img: v2.url, price: 120 },
-  { id: "vas-3", img: v3.url, price: 120 },
-  { id: "vas-4", img: v4.url, price: 70 },
-  { id: "vas-5", img: v5.url, price: 70 },
-  { id: "vas-6", img: v6.url, price: 70 },
-  { id: "vas-7", img: v7.url, price: 70 },
-  { id: "vas-8", img: v8.url, price: 70 },
-  { id: "vas-9", img: v9.url, price: 70 },
-  { id: "vas-10", img: v10.url, price: 65 },
-  { id: "vas-11", img: v11.url, price: 60 },
-  { id: "vas-12", img: v12.url, price: 60 },
-  { id: "vas-13", img: v13.url, price: 60 },
-  { id: "vas-14", img: v14.url, price: 85 },
-  { id: "vas-15", img: v15.url, price: 140 },
-  { id: "vas-16", img: v16.url, price: 130 },
-  { id: "vas-17", img: v17.url, price: 49 },
-  { id: "vas-c7", img: c7box.url, price: 59 },
+  ...[160, 120, 120, 70, 70, 70, 70, 70, 70, 65, 60, 60, 60, 85, 140, 130, 49]
+    .map((price, i) => ({ id: `vas-${i + 1}`, img: vasosUrls[i], price })),
+  { id: "vas-c7", img: caixasUrls[6], price: 59 },
 ].map((p, i) => ({ ...p, name: VASO_INFO[i]?.name ?? "", description: VASO_INFO[i]?.description }));
 
 const caixasRaw: Product[] = [
-  { id: "cax-1", img: c1box.url, price: 29 },
-  { id: "cax-2", img: c2box.url, price: 29 },
-  { id: "cax-3", img: c3box.url, price: 69 },
-  { id: "cax-4", img: c4box.url, price: 49 },
-  { id: "cax-5", img: c5box.url, price: 25 },
-  { id: "cax-6", img: c6box.url, price: 25 },
-  { id: "cax-v18", img: v18.url, price: 59 },
-  { id: "cax-8", img: v19.url, price: 80 },
-  { id: "cax-9", img: v20.url, price: 80 },
-  { id: "cax-10", img: v21.url, price: 80 },
+  ...[29, 29, 69, 49, 25, 25].map((price, i) => ({ id: `cax-${i + 1}`, img: caixasUrls[i], price })),
+  { id: "cax-v18", img: vasosUrls[17], price: 59 },
+  { id: "cax-8", img: vasosUrls[18], price: 80 },
+  { id: "cax-9", img: vasosUrls[19], price: 80 },
+  { id: "cax-10", img: vasosUrls[20], price: 80 },
 ].map((p, i) => ({ ...p, name: CAIXA_INFO[i]?.name ?? "", description: CAIXA_INFO[i]?.description }));
 
 
