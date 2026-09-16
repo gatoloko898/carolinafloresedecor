@@ -45,13 +45,13 @@ import fcP20 from "@/assets/catalog/fc-p20.jpg";
 import fcP21 from "@/assets/catalog/fc-p21.jpg";
 import fcP22 from "@/assets/catalog/fc-p22.jpg";
 // Pelúcias
-import pelucia1 from "@/assets/pelucias-new/p1-white.jpg";
-import pelucia2 from "@/assets/pelucias-new/p2-white.jpg";
-import pelucia3 from "@/assets/pelucias-new/p3-white.jpg";
-import pelucia4 from "@/assets/pelucias-new/p4-white.jpg";
-import pelucia5 from "@/assets/pelucias-new/p5-white.jpg";
-import pelucia6 from "@/assets/pelucias-new/p6-white.jpg";
-import pelucia7 from "@/assets/pelucias-new/p7-white.jpg";
+import pelucia1 from "@/assets/pelucias-new/p1.png";
+import pelucia2 from "@/assets/pelucias-new/p2.png";
+import pelucia3 from "@/assets/pelucias-new/p3.png";
+import pelucia4 from "@/assets/pelucias-new/p4.png";
+import pelucia5 from "@/assets/pelucias-new/p5.png";
+import pelucia6 from "@/assets/pelucias-new/p6.png";
+import pelucia7 from "@/assets/pelucias-new/p7.png";
 import pelucia8 from "@/assets/pelucias-new/p8-doce-coracao.jpg";
 import pelucia9 from "@/assets/pelucias-new/p9-vestidinho.jpg";
 import pelucia10 from "@/assets/pelucias-new/p10-rosa-cetim.jpg";
@@ -70,34 +70,34 @@ import coroa5 from "@/assets/coroas/c19.jpg";
 import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
-import coroaPremium from "@/assets/white-bg-upload/coroas/premium-luxo.jpg.asset.json";
+import coroaPremium from "@/assets/coroas/premium-luxo.png.asset.json";
 import { Sparkles } from "lucide-react";
 
 // Vasos
-const vasosModules = import.meta.glob("@/assets/white-bg-upload/vasos/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const vasosModules = import.meta.glob("@/assets/vasos/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const vasosUrls = Object.entries(vasosModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 // Caixas
-const caixasModules = import.meta.glob("@/assets/white-bg-upload/caixas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const caixasModules = import.meta.glob("@/assets/caixas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const caixasUrls = Object.entries(caixasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Orquídeas
-const orquideasModules = import.meta.glob("@/assets/white-bg-upload/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const orquideasModules = import.meta.glob("@/assets/orquideas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const orquideasUrls = Object.entries(orquideasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Canecas
-const canecasModules = import.meta.glob("@/assets/white-bg-upload/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const canecasModules = import.meta.glob("@/assets/canecas-new/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const canecasUrls = Object.entries(canecasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
 // Begônias
-const begoniasModules = import.meta.glob("@/assets/white-bg-upload/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const begoniasModules = import.meta.glob("@/assets/begonias/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const begoniasUrls = Object.entries(begoniasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
@@ -136,7 +136,7 @@ const chocolatesUrls = Object.entries(chocolatesModules)
 
 
 // Cestas novas (sem nome/preço)
-const cestasNovasModules = import.meta.glob("@/assets/white-bg-upload/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const cestasNovasModules = import.meta.glob("@/assets/cestas-novas/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const cestasNovasUrls = Object.entries(cestasNovasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
