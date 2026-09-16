@@ -1,0 +1,1 @@
+- [ ] Refazer fundos brancos com IA preservando produto, embrulho, cabos, hastes e todas as extremidades completas.
