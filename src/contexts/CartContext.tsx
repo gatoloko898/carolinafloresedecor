@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export type CartItem = {
   id: string;
@@ -26,6 +26,7 @@ type CartContextType = {
 };
 
 const CartContext = createContext<CartContextType | null>(null);
+const CartActionsContext = createContext<Pick<CartContextType, "add" | "setOpen"> | null>(null);
 
 const STORAGE_KEY = "carolina-cart-v2";
 const DELIVERY_FEE = 20;
@@ -51,14 +52,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, [items]);
 
-  const add: CartContextType["add"] = (item) => {
+  const add: CartContextType["add"] = useCallback((item) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) return prev.map((i) => (i.id === item.id ? { ...i, qty: i.qty + 1 } : i));
       return [...prev, { ...item, qty: 1 }];
     });
     setOpen(true);
-  };
+  }, []);
 
   const remove = (id: string) => setItems((p) => p.filter((i) => i.id !== id));
   const inc = (id: string) => setItems((p) => p.map((i) => (i.id === id ? { ...i, qty: i.qty + 1 } : i)));
@@ -77,10 +78,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const subtotal = useMemo(() => items.reduce((s, i) => s + i.qty * (i.price || 0), 0), [items]);
   const deliveryFee = delivery ? DELIVERY_FEE : 0;
   const total = subtotal + deliveryFee;
+  const actions = useMemo(() => ({ add, setOpen }), [add]);
 
   return (
-    <CartContext.Provider
-      value={{
+    <CartActionsContext.Provider value={actions}>
+      <CartContext.Provider
+        value={{
         items,
         isOpen,
         setOpen,
@@ -95,16 +98,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setDelivery,
         deliveryFee,
         total,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+        }}
+      >
+        {children}
+      </CartContext.Provider>
+    </CartActionsContext.Provider>
   );
 }
 
 export function useCart() {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
+  return ctx;
+}
+
+export function useCartActions() {
+  const ctx = useContext(CartActionsContext);
+  if (!ctx) throw new Error("useCartActions must be used within CartProvider");
   return ctx;
 }
 

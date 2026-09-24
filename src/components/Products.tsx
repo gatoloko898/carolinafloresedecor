@@ -1,6 +1,6 @@
 import { ShoppingBag, ChevronRight, ChevronLeft, Share2 } from "lucide-react";
 import { shareProduct } from "@/lib/share";
-import { useCart, formatBRL } from "@/contexts/CartContext";
+import { useCartActions, formatBRL } from "@/contexts/CartContext";
 
 // Rosas
 import rosP2 from "@/assets/catalog/ros-p2.jpg";
@@ -45,13 +45,13 @@ import fcP20 from "@/assets/catalog/fc-p20.jpg";
 import fcP21 from "@/assets/catalog/fc-p21.jpg";
 import fcP22 from "@/assets/catalog/fc-p22.jpg";
 // Pelúcias
-import pelucia1 from "@/assets/pelucias-new/p1.png";
-import pelucia2 from "@/assets/pelucias-new/p2.png";
-import pelucia3 from "@/assets/pelucias-new/p3.png";
-import pelucia4 from "@/assets/pelucias-new/p4.png";
-import pelucia5 from "@/assets/pelucias-new/p5.png";
-import pelucia6 from "@/assets/pelucias-new/p6.png";
-import pelucia7 from "@/assets/pelucias-new/p7.png";
+import pelucia1Asset from "@/assets/pelucias-new/p1.webp.asset.json";
+import pelucia2Asset from "@/assets/pelucias-new/p2.webp.asset.json";
+import pelucia3Asset from "@/assets/pelucias-new/p3.webp.asset.json";
+import pelucia4Asset from "@/assets/pelucias-new/p4.webp.asset.json";
+import pelucia5Asset from "@/assets/pelucias-new/p5.webp.asset.json";
+import pelucia6Asset from "@/assets/pelucias-new/p6.webp.asset.json";
+import pelucia7Asset from "@/assets/pelucias-new/p7.webp.asset.json";
 import pelucia8 from "@/assets/pelucias-new/p8-doce-coracao.jpg";
 import pelucia9 from "@/assets/pelucias-new/p9-vestidinho.jpg";
 import pelucia10 from "@/assets/pelucias-new/p10-rosa-cetim.jpg";
@@ -60,7 +60,7 @@ import pelucia12 from "@/assets/pelucias-new/p12-coelho.jpg";
 import pelucia13 from "@/assets/pelucias-new/p13-canguru.jpg";
 import pelucia14 from "@/assets/pelucias-new/p14-menta.jpg";
 import pelucia15 from "@/assets/pelucias-new/p15-listrada.jpg";
-import { useState } from "react";
+import { memo, useState } from "react";
 // Coroas
 import coroa1 from "@/assets/coroas/c15.jpg";
 import coroa2 from "@/assets/coroas/c16.jpg";
@@ -147,6 +147,14 @@ const refreshedImage = (productId: string, fallback: string) => {
   const entry = Object.entries(catalogRefreshModules).find(([path]) => path.includes(`/${productId}.`) && path.endsWith(".asset.json"));
   return entry?.[1].default.url ?? fallback;
 };
+
+const pelucia1 = pelucia1Asset.url;
+const pelucia2 = pelucia2Asset.url;
+const pelucia3 = pelucia3Asset.url;
+const pelucia4 = pelucia4Asset.url;
+const pelucia5 = pelucia5Asset.url;
+const pelucia6 = pelucia6Asset.url;
+const pelucia7 = pelucia7Asset.url;
 
 type SizeKey = string;
 type SizeOption = { key: SizeKey; label: string; price: number; short?: string };
@@ -395,8 +403,8 @@ const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
 
 
 
-function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
-  const { add } = useCart();
+const Card = memo(function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
+  const { add } = useCartActions();
   const [size, setSize] = useState<SizeOption | null>(p.sizes ? p.sizes[0] : null);
   const currentPrice = size ? size.price : p.price;
   const shouldHidePrice = hidePrice || p.hidePrice;
@@ -413,14 +421,14 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
     }
   };
   return (
-    <div className="group flex h-full flex-col bg-product-surface rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1.5 border border-border/60">
+    <div className="group flex h-full flex-col bg-product-surface rounded-2xl overflow-hidden shadow-soft md:hover:shadow-elegant transition-shadow duration-300 border border-border/60">
       <div className="relative aspect-[4/5] overflow-hidden bg-product-surface">
         <img
           src={p.img}
           alt={p.name}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-contain bg-product-surface group-hover:scale-105 transition-transform duration-700"
+          className="h-full w-full object-contain bg-product-surface md:group-hover:scale-[1.03] transition-transform duration-300"
         />
         {p.tag && (
           <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest bg-gold/95 text-white px-3 py-1 rounded-full shadow-soft">
@@ -488,7 +496,7 @@ function Card({ p, hidePrice }: { p: Product; hidePrice?: boolean }) {
       </div>
     </div>
   );
-}
+});
 
 type CategoryDef = {
   id: string;
@@ -523,7 +531,7 @@ const CATEGORIES: CategoryDef[] = [
 
 function CategoryNav() {
   return (
-    <div className="fixed left-0 right-0 top-[104px] md:top-[164px] z-30 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+    <div className="fixed left-0 right-0 top-[104px] md:top-[164px] z-30 bg-background/95 md:backdrop-blur-md border-b border-border/40 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-2.5 overflow-x-auto">
         <ul className="flex items-center gap-1 md:gap-2 justify-start md:justify-center min-w-max">
           {CATEGORIES.map((c) => (
@@ -545,7 +553,7 @@ function CategoryNav() {
 
 function Category({ c }: { c: CategoryDef }) {
   return (
-    <section id={c.slug} className="py-10 md:py-14 scroll-mt-[220px]" style={{ contentVisibility: "auto", containIntrinsicSize: "1200px" }}>
+    <section id={c.slug} className={`${c.tinted ? "bg-blush/30" : ""} py-10 md:py-14 scroll-mt-[220px]`} style={{ contentVisibility: "auto", containIntrinsicSize: "auto 1200px" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
           <div className="flex items-center gap-3">
@@ -574,8 +582,8 @@ function Category({ c }: { c: CategoryDef }) {
   );
 }
 
-function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; index: number }) {
-  const { add } = useCart();
+const CartaoCard = memo(function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; index: number }) {
+  const { add } = useCartActions();
   const [open, setOpen] = useState(false);
   const price = 11.9;
   const id = `cartao-${index + 1}`;
@@ -589,13 +597,7 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
           decoding="async"
           className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
         />
-        <img
-          src={pair.open}
-          alt={`Cartão ${index + 1} aberto`}
-          loading="lazy"
-          decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
-        />
+        {open && <img src={pair.open} alt={`Cartão ${index + 1} aberto`} decoding="async" className="absolute inset-0 h-full w-full object-contain bg-product-surface" />}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -635,7 +637,7 @@ function CartaoCard({ pair, index }: { pair: { closed: string; open: string }; i
       </div>
     </div>
   );
-}
+});
 
 function Cartoes() {
   return (
@@ -662,8 +664,8 @@ function Cartoes() {
   );
 }
 
-function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: string }; index: number }) {
-  const { add } = useCart();
+const CartaoGrandeCard = memo(function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: string }; index: number }) {
+  const { add } = useCartActions();
   const [open, setOpen] = useState(false);
   const price = 21.9;
   const id = `cartao-grande-${index + 1}`;
@@ -677,13 +679,7 @@ function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: strin
           decoding="async"
           className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-0" : "opacity-100"}`}
         />
-        <img
-          src={pair.open}
-          alt={`Cartão grande ${index + 1} aberto`}
-          loading="lazy"
-          decoding="async"
-          className={`absolute inset-0 h-full w-full object-contain bg-product-surface transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
-        />
+        {open && <img src={pair.open} alt={`Cartão grande ${index + 1} aberto`} decoding="async" className="absolute inset-0 h-full w-full object-contain bg-product-surface" />}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -723,7 +719,7 @@ function CartaoGrandeCard({ pair, index }: { pair: { closed: string; open: strin
       </div>
     </div>
   );
-}
+});
 
 function CartoesGrandes() {
   if (!cartoesGrandesPairs.length) return null;
@@ -755,7 +751,7 @@ function CartoesGrandes() {
 
 
 function PremiumCoroa() {
-  const { add } = useCart();
+  const { add } = useCartActions();
   const premium = {
     id: "cor-premium-luxo",
     name: "Coroa de Flores Luxo White Premium",
@@ -822,13 +818,7 @@ export function Products() {
     <div id="produtos">
       <CategoryNav />
       {CATEGORIES.map((c) => {
-        const node = c.tinted ? (
-          <div key={c.id} className="bg-blush/30">
-            <Category c={c} />
-          </div>
-        ) : (
-          <Category key={c.id} c={c} />
-        );
+        const node = <Category key={c.id} c={c} />;
         if (c.id === "coroas") {
           return (
             <div key={c.id}>

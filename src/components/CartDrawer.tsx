@@ -6,14 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
-import pelucia1 from "@/assets/pelucias-new/p6.png";
-import pelucia4 from "@/assets/pelucias-new/p1.png";
+import pelucia1Asset from "@/assets/pelucias-new/p6.webp.asset.json";
+import pelucia4Asset from "@/assets/pelucias-new/p1.webp.asset.json";
 
 
 const UPSellSUGGESTIONS = [
   { id: "cho-1", name: "Ferrero Rocher", img: chocoFerrero, price: 65, phrase: "Um toque de doçura premium" },
-  { id: "pel-1", name: "Ursa Creme Coração Bordado", img: pelucia4, price: 150, phrase: "Um abraço de pelúcia para acompanhar" },
-  { id: "pel-6-mini", name: "Urso Eu Te Amo", img: pelucia1, price: 480, phrase: "Diga \"te amo\" sem usar palavras" },
+  { id: "pel-1", name: "Ursa Creme Coração Bordado", img: pelucia4Asset.url, price: 150, phrase: "Um abraço de pelúcia para acompanhar" },
+  { id: "pel-6-mini", name: "Urso Eu Te Amo", img: pelucia1Asset.url, price: 480, phrase: "Diga \"te amo\" sem usar palavras" },
 ];
 
 export function CartDrawer() {

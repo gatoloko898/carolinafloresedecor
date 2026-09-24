@@ -18,7 +18,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-9 md:top-9 left-0 right-0 z-40 bg-background/95 backdrop-blur-md shadow-sm">
+    <header className="fixed top-9 md:top-9 left-0 right-0 z-40 bg-background/95 md:backdrop-blur-md shadow-sm">
       {/* Top row: logo + search + delivery + help + cart */}
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4 flex items-center gap-3 md:gap-6">
         <a href="#" className="flex items-center gap-2 shrink-0">
