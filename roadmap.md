@@ -1,1 +1,2 @@
 - [x] Voltar todas as fotos do catálogo exatamente ao estado anterior, sem fundos gerados por IA.
+- [x] Descompactar Pictures171.zip e distribuir as 34 fotos entre Rosas, Girassóis, Flores do Campo e Kits.

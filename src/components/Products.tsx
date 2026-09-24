@@ -141,6 +141,13 @@ const cestasNovasUrls = Object.entries(cestasNovasModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
 
+// Fotos atualizadas enviadas pela cliente, organizadas pelo produto original.
+const catalogRefreshModules = import.meta.glob("@/assets/catalog-refresh/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const refreshedImage = (productId: string, fallback: string) => {
+  const entry = Object.entries(catalogRefreshModules).find(([path]) => path.endsWith(`/${productId}.png.asset.json`));
+  return entry?.[1].default.url ?? fallback;
+};
+
 type SizeKey = string;
 type SizeOption = { key: SizeKey; label: string; price: number; short?: string };
 
@@ -156,42 +163,42 @@ type Product = {
 };
 
 const rosasRaw: Product[] = [
-  { id: "ros-p2", img: rosP2, name: "Buquê Rosa Unitária", price: 50 },
-  { id: "ros-p3", img: rosP3, name: "Buquê Duas Rosas", price: 70 },
-  { id: "ros-p4", img: rosP4, name: "Buquê Três Rosas", price: 100 },
-  { id: "ros-p5", img: rosP5, name: "Buquê Rosas Rosê", price: 100 },
-  { id: "ros-p6", img: rosP6, name: "Buquê Fino Amor", price: 140 },
-  { id: "ros-p7", img: rosP7, name: "Buquê Compacto Seis Rosas", price: 170 },
-  { id: "ros-p8", img: rosP8, name: "Buquê Rosas Encanto Dourado", price: 180 },
-  { id: "ros-p10", img: rosP10, name: "Buquê Rosas Clássico (12 Rosas Vermelhas)", price: 280 },
-  { id: "ros-p13", img: rosP13, name: "Flower Box de Rosas Romance", price: 289, tag: "Especial" },
-  { id: "ros-p11", img: rosP11, name: "Buquê Tradicional Doze Rosas Vermelhas", price: 299 },
+  { id: "ros-p2", img: refreshedImage("ros-p2", rosP2), name: "Buquê Rosa Unitária", price: 50 },
+  { id: "ros-p3", img: refreshedImage("ros-p3", rosP3), name: "Buquê Duas Rosas", price: 70 },
+  { id: "ros-p4", img: refreshedImage("ros-p4", rosP4), name: "Buquê Três Rosas", price: 100 },
+  { id: "ros-p5", img: refreshedImage("ros-p5", rosP5), name: "Buquê Rosas Rosê", price: 100 },
+  { id: "ros-p6", img: refreshedImage("ros-p6", rosP6), name: "Buquê Fino Amor", price: 140 },
+  { id: "ros-p7", img: refreshedImage("ros-p7", rosP7), name: "Buquê Compacto Seis Rosas", price: 170 },
+  { id: "ros-p8", img: refreshedImage("ros-p8", rosP8), name: "Buquê Rosas Encanto Dourado", price: 180 },
+  { id: "ros-p10", img: refreshedImage("ros-p10", rosP10), name: "Buquê Rosas Clássico (12 Rosas Vermelhas)", price: 280 },
+  { id: "ros-p13", img: refreshedImage("ros-p13", rosP13), name: "Flower Box de Rosas Romance", price: 289, tag: "Especial" },
+  { id: "ros-p11", img: refreshedImage("ros-p11", rosP11), name: "Buquê Tradicional Doze Rosas Vermelhas", price: 299 },
   { id: "ros-p12", img: rosP12, name: "Buquê Grande Premium de Rosas Vermelhas", price: 330 },
 ];
 
 const girassoisRaw: Product[] = [
-  { id: "gir-p2", img: girP2, name: "Buquê Girassol Unitário", price: 40 },
-  { id: "gir-p3", img: girP3, name: "Buquê Dois Girassóis", price: 80 },
-  { id: "gir-p4", img: girP4, name: "Buquê Girassol Estilo Jornal", price: 120 },
-  { id: "gir-p5", img: girP5, name: "Buquê Quatro Girassóis", price: 160 },
-  { id: "gir-p8", img: girP8, name: "Buquê Girassóis e Paixão", price: 220 },
-  { id: "gir-p9", img: girP9, name: "Buquê Girassol e Rosas Azuis", price: 250 },
-  { id: "gir-p10", img: girP10, name: "Buquê Girassol Rústico", price: 250 },
-  { id: "gir-p11", img: girP11, name: "Buquê Girassol Tradicional", price: 270 },
-  { id: "gir-p13", img: girP13, name: "Buquê Girassóis e Ruskus", price: 379 },
-  { id: "gir-p12", img: girP12, name: "Buquê Girassol Premium", price: 399 },
+  { id: "gir-p2", img: refreshedImage("gir-p2", girP2), name: "Buquê Girassol Unitário", price: 40 },
+  { id: "gir-p3", img: refreshedImage("gir-p3", girP3), name: "Buquê Dois Girassóis", price: 80 },
+  { id: "gir-p4", img: refreshedImage("gir-p4", girP4), name: "Buquê Girassol Estilo Jornal", price: 120 },
+  { id: "gir-p5", img: refreshedImage("gir-p5", girP5), name: "Buquê Quatro Girassóis", price: 160 },
+  { id: "gir-p8", img: refreshedImage("gir-p8", girP8), name: "Buquê Girassóis e Paixão", price: 220 },
+  { id: "gir-p9", img: refreshedImage("gir-p9", girP9), name: "Buquê Girassol e Rosas Azuis", price: 250 },
+  { id: "gir-p10", img: refreshedImage("gir-p10", girP10), name: "Buquê Girassol Rústico", price: 250 },
+  { id: "gir-p11", img: refreshedImage("gir-p11", girP11), name: "Buquê Girassol Tradicional", price: 270 },
+  { id: "gir-p13", img: refreshedImage("gir-p13", girP13), name: "Buquê Girassóis e Ruskus", price: 379 },
+  { id: "gir-p12", img: refreshedImage("gir-p12", girP12), name: "Buquê Girassol Premium", price: 399 },
 ];
 
 const floresCampoRaw: Product[] = [
-  { id: "fc-p3", img: fcP3, name: "Buquê Flores do Campo Encanto", price: 229 },
-  { id: "fc-p6", img: fcP6, name: "Flower Box Pequeno Encanto", price: 229 },
-  { id: "fc-p12", img: fcP12, name: "Flower Box Rústico Fino", price: 279 },
-  { id: "fc-p7", img: fcP7, name: "Buquê Girassóis de Campo", price: 289 },
-  { id: "fc-p15", img: fcP15, name: "Flower Box Rainbow", price: 289 },
-  { id: "fc-p16", img: fcP16, name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
-  { id: "fc-p11", img: fcP11, name: "Flower Box Clássico", price: 299 },
-  { id: "fc-p19", img: fcP19, name: "Buquê Grande de Flores do Campo", price: 329 },
-  { id: "fc-p22", img: fcP22, name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
+  { id: "fc-p3", img: refreshedImage("fc-p3", fcP3), name: "Buquê Flores do Campo Encanto", price: 229 },
+  { id: "fc-p6", img: refreshedImage("fc-p6", fcP6), name: "Flower Box Pequeno Encanto", price: 229 },
+  { id: "fc-p12", img: refreshedImage("fc-p12", fcP12), name: "Flower Box Rústico Fino", price: 279 },
+  { id: "fc-p7", img: refreshedImage("fc-p7", fcP7), name: "Buquê Girassóis de Campo", price: 289 },
+  { id: "fc-p15", img: refreshedImage("fc-p15", fcP15), name: "Flower Box Rainbow", price: 289 },
+  { id: "fc-p16", img: refreshedImage("fc-p16", fcP16), name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
+  { id: "fc-p11", img: refreshedImage("fc-p11", fcP11), name: "Flower Box Clássico", price: 299 },
+  { id: "fc-p19", img: refreshedImage("fc-p19", fcP19), name: "Buquê Grande de Flores do Campo", price: 329 },
+  { id: "fc-p22", img: refreshedImage("fc-p22", fcP22), name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
 ];
 
 const CESTA_NOMES = [
@@ -221,11 +228,11 @@ const cestasRaw: Product[] = [
 ];
 
 const kitsRaw: Product[] = [
-  { id: "gir-p6", img: girP6, name: "Kit Girassol e Ferrero Rocher", price: 185 },
-  { id: "fc-p21", img: fcP21, name: "Kit Buquê Colorido e Ferrero Rocher", price: 249 },
-  { id: "ros-p9", img: rosP9, name: "Buquê de rosas com Ferrero Rocher", price: 265, tag: "Apaixonados" },
-  { id: "fc-p20", img: fcP20, name: "Kit Alstroemérias e Ferrero Rocher", price: 299 },
-  { id: "fc-p9", img: fcP9, name: "Kit Flower Box Rústico Fino e Ferrero Rocher", price: 344 },
+  { id: "gir-p6", img: refreshedImage("gir-p6", girP6), name: "Kit Girassol e Ferrero Rocher", price: 185 },
+  { id: "fc-p21", img: refreshedImage("fc-p21", fcP21), name: "Kit Buquê Colorido e Ferrero Rocher", price: 249 },
+  { id: "ros-p9", img: refreshedImage("ros-p9", rosP9), name: "Buquê de rosas com Ferrero Rocher", price: 265, tag: "Apaixonados" },
+  { id: "fc-p20", img: refreshedImage("fc-p20", fcP20), name: "Kit Alstroemérias e Ferrero Rocher", price: 299 },
+  { id: "fc-p9", img: refreshedImage("fc-p9", fcP9), name: "Kit Flower Box Rústico Fino e Ferrero Rocher", price: 344 },
 ];
 
 const peluciasRaw: Product[] = [
