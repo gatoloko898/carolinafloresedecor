@@ -1,3 +1,4 @@
 - [x] Voltar todas as fotos do catálogo exatamente ao estado anterior, sem fundos gerados por IA.
 - [x] Descompactar Pictures171.zip e distribuir as 34 fotos entre Rosas, Girassóis, Flores do Campo e Kits.
 - [x] Atualizar a foto do Buquê Quatro Girassóis e corrigir a caixa de bombom para R$ 149,00.
+- [x] Otimizar imagens, cartões e atualizações do carrinho para deixar a loja mais fluida.
