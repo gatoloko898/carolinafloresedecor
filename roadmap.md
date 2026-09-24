@@ -1,2 +1,1 @@
-- [ ] Refazer fundos brancos com IA preservando produto, embrulho, cabos, hastes e todas as extremidades completas.
-- [ ] Voltar todas as fotos do catálogo exatamente ao estado anterior, sem fundos gerados por IA.
+- [x] Voltar todas as fotos do catálogo exatamente ao estado anterior, sem fundos gerados por IA.
