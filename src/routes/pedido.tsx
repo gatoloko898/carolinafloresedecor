@@ -94,6 +94,20 @@ function PedidoPage() {
       `Total pago: ${formatBRL(pedido?.total_centavos ?? 0)}`
     );
   };
+  const whatsappUrl = paid
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem())}`
+    : undefined;
+
+  useEffect(() => {
+    if (!whatsappUrl || !pedido?.order_nsu) return;
+    const redirectKey = `carolina-whatsapp-${pedido.order_nsu}`;
+    if (sessionStorage.getItem(redirectKey)) return;
+    sessionStorage.setItem(redirectKey, "1");
+    const timer = window.setTimeout(() => {
+      window.location.href = whatsappUrl;
+    }, 1200);
+    return () => window.clearTimeout(timer);
+  }, [pedido?.order_nsu, whatsappUrl]);
 
   return (
     <main className="min-h-screen bg-background px-6 py-20">
@@ -123,7 +137,7 @@ function PedidoPage() {
               </div>
               <p className="mt-2 text-xs">
                 {paid
-                  ? "Agora é só enviar os detalhes para a loja pelo WhatsApp."
+                  ? "Abrindo o WhatsApp com os detalhes do pedido..."
                   : "Assim que o pagamento for aprovado, o botão do WhatsApp será liberado automaticamente."}
               </p>
             </div>
@@ -147,7 +161,7 @@ function PedidoPage() {
             </div>
 
             <a
-              href={paid ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem())}` : undefined}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-disabled={!paid}
