@@ -144,7 +144,7 @@ const cestasNovasUrls = Object.entries(cestasNovasModules)
 // Fotos atualizadas enviadas pela cliente, organizadas pelo produto original.
 const catalogRefreshModules = import.meta.glob("@/assets/catalog-refresh/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const refreshedImage = (productId: string, fallback: string) => {
-  const entry = Object.entries(catalogRefreshModules).find(([path]) => path.endsWith(`/${productId}.png.asset.json`));
+  const entry = Object.entries(catalogRefreshModules).find(([path]) => path.includes(`/${productId}.`) && path.endsWith(".asset.json"));
   return entry?.[1].default.url ?? fallback;
 };
 
@@ -384,7 +384,7 @@ const CHOCOLATES_INFO: { name: string; price: number }[] = [
   { name: "Suflair", price: 20 },
   { name: "KitKat", price: 12.9 },
   { name: "Kinder Bueno", price: 12.9 },
-  { name: "Chocolate Premium Lindt", price: 300 },
+  { name: "Chocolate Premium Lindt", price: 149 },
 ];
 const chocolates: Product[] = chocolatesUrls.map((url, i) => ({
   id: `choc-${i + 1}`,
