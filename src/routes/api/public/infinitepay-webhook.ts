@@ -90,12 +90,15 @@ export const Route = createFileRoute("/api/public/infinitepay-webhook")({
             .eq("order_nsu", orderNsu)
             .maybeSingle();
 
+          if (!pedido) return new Response("pedido não encontrado", { status: 404 });
+          if (pedido.status === "pago") return new Response("ok (já confirmado)", { status: 200 });
+
           await supabaseAdmin
             .from("pedidos")
             .update({ status: "pago", paid_at: new Date().toISOString() })
             .eq("order_nsu", orderNsu);
 
-          const itens = Array.isArray(pedido?.itens) ? (pedido!.itens as any[]) : [];
+          const itens = Array.isArray(pedido.itens) ? (pedido.itens as any[]) : [];
           const lista = itens
             .map((i) => `• ${i.name} — ${i.quantity}x — ${formatBRL(i.price * i.quantity)}`)
             .join("\n");

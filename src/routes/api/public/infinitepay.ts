@@ -20,6 +20,9 @@ export const Route = createFileRoute("/api/public/infinitepay")({
         try {
           const body = (await request.json()) as any;
           const { handle, order_nsu, items, customer, redirect_url } = body ?? {};
+          const webhookToken = process.env.INFINITEPAY_WEBHOOK_TOKEN;
+          const webhookUrl = new URL("/api/public/infinitepay-webhook", request.url);
+          if (webhookToken) webhookUrl.searchParams.set("token", webhookToken);
 
           if (!handle || !order_nsu || !Array.isArray(items) || items.length === 0) {
             return json({ error: "Parâmetros inválidos: handle, order_nsu e items são obrigatórios." }, 400);
@@ -38,6 +41,7 @@ export const Route = createFileRoute("/api/public/infinitepay")({
               handle,
               order_nsu,
               items,
+              webhook_url: webhookUrl.toString(),
               ...(typeof redirect_url === "string" && redirect_url.startsWith("http")
                 ? { redirect_url }
                 : {}),
