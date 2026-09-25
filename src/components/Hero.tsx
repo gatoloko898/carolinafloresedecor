@@ -18,18 +18,18 @@ export function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/50 to-transparent" />
 
-            <div className="relative z-10 h-full flex items-center px-6 md:px-16">
+            <div className="relative z-10 h-full flex items-start pt-16 px-6 md:items-center md:pt-0 md:px-16">
               <div className="max-w-xl animate-fade-up">
-                <p className="font-script text-2xl md:text-3xl text-rose-deep">Carolina Flores & Decor</p>
-                <h1 className="text-4xl md:text-6xl font-light leading-[1.05] text-foreground mt-2">
+                <p className="font-script text-2xl md:text-3xl text-rose-deep">Carolina Flores</p>
+                <h1 className="text-3xl md:text-6xl font-light leading-[1.05] text-foreground mt-1 md:mt-2">
                   Transformando<br />
-                  <span className="font-script text-rose-deep text-5xl md:text-7xl">sentimentos</span><br />
-                  em Flores 🌷
+                  <span className="font-script text-rose-deep text-4xl md:text-7xl">sentimentos</span><br />
+                  em Flores
                 </h1>
-                <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-md">
+                <p className="mt-3 md:mt-5 text-sm md:text-lg text-muted-foreground max-w-md">
                   Buquês exclusivos, presentes inesquecíveis e decoração feita com amor.
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-5 md:mt-8 flex flex-wrap gap-4">
                   <a
                     href="#produtos"
                     className="inline-flex items-center justify-center rounded-full bg-rose-deep px-8 py-3.5 text-sm font-medium text-white shadow-soft hover:shadow-elegant transition-all hover:-translate-y-0.5"
@@ -37,7 +37,7 @@ export function Hero() {
                     Ver Buquês
                   </a>
                 </div>
-                <p className="mt-6 text-xs md:text-sm text-gold font-semibold uppercase tracking-wider">
+                <p className="mt-3 md:mt-6 text-xs md:text-sm text-gold font-semibold uppercase tracking-wider">
                   ✨ PEÇA HOJE E RECEBA NO MESMO DIA
                 </p>
               </div>

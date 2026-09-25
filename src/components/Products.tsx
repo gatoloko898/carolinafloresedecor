@@ -175,7 +175,7 @@ type Product = {
 
 const rosasRaw: Product[] = [
   { id: "ros-p2", img: refreshedImage("ros-p2", rosP2), name: "Buquê Rosa Unitária", price: 50 },
-  { id: "ros-p3", img: refreshedImage("ros-p3", rosP3), name: "Buquê Duas Rosas", price: 70, imageScale: 1.28 },
+  { id: "ros-p3", img: refreshedImage("ros-p3", rosP3), name: "Buquê Duas Rosas", price: 70, imageScale: 1.55 },
   { id: "ros-p4", img: refreshedImage("ros-p4", rosP4), name: "Buquê Três Rosas", price: 100 },
   { id: "ros-p5", img: refreshedImage("ros-p5", rosP5), name: "Buquê Rosas Rosê", price: 100 },
   { id: "ros-p6", img: refreshedImage("ros-p6", rosP6), name: "Buquê Fino Amor", price: 140 },
