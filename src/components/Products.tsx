@@ -71,10 +71,12 @@ import coroa6 from "@/assets/coroas/c20.jpg";
 import coroa7 from "@/assets/coroas/c21.jpg";
 import coroa8 from "@/assets/coroas/c22.jpg";
 import coroaPremium from "@/assets/coroas/premium-luxo.png.asset.json";
+import rosa11PapelCorrigido from "@/assets/catalog-edits/ros-p12-paper.jpg";
+import girassol7Realista from "@/assets/catalog-edits/gir-p10-realistic.png";
 import { Sparkles } from "lucide-react";
 
 // Vasos
-const vasosModules = import.meta.glob("@/assets/vasos/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
+const vasosModules = import.meta.glob("@/assets/white-bg-upload/vasos/*.asset.json", { eager: true }) as Record<string, { default: { url: string } }>;
 const vasosUrls = Object.entries(vasosModules)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, m]) => m.default.url);
@@ -168,30 +170,31 @@ type Product = {
   description?: string;
   sizes?: SizeOption[];
   hidePrice?: boolean;
+  imageScale?: number;
 };
 
 const rosasRaw: Product[] = [
   { id: "ros-p2", img: refreshedImage("ros-p2", rosP2), name: "Buquê Rosa Unitária", price: 50 },
-  { id: "ros-p3", img: refreshedImage("ros-p3", rosP3), name: "Buquê Duas Rosas", price: 70 },
+  { id: "ros-p3", img: refreshedImage("ros-p3", rosP3), name: "Buquê Duas Rosas", price: 70, imageScale: 1.28 },
   { id: "ros-p4", img: refreshedImage("ros-p4", rosP4), name: "Buquê Três Rosas", price: 100 },
   { id: "ros-p5", img: refreshedImage("ros-p5", rosP5), name: "Buquê Rosas Rosê", price: 100 },
   { id: "ros-p6", img: refreshedImage("ros-p6", rosP6), name: "Buquê Fino Amor", price: 140 },
   { id: "ros-p7", img: refreshedImage("ros-p7", rosP7), name: "Buquê Compacto Seis Rosas", price: 170 },
   { id: "ros-p8", img: refreshedImage("ros-p8", rosP8), name: "Buquê Rosas Encanto Dourado", price: 180 },
   { id: "ros-p10", img: refreshedImage("ros-p10", rosP10), name: "Buquê Rosas Clássico (12 Rosas Vermelhas)", price: 280 },
-  { id: "ros-p13", img: refreshedImage("ros-p13", rosP13), name: "Flower Box de Rosas Romance", price: 289, tag: "Especial" },
+  { id: "ros-p13", img: refreshedImage("ros-p13", rosP13), name: "Flower Box de Rosas Romance", price: 289, tag: "Especial", imageScale: 1.18 },
   { id: "ros-p11", img: refreshedImage("ros-p11", rosP11), name: "Buquê Tradicional Doze Rosas Vermelhas", price: 299 },
-  { id: "ros-p12", img: rosP12, name: "Buquê Grande Premium de Rosas Vermelhas", price: 330 },
+  { id: "ros-p12", img: rosa11PapelCorrigido, name: "Buquê Grande Premium de Rosas Vermelhas", price: 330, imageScale: 1.08 },
 ];
 
 const girassoisRaw: Product[] = [
   { id: "gir-p2", img: refreshedImage("gir-p2", girP2), name: "Buquê Girassol Unitário", price: 40 },
   { id: "gir-p3", img: refreshedImage("gir-p3", girP3), name: "Buquê Dois Girassóis", price: 80 },
-  { id: "gir-p4", img: refreshedImage("gir-p4", girP4), name: "Buquê Girassol Estilo Jornal", price: 120 },
+  { id: "gir-p4", img: refreshedImage("gir-p4", girP4), name: "Buquê Girassol Estilo Jornal", price: 120, imageScale: 1.2 },
   { id: "gir-p5", img: refreshedImage("gir-p5", girP5), name: "Buquê Quatro Girassóis", price: 160 },
   { id: "gir-p8", img: refreshedImage("gir-p8", girP8), name: "Buquê Girassóis e Paixão", price: 220 },
-  { id: "gir-p9", img: refreshedImage("gir-p9", girP9), name: "Buquê Girassol e Rosas Azuis", price: 250 },
-  { id: "gir-p10", img: refreshedImage("gir-p10", girP10), name: "Buquê Girassol Rústico", price: 250 },
+  { id: "gir-p9", img: refreshedImage("gir-p9", girP9), name: "Buquê Girassol e Rosas Azuis", price: 250, imageScale: 1.17 },
+  { id: "gir-p10", img: girassol7Realista, name: "Buquê Girassol Rústico", price: 250 },
   { id: "gir-p11", img: refreshedImage("gir-p11", girP11), name: "Buquê Girassol Tradicional", price: 270 },
   { id: "gir-p13", img: refreshedImage("gir-p13", girP13), name: "Buquê Girassóis e Ruskus", price: 379 },
   { id: "gir-p12", img: refreshedImage("gir-p12", girP12), name: "Buquê Girassol Premium", price: 399 },
@@ -199,13 +202,13 @@ const girassoisRaw: Product[] = [
 
 const floresCampoRaw: Product[] = [
   { id: "fc-p3", img: refreshedImage("fc-p3", fcP3), name: "Buquê Flores do Campo Encanto", price: 229 },
-  { id: "fc-p6", img: refreshedImage("fc-p6", fcP6), name: "Flower Box Pequeno Encanto", price: 229 },
-  { id: "fc-p12", img: refreshedImage("fc-p12", fcP12), name: "Flower Box Rústico Fino", price: 279 },
-  { id: "fc-p7", img: refreshedImage("fc-p7", fcP7), name: "Buquê Girassóis de Campo", price: 289 },
-  { id: "fc-p15", img: refreshedImage("fc-p15", fcP15), name: "Flower Box Rainbow", price: 289 },
+  { id: "fc-p6", img: refreshedImage("fc-p6", fcP6), name: "Flower Box Pequeno Encanto", price: 229, imageScale: 1.18 },
+  { id: "fc-p12", img: refreshedImage("fc-p12", fcP12), name: "Flower Box Rústico Fino", price: 279, imageScale: 1.2 },
+  { id: "fc-p7", img: refreshedImage("fc-p7", fcP7), name: "Buquê Girassóis de Campo", price: 289, imageScale: 1.14 },
+  { id: "fc-p15", img: refreshedImage("fc-p15", fcP15), name: "Flower Box Rainbow", price: 289, imageScale: 1.16 },
   { id: "fc-p16", img: refreshedImage("fc-p16", fcP16), name: "Buquê Flores do Campo com Flores Nobres", price: 299 },
-  { id: "fc-p11", img: refreshedImage("fc-p11", fcP11), name: "Flower Box Clássico", price: 299 },
-  { id: "fc-p19", img: refreshedImage("fc-p19", fcP19), name: "Buquê Grande de Flores do Campo", price: 329 },
+  { id: "fc-p11", img: refreshedImage("fc-p11", fcP11), name: "Flower Box Clássico", price: 299, imageScale: 1.18 },
+  { id: "fc-p19", img: refreshedImage("fc-p19", fcP19), name: "Buquê Grande de Flores do Campo", price: 329, imageScale: 1.22 },
   { id: "fc-p22", img: refreshedImage("fc-p22", fcP22), name: "Buquê Flores do Campo Rosa e Sol", price: 349 },
 ];
 
@@ -428,7 +431,8 @@ const Card = memo(function Card({ p, hidePrice }: { p: Product; hidePrice?: bool
           alt={p.name}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-contain bg-product-surface md:group-hover:scale-[1.03] transition-transform duration-300"
+          className="h-full w-full object-contain bg-product-surface transition-transform duration-300"
+          style={{ transform: `scale(${p.imageScale ?? 1})` }}
         />
         {p.tag && (
           <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest bg-gold/95 text-white px-3 py-1 rounded-full shadow-soft">

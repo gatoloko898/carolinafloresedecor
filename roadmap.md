@@ -4,3 +4,4 @@
 - [x] Otimizar imagens, cartões e atualizações do carrinho para deixar a loja mais fluida.
 - [x] Restaurar as coroas 1, 6 e 8 inteiras e encaminhar o pedido ao WhatsApp após o pagamento.
 - [x] Adicionar destinatário, endereço e mensagem opcional do cartão ao pedido completo enviado automaticamente pelo WhatsApp.
+- [x] Aproximar fotos indicadas de rosas, girassóis e flores do campo; corrigir rosa 11 e girassol 7; deixar vasos com fundo branco.
