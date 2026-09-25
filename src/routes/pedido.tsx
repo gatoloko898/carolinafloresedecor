@@ -8,6 +8,9 @@ type Pedido = {
   found: boolean;
   order_nsu?: string;
   cliente?: string;
+  destinatario?: string | null;
+  endereco_entrega?: string | null;
+  mensagem_cartao?: string | null;
   cidade?: string | null;
   estado?: string | null;
   data_entrega?: string | null;
@@ -87,9 +90,12 @@ function PedidoPage() {
     return (
       `Olá! Meu pagamento foi confirmado ✅\n\n` +
       `Pedido: ${pedido?.order_nsu ?? "-"}\n` +
-      `Nome: ${pedido?.cliente ?? "-"}\n` +
+      `Cliente: ${pedido?.cliente ?? "-"}\n` +
+      `Quem vai receber: ${pedido?.destinatario ?? "-"}\n` +
+      `Endereço: ${pedido?.endereco_entrega ?? "-"}\n` +
       `Cidade/Estado: ${pedido?.cidade ?? "-"} / ${pedido?.estado ?? "-"}\n` +
-      `Data de entrega: ${pedido?.data_entrega ?? "-"} (${pedido?.periodo ?? "-"})\n\n` +
+      `Data de entrega: ${pedido?.data_entrega ?? "-"} (${pedido?.periodo ?? "-"})\n` +
+      `Mensagem do cartão: ${pedido?.mensagem_cartao || "Sem mensagem"}\n\n` +
       `Itens:\n${itens || "-"}\n\n` +
       `Total pago: ${formatBRL(pedido?.total_centavos ?? 0)}`
     );

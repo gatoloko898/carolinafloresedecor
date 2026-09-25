@@ -3,3 +3,4 @@
 - [x] Atualizar a foto do Buquê Quatro Girassóis e corrigir a caixa de bombom para R$ 149,00.
 - [x] Otimizar imagens, cartões e atualizações do carrinho para deixar a loja mais fluida.
 - [x] Restaurar as coroas 1, 6 e 8 inteiras e encaminhar o pedido ao WhatsApp após o pagamento.
+- [x] Adicionar destinatário, endereço e mensagem opcional do cartão ao pedido completo enviado automaticamente pelo WhatsApp.

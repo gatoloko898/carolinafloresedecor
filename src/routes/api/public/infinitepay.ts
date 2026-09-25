@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { checkoutSchema } from "@/lib/order-schema";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -18,21 +19,20 @@ export const Route = createFileRoute("/api/public/infinitepay")({
       OPTIONS: async () => new Response(null, { status: 204, headers: CORS }),
       POST: async ({ request }: { request: Request }) => {
         try {
-          const body = (await request.json()) as any;
-          const { handle, order_nsu, items, customer, redirect_url } = body ?? {};
+          const body = await request.json();
+          const parsed = checkoutSchema.safeParse(body);
+          if (!parsed.success) {
+            return json({ error: parsed.error.issues[0]?.message ?? "Dados do pedido inválidos." }, 400);
+          }
+          const { order_nsu, items, customer, redirect_url } = parsed.data;
+          const handle = "paulomello88";
           const webhookToken = process.env.INFINITEPAY_WEBHOOK_TOKEN;
           const webhookUrl = new URL("/api/public/infinitepay-webhook", request.url);
           if (webhookToken) webhookUrl.searchParams.set("token", webhookToken);
 
-          if (!handle || !order_nsu || !Array.isArray(items) || items.length === 0) {
-            return json({ error: "Parâmetros inválidos: handle, order_nsu e items são obrigatórios." }, 400);
-          }
-
-          for (const it of items) {
-            if (!it?.name || !it?.description || typeof it?.price !== "number" || typeof it?.quantity !== "number") {
-              return json({ error: "Cada item precisa de name, description, price (centavos) e quantity." }, 400);
-            }
-          }
+          const redirect = new URL(redirect_url);
+          const requestOrigin = new URL(request.url).origin;
+          if (redirect.origin !== requestOrigin) return json({ error: "Endereço de retorno inválido." }, 400);
 
           const res = await fetch("https://api.checkout.infinitepay.io/links", {
             method: "POST",
@@ -42,9 +42,7 @@ export const Route = createFileRoute("/api/public/infinitepay")({
               order_nsu,
               items,
               webhook_url: webhookUrl.toString(),
-              ...(typeof redirect_url === "string" && redirect_url.startsWith("http")
-                ? { redirect_url }
-                : {}),
+              redirect_url,
             }),
           });
 
@@ -68,6 +66,9 @@ export const Route = createFileRoute("/api/public/infinitepay")({
               {
                 order_nsu: String(order_nsu),
                 cliente: String(customer?.nome ?? "Cliente"),
+                destinatario: customer.destinatario,
+                endereco_entrega: customer.endereco,
+                mensagem_cartao: customer.mensagemCartao || null,
                 cidade: customer?.cidade ?? null,
                 estado: customer?.estado ?? null,
                 data_entrega: customer?.data ?? null,

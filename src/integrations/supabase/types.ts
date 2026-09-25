@@ -20,9 +20,12 @@ export type Database = {
           cliente: string
           created_at: string
           data_entrega: string | null
+          destinatario: string | null
+          endereco_entrega: string | null
           estado: string | null
           id: string
           itens: Json
+          mensagem_cartao: string | null
           order_nsu: string
           paid_at: string | null
           payment_url: string | null
@@ -35,9 +38,12 @@ export type Database = {
           cliente: string
           created_at?: string
           data_entrega?: string | null
+          destinatario?: string | null
+          endereco_entrega?: string | null
           estado?: string | null
           id?: string
           itens?: Json
+          mensagem_cartao?: string | null
           order_nsu: string
           paid_at?: string | null
           payment_url?: string | null
@@ -50,9 +56,12 @@ export type Database = {
           cliente?: string
           created_at?: string
           data_entrega?: string | null
+          destinatario?: string | null
+          endereco_entrega?: string | null
           estado?: string | null
           id?: string
           itens?: Json
+          mensagem_cartao?: string | null
           order_nsu?: string
           paid_at?: string | null
           payment_url?: string | null

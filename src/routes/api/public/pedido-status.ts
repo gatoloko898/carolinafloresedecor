@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -18,13 +19,14 @@ export const Route = createFileRoute("/api/public/pedido-status")({
       OPTIONS: async () => new Response(null, { status: 204, headers: CORS }),
       GET: async ({ request }: { request: Request }) => {
         try {
-          const nsu = new URL(request.url).searchParams.get("nsu");
-          if (!nsu) return json({ error: "nsu obrigatório" }, 400);
+          const parsedNsu = z.string().regex(/^CF-\d{10,16}-[a-z0-9]{6}$/i).safeParse(new URL(request.url).searchParams.get("nsu"));
+          if (!parsedNsu.success) return json({ error: "Pedido inválido" }, 400);
+          const nsu = parsedNsu.data;
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
           const { data } = await supabaseAdmin
             .from("pedidos")
-            .select("order_nsu, cliente, cidade, estado, data_entrega, periodo, itens, total_centavos, status, paid_at")
+            .select("order_nsu, cliente, destinatario, endereco_entrega, mensagem_cartao, cidade, estado, data_entrega, periodo, itens, total_centavos, status, paid_at")
             .eq("order_nsu", nsu)
             .maybeSingle();
 
@@ -34,6 +36,9 @@ export const Route = createFileRoute("/api/public/pedido-status")({
             found: true,
             order_nsu: data.order_nsu,
             cliente: data.cliente,
+            destinatario: data.destinatario,
+            endereco_entrega: data.endereco_entrega,
+            mensagem_cartao: data.mensagem_cartao,
             cidade: data.cidade,
             estado: data.estado,
             data_entrega: data.data_entrega,

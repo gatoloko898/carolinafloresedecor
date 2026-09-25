@@ -107,8 +107,11 @@ export const Route = createFileRoute("/api/public/infinitepay-webhook")({
             `✅ PAGAMENTO CONFIRMADO — Carolina Flores & Decor\n\n` +
             `Pedido: ${orderNsu}\n` +
             `Cliente: ${pedido?.cliente ?? "-"}\n` +
+            `Quem vai receber: ${pedido?.destinatario ?? "-"}\n` +
+            `Endereço: ${pedido?.endereco_entrega ?? "-"}\n` +
             `Cidade/Estado: ${pedido?.cidade ?? "-"} / ${pedido?.estado ?? "-"}\n` +
-            `Entrega: ${pedido?.data_entrega ?? "-"} (${pedido?.periodo ?? "-"})\n\n` +
+            `Entrega: ${pedido?.data_entrega ?? "-"} (${pedido?.periodo ?? "-"})\n` +
+            `Mensagem do cartão: ${pedido?.mensagem_cartao || "Sem mensagem"}\n\n` +
             `Itens:\n${lista || "-"}\n\n` +
             `Total pago: ${formatBRL(pedido?.total_centavos ?? 0)}`;
 
