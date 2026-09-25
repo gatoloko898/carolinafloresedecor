@@ -242,10 +242,10 @@ export function CartDrawer() {
               <div>
                 <Label>Período de entrega</Label>
                 <div className="mt-1.5 grid grid-cols-2 gap-2">
-                  {[
+                  {([
                     { v: "manha", label: "Manhã", sub: "9h às 12h" },
                     { v: "tarde", label: "Tarde", sub: "12h às 17h30" },
-                  ].map((opt) => (
+                  ] as const).map((opt) => (
                     <button
                       key={opt.v}
                       type="button"
