@@ -3,7 +3,7 @@ import heroImg from "@/assets/real-storefront.webp";
 
 export function Hero() {
   return (
-    <section className="relative pt-[208px] md:pt-[248px]">
+    <section className="relative pt-[100px] md:pt-[172px]">
       <div className="relative w-full overflow-hidden bg-gradient-to-br from-blush via-rose to-background">
         <div className="relative mx-auto max-w-[1440px]">
           <div className="relative aspect-[16/7] min-h-[320px] md:min-h-[460px]">
