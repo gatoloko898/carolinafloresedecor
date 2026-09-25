@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Gift } from "lucide-react";
 import { useCart, formatBRL } from "@/contexts/CartContext";
 import chocoFerrero from "@/assets/choco-ferrero.webp";
 import pelucia1Asset from "@/assets/pelucias-new/p6.webp.asset.json";
 import pelucia4Asset from "@/assets/pelucias-new/p1.webp.asset.json";
+import { customerSchema, type CustomerDetails } from "@/lib/order-schema";
 
 
 const UPSellSUGGESTIONS = [
@@ -33,7 +35,16 @@ export function CartDrawer() {
     total,
   } = useCart();
   const [step, setStep] = useState<"cart" | "upsell" | "checkout">("cart");
-  const [form, setForm] = useState({ nome: "", cidade: "", estado: "", data: "", periodo: "manha" });
+  const [form, setForm] = useState<CustomerDetails>({
+    nome: "",
+    destinatario: "",
+    endereco: "",
+    cidade: "",
+    estado: "",
+    data: "",
+    periodo: "manha",
+    mensagemCartao: "",
+  });
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
@@ -42,10 +53,15 @@ export function CartDrawer() {
     if (!open) setStep("cart");
   };
 
-  const canFinish = form.nome && form.cidade && form.estado && form.data && items.length > 0;
+  const canFinish = customerSchema.safeParse(form).success && items.length > 0;
 
   const finalize = async () => {
     setErro(null);
+    const parsedCustomer = customerSchema.safeParse(form);
+    if (!parsedCustomer.success) {
+      setErro(parsedCustomer.error.issues[0]?.message ?? "Revise os dados da entrega.");
+      return;
+    }
     setLoading(true);
     try {
       const orderNsu = `CF-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -68,10 +84,9 @@ export function CartDrawer() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          handle: "paulomello88",
           order_nsu: orderNsu,
           items: payloadItems,
-          customer: form,
+          customer: parsedCustomer.data,
           redirect_url: `${window.location.origin}/pedido?nsu=${encodeURIComponent(orderNsu)}`,
         }),
       });
@@ -188,8 +203,16 @@ export function CartDrawer() {
           ) : (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="nome">Nome</Label>
+                <Label htmlFor="nome">Seu nome</Label>
                 <Input id="nome" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} maxLength={100} />
+              </div>
+              <div>
+                <Label htmlFor="destinatario">Nome de quem vai receber</Label>
+                <Input id="destinatario" value={form.destinatario} onChange={(e) => setForm({ ...form, destinatario: e.target.value })} maxLength={100} />
+              </div>
+              <div>
+                <Label htmlFor="endereco">Endereço da entrega</Label>
+                <Input id="endereco" value={form.endereco} onChange={(e) => setForm({ ...form, endereco: e.target.value })} maxLength={300} />
               </div>
               <div>
                 <Label htmlFor="cidade">Cidade</Label>
@@ -202,6 +225,18 @@ export function CartDrawer() {
               <div>
                 <Label htmlFor="data">Data de entrega</Label>
                 <Input id="data" type="date" value={form.data} onChange={(e) => setForm({ ...form, data: e.target.value })} />
+              </div>
+              <div>
+                <Label htmlFor="mensagem-cartao">Mensagem para o cartão (opcional)</Label>
+                <Textarea
+                  id="mensagem-cartao"
+                  value={form.mensagemCartao}
+                  onChange={(e) => setForm({ ...form, mensagemCartao: e.target.value })}
+                  maxLength={500}
+                  rows={4}
+                  placeholder="Escreva aqui a mensagem que irá no cartão"
+                />
+                <p className="mt-1 text-right text-[11px] text-muted-foreground">{form.mensagemCartao.length}/500</p>
               </div>
 
               <div>
