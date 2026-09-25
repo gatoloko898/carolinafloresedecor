@@ -20,11 +20,11 @@ export function Hero() {
 
             <div className="relative z-10 h-full flex items-center px-6 md:px-16">
               <div className="max-w-xl animate-fade-up">
-                <p className="font-script text-2xl md:text-3xl text-rose-deep">Carolina Flores & Decor</p>
+                <p className="font-script text-2xl md:text-3xl text-rose-deep">Carolina Flores</p>
                 <h1 className="text-4xl md:text-6xl font-light leading-[1.05] text-foreground mt-2">
                   Transformando<br />
                   <span className="font-script text-rose-deep text-5xl md:text-7xl">sentimentos</span><br />
-                  em Flores 🌷
+                  em Flores
                 </h1>
                 <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-md">
                   Buquês exclusivos, presentes inesquecíveis e decoração feita com amor.
