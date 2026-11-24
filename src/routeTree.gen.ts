@@ -9,25 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiPublicPedidoStatusRouteImport } from './routes/api/public/pedido-status'
-import { Route as ApiPublicInfinitepayWebhookRouteImport } from './routes/api/public/infinitepay-webhook'
+import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as ApiPublicInfinitepayRouteImport } from './routes/api/public/infinitepay'
+import { Route as ApiPublicInfinitepayWebhookRouteImport } from './routes/api/public/infinitepay-webhook'
+import { Route as ApiPublicPedidoStatusRouteImport } from './routes/api/public/pedido-status'
 
-const PedidoRoute = PedidoRouteImport.update({
-  id: '/pedido',
-  path: '/pedido',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicPedidoStatusRoute = ApiPublicPedidoStatusRouteImport.update({
-  id: '/api/public/pedido-status',
-  path: '/api/public/pedido-status',
+const PedidoRoute = PedidoRouteImport.update({
+  id: '/pedido',
+  path: '/pedido',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicInfinitepayRoute = ApiPublicInfinitepayRouteImport.update({
+  id: '/api/public/infinitepay',
+  path: '/api/public/infinitepay',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicInfinitepayWebhookRoute =
@@ -36,9 +36,9 @@ const ApiPublicInfinitepayWebhookRoute =
     path: '/api/public/infinitepay-webhook',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicInfinitepayRoute = ApiPublicInfinitepayRouteImport.update({
-  id: '/api/public/infinitepay',
-  path: '/api/public/infinitepay',
+const ApiPublicPedidoStatusRoute = ApiPublicPedidoStatusRouteImport.update({
+  id: '/api/public/pedido-status',
+  path: '/api/public/pedido-status',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -98,13 +98,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/pedido': {
-      id: '/pedido'
-      path: '/pedido'
-      fullPath: '/pedido'
-      preLoaderRoute: typeof PedidoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -112,11 +105,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/pedido-status': {
-      id: '/api/public/pedido-status'
-      path: '/api/public/pedido-status'
-      fullPath: '/api/public/pedido-status'
-      preLoaderRoute: typeof ApiPublicPedidoStatusRouteImport
+    '/pedido': {
+      id: '/pedido'
+      path: '/pedido'
+      fullPath: '/pedido'
+      preLoaderRoute: typeof PedidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/infinitepay': {
+      id: '/api/public/infinitepay'
+      path: '/api/public/infinitepay'
+      fullPath: '/api/public/infinitepay'
+      preLoaderRoute: typeof ApiPublicInfinitepayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/infinitepay-webhook': {
@@ -126,11 +126,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicInfinitepayWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/infinitepay': {
-      id: '/api/public/infinitepay'
-      path: '/api/public/infinitepay'
-      fullPath: '/api/public/infinitepay'
-      preLoaderRoute: typeof ApiPublicInfinitepayRouteImport
+    '/api/public/pedido-status': {
+      id: '/api/public/pedido-status'
+      path: '/api/public/pedido-status'
+      fullPath: '/api/public/pedido-status'
+      preLoaderRoute: typeof ApiPublicPedidoStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
